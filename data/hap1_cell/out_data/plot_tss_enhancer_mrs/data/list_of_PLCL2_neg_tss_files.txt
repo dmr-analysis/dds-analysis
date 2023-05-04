@@ -1,4 +1,0 @@
-../../data/hap1_cell/out_data//plot_tss_enhancer_mrs/data/P2.PLCL2_neg_5mC_tss_allDMRs.csv
-../../data/hap1_cell/out_data//plot_tss_enhancer_mrs/data/P1.PLCL2_neg_5mC_tss_allDMRs.csv
-../../data/hap1_cell/out_data//plot_tss_enhancer_mrs/data/S2.PLCL2_neg_5mC_tss_allDMRs.csv
-../../data/hap1_cell/out_data//plot_tss_enhancer_mrs/data/S1.PLCL2_neg_5mC_tss_allDMRs.csv

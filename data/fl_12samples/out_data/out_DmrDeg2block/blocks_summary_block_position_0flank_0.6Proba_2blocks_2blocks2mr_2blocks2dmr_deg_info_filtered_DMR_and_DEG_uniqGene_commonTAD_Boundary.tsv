@@ -1,7 +1,0 @@
-gene_name	patients	gene_type	block_id	new_mr_sites	patient_id	enhancers	TAD2gene	Boundary2gene	TAD2block	Boundary2block	isTAD
-BCL2	9	TSS	block_1_18_60987833_60988302	chr18:mr621	patient_0,patient_1,patient_2,patient_4,patient_5,patient_6,patient_7,patient_8,patient_10	nan	18:60675000:61075000:Low-active	na	18:60675000:61075000:Low-active	na	1.0
-BCL2	8	TSS	block_0_18_60986372_60987028	chr18:mr621	patient_0,patient_1,patient_4,patient_5,patient_6,patient_7,patient_8,patient_10	enhancer	18:60675000:61075000:Low-active	na	18:60675000:61075000:Low-active	na	1.0
-SERPINB8	9	5dist	block_1_18_60987833_60988302	chr18:mr621	patient_0,patient_1,patient_2,patient_4,patient_5,patient_6,patient_7,patient_8,patient_10	nan	18:61650000:66375000:Low	18:61575000:61650000:1	18:60675000:61075000:Low-active	na	0.0
-SERPINB2	9	5dist	block_1_18_60987833_60988302	chr18:mr621	patient_0,patient_1,patient_2,patient_4,patient_5,patient_6,patient_7,patient_8,patient_10	nan	18:61150000:61575000:Low	na	18:60675000:61075000:Low-active	na	0.0
-SERPINB5	9	5dist	block_1_18_60987833_60988302	chr18:mr621	patient_0,patient_1,patient_2,patient_4,patient_5,patient_6,patient_7,patient_8,patient_10	nan	18:61150000:61575000:Low	18:61075000:61150000:1	18:60675000:61075000:Low-active	na	0.0
-SERPINB12	9	5dist	block_1_18_60987833_60988302	chr18:mr621	patient_0,patient_1,patient_2,patient_4,patient_5,patient_6,patient_7,patient_8,patient_10	nan	18:61150000:61575000:Low	na	18:60675000:61075000:Low-active	na	0.0
