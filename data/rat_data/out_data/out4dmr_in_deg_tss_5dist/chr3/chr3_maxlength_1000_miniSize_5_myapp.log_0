@@ -1,0 +1,27 @@
+Thu, 04 May 2023 15:29:06 INFO     ../../data/rat_data/in_data/final_demo_data/rat_data//out_data/DMR_CpG_context/chr3/plots/chr3_all_mr_data.tsv
+Thu, 04 May 2023 15:29:06 INFO     ../../data/rat_data/in_data/final_demo_data/rat_data//out_data/DMR_CpG_context/chr3/chr3_MR_data4maxBlockDistance_1000_minBlockSize_5_data.txt.gz
+Thu, 04 May 2023 15:29:06 INFO     Type of MRs is : DMRs
+Thu, 04 May 2023 15:29:06 INFO     Cluster accuracy from 0 to 1.1
+Thu, 04 May 2023 15:29:06 INFO     ('mr16', 'mr39')
+Thu, 04 May 2023 15:29:06 INFO     mrThuThu, 04 May 2023 15:29:06 INFO     analysis of smoothed data, P cutoff= 0.0ThuThu, 04 May 2023 15:29:06 INFO     Percentage of smooth data points passed T-test P<0.05 is: 0.03157ThuThu, 04 May 2023 15:29:07 INFO     Perform PCA , t-SNE analysis on smooth dataThu, 04 May 2023 15:29:22 INFO     smooth clusteirng accuracy of tSNE 0.8
+Thu, 04 May 2023 15:29:22 INFO     Minimum precentage of the mean methylation changes between the two groups (e.g., mean(tumor) -mean(gcb)) in each position : Low=0.05, Median=0.1, High=0.2
+Thu, 04 May 2023 15:29:23 INFO     Difference of the mean smooth data , Negative percentage= 0.360902,  0.225564,  0 
+Thu, 04 May 2023 15:29:23 INFO      Low, Median, High                   Positive percentae= 0.293233,  0.210526,  0.0601504 
+Thu, 04 May 2023 15:29:23 INFO                                          Total perecntage= 0.654135,  0.43609,  0.0601504
+Thu, 04 May 2023 15:29:23 INFO     [0.13259927385816814, 0.4540687888285725, 0.03007518796992481, 0.5896229954674882, 0.9883411173367147, 0.5543413294771723, -0.01481762625596571]
+Thu, 04 May 2023 15:29:23 INFO     Start to plot 
+Thu, 04 May 2023 15:29:23 INFO     ../../data/rat_data/out_data//out4dmr_in_deg_tss_5dist/chr3/chr3_DMR_mr0.pdf
+Thu, 04 May 2023 15:29:23 INFO     mr2
+Thu, 04 May 2023 15:29:23 INFO     analysis of smoothed data, P cutoff= 0.05 
+Thu, 04 May 2023 15:29:23 INFO     Percentage of smooth data points passed T-test P<0.05 is: 0.12093
+Thu, 04 May 2023 15:29:23 INFO     Perform PCA , t-SNE analysis on smooth data !
+ThuThu, 04 May 2023 15:29:28 INFO     smooth clusteirng accuracy of tSNE 0ThuThu, 04 May 2023 15:29:28 INFO     Minimum precentage of the mean methylation changes between the two groups (e.g., mean(tumor) -mean(gcb)) in each position : Low=0.05, Median=0.1, High=0.2
+Thu, 04 May 2023 15:29:28 INFO     Difference of the mean smooth data , Negative percentage= 0.355705,  0.151007,  0.0302013 
+Thu, 04 May 2023 15:29:28 INFO      Low, Median, High                   Positive percentae= 0.479866,  0.352349,  0.221477 
+Thu, 04 May 2023 15:29:28 INFO                                          Total perecntage= 0.83557,  0.503356,  0.251678
+Thu, 04 May 2023 15:29:28 INFO     [0.0008595928124586291, 0.0008595928124586291, 0.0, 0.49532640752053847, 0.02680400052093451, -0.699931805286385, 2.4265372719708735]
+Thu, 04 May 2023 15:29:28 INFO     Start to plot 
+Thu, 04 May 2023 15:29:28 INFO     ../../data/rat_data/out_data//out4dmr_in_deg_tss_5dist/chr3/chr3_DMR_mr39.pdf
+Thu, 04 May 2023 15:29:28 INFO     checked total DMRs 44 
+Thu, 04 May 2023 15:29:28 INFO     needs check DMRs 2 
+Thu, 04 May 2023 15:29:28 INFO     Remaining [] 

@@ -1,0 +1,12 @@
+patient_id	source_vcf_file	total_mutations	mutations_in_regions	mutations_in_blocks	number_of_blocks_with_mutations
+0	/cluster/projects/nn4605k/junbaiw/rrpathology/local/FL_project2019/bayespi_bar_2_alireza/bayes_pi_bar_3.1/bpb3/final_demo_data/demo3_fl_cohort_small/out/../patient_data/DO52689/icgc_mutations_on_18.tsv	343	10	10	2
+1	/cluster/projects/nn4605k/junbaiw/rrpathology/local/FL_project2019/bayespi_bar_2_alireza/bayes_pi_bar_3.1/bpb3/final_demo_data/demo3_fl_cohort_small/out/../patient_data/DO27859/icgc_mutations_on_18.tsv	203	7	7	2
+2	/cluster/projects/nn4605k/junbaiw/rrpathology/local/FL_project2019/bayespi_bar_2_alireza/bayes_pi_bar_3.1/bpb3/final_demo_data/demo3_fl_cohort_small/out/../patient_data/DO52656/icgc_mutations_on_18.tsv	149	12	11	1
+3	/cluster/projects/nn4605k/junbaiw/rrpathology/local/FL_project2019/bayespi_bar_2_alireza/bayes_pi_bar_3.1/bpb3/final_demo_data/demo3_fl_cohort_small/out/../patient_data/DO52680/icgc_mutations_on_18.tsv	49	0	0	0
+4	/cluster/projects/nn4605k/junbaiw/rrpathology/local/FL_project2019/bayespi_bar_2_alireza/bayes_pi_bar_3.1/bpb3/final_demo_data/demo3_fl_cohort_small/out/../patient_data/DO52677/icgc_mutations_on_18.tsv	257	18	17	2
+5	/cluster/projects/nn4605k/junbaiw/rrpathology/local/FL_project2019/bayespi_bar_2_alireza/bayes_pi_bar_3.1/bpb3/final_demo_data/demo3_fl_cohort_small/out/../patient_data/DO52694/icgc_mutations_on_18.tsv	184	17	16	2
+6	/cluster/projects/nn4605k/junbaiw/rrpathology/local/FL_project2019/bayespi_bar_2_alireza/bayes_pi_bar_3.1/bpb3/final_demo_data/demo3_fl_cohort_small/out/../patient_data/DO52669/icgc_mutations_on_18.tsv	191	14	11	2
+7	/cluster/projects/nn4605k/junbaiw/rrpathology/local/FL_project2019/bayespi_bar_2_alireza/bayes_pi_bar_3.1/bpb3/final_demo_data/demo3_fl_cohort_small/out/../patient_data/DO52685/icgc_mutations_on_18.tsv	440	31	27	2
+8	/cluster/projects/nn4605k/junbaiw/rrpathology/local/FL_project2019/bayespi_bar_2_alireza/bayes_pi_bar_3.1/bpb3/final_demo_data/demo3_fl_cohort_small/out/../patient_data/DO52653/icgc_mutations_on_18.tsv	182	18	18	2
+9	/cluster/projects/nn4605k/junbaiw/rrpathology/local/FL_project2019/bayespi_bar_2_alireza/bayes_pi_bar_3.1/bpb3/final_demo_data/demo3_fl_cohort_small/out/../patient_data/DO52676/icgc_mutations_on_18.tsv	45	4	0	0
+10	/cluster/projects/nn4605k/junbaiw/rrpathology/local/FL_project2019/bayespi_bar_2_alireza/bayes_pi_bar_3.1/bpb3/final_demo_data/demo3_fl_cohort_small/out/../patient_data/DO52681/icgc_mutations_on_18.tsv	434	46	44	2

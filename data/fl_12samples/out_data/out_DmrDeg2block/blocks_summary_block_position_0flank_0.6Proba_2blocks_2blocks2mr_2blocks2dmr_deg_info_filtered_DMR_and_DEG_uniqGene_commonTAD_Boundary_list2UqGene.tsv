@@ -1,0 +1,2 @@
+gene_name	gene_type	block_id	new_mr_sites	patients	isTAD	enhancers	patient_id
+BCL2	TSS~TSS	block_1_18_60987833_60988302~block_0_18_60986372_60987028	chr18:mr621~chr18:mr621	9~8	1.0~1.0	nan~enhancer	patient_0,patient_1,patient_2,patient_4,patient_5,patient_6,patient_7,patient_8,patient_10~patient_0,patient_1,patient_4,patient_5,patient_6,patient_7,patient_8,patient_10

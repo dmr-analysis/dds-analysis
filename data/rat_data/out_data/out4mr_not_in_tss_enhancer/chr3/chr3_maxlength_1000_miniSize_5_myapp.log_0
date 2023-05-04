@@ -1,0 +1,40 @@
+Thu, 04 May 2023 15:35:35 INFO     ../../data/rat_data/in_data/final_demo_data/rat_data//out_data/DMR_CpG_context/chr3/plots/chr3_all_mr_data.tsv
+Thu, 04 May 2023 15:35:35 INFO     ../../data/rat_data/in_data/final_demo_data/rat_data//out_data/DMR_CpG_context/chr3/chr3_MR_data4maxBlockDistance_1000_minBlockSize_5_data.txt.gz
+Thu, 04 May 2023 15:35:35 INFO     Type of MRs is : DMRs
+Thu, 04 May 2023 15:35:35 INFO     Cluster accuracy from 0 to 1.1
+Thu, 04 May 2023 15:35:35 INFO     ('mr29', 'mr32', 'mr33')
+Thu, 04 May 2023 15:35:35 INFO     mr29
+Thu, 04 May 2023 15:35:35 INFO     analysis of smoothed data, P cutoff= 0.05 
+Thu, 04 May 2023 15:35:35 INFO     Percentage of smooth data points passed T-test P<0.05 is: 0
+Thu, 04 May 2023 15:35:35 INFO     Perform PCA , t-SNE analysis onThu, 04 May 2023 15:35:Thu, 04 May 2023 15:35:50 INFO     smooth clusteirng accuracy of tSNE 0.ThThu, 04 May 2023 15:35:50 INFO     Minimum precentage of the mean methylation changes between the two groups (e.g., mean(tumor) -mean(gcb)) in each position : Low=0.05, Median=0.1, High=0.ThThu, 04 May 2023 15:35:50 INFO     Difference of the mean smooth data , Negative percentage= 0.316547,  0.179856,  0 
+Thu, 04 May 2023 15:35:50 INFO      Low, Median, High                   Positive percentae= 0.244604,  0.158273,  0.0143885 
+Thu, 04 May 2023 15:35:50 INFO                                          Total perecntage= 0.561151,  0.338129,  0.0143885
+Thu, 04 May 2023 15:35:50 INFO     [0.39437695981848586, 0.8663888789300486, 0.04316546762589928, 0.5132883371129267, 0.8205138958847248, 0.6715067927780975, -0.2302381658302145]
+Thu, 04 May 2023 15:35:50 INFO     Start to plot 
+Thu, 04 May 2023 15:35:50 INFO     ../../data/rat_data/out_data//out4mr_not_in_tss_enhancer/chr3/chr3_DMR_mr12.pdf
+Thu, 04 May 2023 15:35:50 INFO     mr17
+Thu, 04 May 2023 15:35:50 INFO     analysis of smoothed data, P cutoff= 0.05 
+Thu, 04 May 2023 15:35:50 INFO     Percentage of smooth data points passed T-test P<0.05 is: 0
+Thu, 04 May 2023 15:35:50 INFO     Perform Thu,Thu, 04 May 2023TThu, 04 May 2023 ThThu, 04 May 2023 15:36:00 INFO     smooth clusteirng accuracy of tSNE 0.6
+Thu, 04 May 2023 15:36:00 INFO     Minimum precentage of the mean methylation changes between the two groups (e.g., mean(tumor) -mean(gcb)) in each position : Low=0.05, Median=0.1, High=0.2
+Thu, 04 May 2023 15:36:01 INFO     Difference of the mean smooth data , Negative percentage= 0.323171,  0.146341,  0.0182927 
+Thu, 04 May 2023 15:36:01 INFO      Low, Median, High                   Positive percentae= 0.219512,  0.097561,  0.00609756 
+Thu, 04 May 2023 15:36:01 INFO                                          Total perecntage= 0.542683,  0.243902,  0.0243902
+Thu, 04 May 2023 15:36:01 INFO     [0.27721525677663983, 0.05955153127687506, 0.0, 0.6233100746553116, 0.6087743759438, -0.49992093064009385, 0.5212365804751097]
+Thu, 04 May 2023 15:36:01 INFO     Start to plot 
+Thu, 04 May 2023 15:36:01 INFO     ../../data/rat_data/out_data//out4mr_not_in_tss_enhancer/chr3/chr3_DMR_mr10.pdf
+Thu, 04 May 2023 15:36:01 INFO     mr11
+Thu, 04 May 2023 15:36:01 INFO     analysis of smoothed data, P cutoff= 0.05 
+Thu, 04 May 2023 15:36:01 INFO     Percentage of smooth data points passed T-test P<0.05 is: 0
+Thu, 04 May 2Thu, 04 May 2023 15:36:09 INFO     smooth clusteiThu, 04 May 2023 15Thu, 04 May 2023 15:36:09 INFO     smooth clusteirng accuracy of tSNE 0.5
+Thu, 04 May 2023 15:36:09 INFO     Minimum precentage of the mean methylation changes between the two groups (e.g., mean(tumor) -mean(gcb)) in each position : Low=0.05, Median=0.1, High=0.2
+Thu, 04 May 2023 15:36:09 INFO     Difference of the mean smooth data , Negative percentage= 0.269231,  0.0384615,  0 
+Thu, 04 May 2023 15:36:09 INFO      Low, Median, High                   Positive percentae= 0.0384615,  0,  0 
+Thu, 04 May 2023 15:36:09 INFO                                          Total perecntage= 0.307692,  0.0384615,  0
+Thu, 04 May 2023 15:36:09 INFO     [2.263396507456487e-05, 0.5741562429811664, 0.0, 0.26523320929127525, 0.9814136745071874, 1.150140878452533, 0.023644592075068274]
+Thu, 04 May 2023 15:36:09 INFO     Start to plot 
+Thu, 04 May 2023 15:36:09 INFO     ../../data/rat_data/out_data//out4mr_not_in_tss_enhancer/chr3/chr3_DMR_mr11.pdf
+Thu, 04 May 2023 15:36:09 INFO     checked total DMRs 44 
+Thu, 04 May 2023 15:36:09 INFO     needs check DMRs 3 
+Thu, 04 May 2023 15:36:09 INFO     Remaining [] 
+Thu, 04 May 2023 15:36:07 INFO     Remaining [] 

@@ -1,0 +1,10 @@
+gene_name	gene_type	new_mr_sites
+ABCC4	TSS:5000:1000	chr13:mr8~chr13:mr8
+LSM3	TSS:5000:1000	chr3:mr370~chr3:mr371
+MRPS25	TSS:5000:1000	chr3:mr402
+PLCL2	TSS:5000:1000	chr3:mr564~chr3:mr571
+PPARG	TSS:5000:1000	chr3:mr273~chr3:mr274~chr3:mr273~chr3:mr274~chr3:mr273~chr3:mr275~chr3:mr276~chr3:mr275~chr3:mr276~chr3:mr282~chr3:mr283
+SLC6A6	TSS:5000:1000	chr3:mr375~chr3:mr375
+SRGAP3	TSS:5000:1000	chr3:mr88
+TRIM32	TSS:5000:1000	chr9:mr102~chr9:mr104~chr9:mr102~chr9:mr104
+TTLL3	TSS:5000:1000	chr3:mr111~chr3:mr111

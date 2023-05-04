@@ -1,0 +1,6 @@
+out/data/TSS_Up1_Down1_removedShort.bed
+out/data/gene_Up1_Down1removedShort.bed
+out/data/TES_Up1_Down1removedShort.bed
+out/data/5dist_Up1000000_Up10000removedShort.bed
+out/data/intergenic_uniqueSorted_betweenTSS_TES_genes_minLen10.bed
+out/data/5dist_Down1000000_Down10000removedShort.bed

@@ -1,0 +1,6 @@
+direction	pwm_name	bonferroni_p	affected_cases	total_cases
+Positive	SOX17_2_from_Sox17_jaspar_MA0078.1.mlp	0.02225249862937881	2	9
+Negative	FOXO4_2_from_FOXO4_transfac_M00476.mlp	2.610787582391341e-05	9	9
+Negative	AHR::ARNT_3_from_Arnt::Ahr_jaspar_MA0006.1.mlp	0.00023224364022313965	8	9
+Negative	FOXC1_2_from_FOXC1_jaspar_MA0032.1.mlp	0.0004952257481209405	7	9
+Negative	FOXK1_4_from_Foxk1_jolma_DBD_M448.mlp	0.0026525648139943876	8	9

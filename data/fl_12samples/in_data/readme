@@ -1,0 +1,5 @@
+bpb3_demo3_fl_cohort_small:	demo3 data from bpb3 package;					https://github.com/junbaiw/bpb3
+in_enhancer:                    human enhancer and target genes are obtained from enhancer atlas 2.0;        http://www.enhanceratlas.org/
+final_demo_data:		demo data from dmr_analysis package:				https://github.com/dmr-analysis/dmr_analysis
+DMR_CpG_context:		output data of demo fl_12samples in dmr_analysis package;	https://github.com/dmr-analysis/dmr_analysis
+WGBS-data:			input WGBS data of demo fl_12samples in dmr_analysis package;	https://github.com/dmr-analysis/dmr_analysis

@@ -1,0 +1,4 @@
+direction	pwm_name	bonferroni_p	affected_cases	total_cases
+Negative	ARID3A_1_from_ARID3A_jaspar_MA0151.1.mlp	0.0014576136293057353	8	8
+Negative	IRX3_1_from_Irx3_bulyk_cell08-0920.1.mlp	0.0016353455381908004	7	8
+Negative	IRX3_2_from_Irx3_bulyk_cell08-2226.1.mlp	0.001807181652803613	7	8

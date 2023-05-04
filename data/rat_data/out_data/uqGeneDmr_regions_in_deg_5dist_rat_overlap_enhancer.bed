@@ -1,0 +1,9 @@
+gene_name	gene_type	new_mr_sites
+Eif3m	5dist:5000:1000000	chr3:mr16~chr3:mr16~chr3:mr2
+Fgd1	5dist:5000:1000000	chrX:mr281~chrX:mr313~chrX:mr313~chrX:mr313
+Hipk3	5dist:5000:1000000	chr3:mr2
+Qser1	5dist:5000:1000000	chr3:mr16~chr3:mr16~chr3:mr2
+Syp	5dist:5000:1000000	chrX:mr4~chrX:mr32~chrX:mr32~chrX:mr35~chrX:mr1~chrX:mr1~chrX:mr3~chrX:mr31~chrX:mr31
+Tab2	5dist:5000:1000000	chr1:mr16~chr1:mr16~chr1:mr23~chr1:mr18~chr1:mr18~chr1:mr18~chr1:mr22~chr1:mr22~chr1:mr22~chr1:mr22~chr1:mr22~chr1:mr22~chr1:mr22~chr1:mr20~chr1:mr20~chr1:mr20~chr1:mr20
+Tfe3	5dist:5000:1000000	chrX:mr4~chrX:mr32~chrX:mr32~chrX:mr35~chrX:mr1~chrX:mr1~chrX:mr3~chrX:mr31~chrX:mr31
+Wt1	5dist:5000:1000000	chr3:mr2

@@ -1,0 +1,4 @@
+gene_name	gene_type	new_mr_sites
+Eif2s3y	TSS:5000:1000	chrY:mr102
+Eif3m	TSS:5000:1000	chr3:mr0
+Phc3	TSS:5000:1000	chr2:mr3

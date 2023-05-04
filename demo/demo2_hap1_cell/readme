@@ -1,0 +1,5 @@
+1. Run run_hap1_cell_part1.sh and run_hap1_cell_part2.sh before running run_hap1_cell_part3.sh
+
+if it crashes do "conda update --all" in env
+
+

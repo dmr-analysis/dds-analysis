@@ -1,0 +1,3 @@
+block_id	chrom	start_pos	end_pos	number_of_mutations	number_of_patients	mutation_distribution	patient_id	region_names
+block_1_18_60987833_60988302	18	60987808	60988326	102	9	6,4,11,7,7,5,18,13,31	patient_0,patient_1,patient_2,patient_4,patient_5,patient_6,patient_7,patient_8,patient_10	BCL2;-;up1000;down1000
+block_0_18_60986372_60987028	18	60986347	60987052	59	8	4,3,10,9,6,9,5,13	patient_0,patient_1,patient_4,patient_5,patient_6,patient_7,patient_8,patient_10	BCL2;-;up1000;down1000

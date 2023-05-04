@@ -1,0 +1,5 @@
+../../data/fl_12samples/in_data/final_demo_data/fl_12samples/out_data/DMR_CpG_context/data/TSS_Up5000_Down1000_removedShort.bed
+../../data/fl_12samples/in_data/final_demo_data/fl_12samples/out_data/DMR_CpG_context/data/gene_Up5000_Down1000removedShort.bed
+../../data/fl_12samples/in_data/final_demo_data/fl_12samples/out_data/DMR_CpG_context/data/TES_Up5000_Down1000removedShort.bed
+../../data/fl_12samples/in_data/final_demo_data/fl_12samples/out_data/DMR_CpG_context/data/5dist_Up1000000_Up5000removedShort.bed
+../../data/genome/hg19/hg19_all_enhancers_merged_4dmr.bed

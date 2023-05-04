@@ -1,0 +1,4 @@
+../../data/hap1_cell/out_data//plot_tss_enhancer_mrs/data/P2.MRPS25_neg_5mC_enhancer_allDMRs.csv
+../../data/hap1_cell/out_data//plot_tss_enhancer_mrs/data/P1.MRPS25_neg_5mC_enhancer_allDMRs.csv
+../../data/hap1_cell/out_data//plot_tss_enhancer_mrs/data/S2.MRPS25_neg_5mC_enhancer_allDMRs.csv
+../../data/hap1_cell/out_data//plot_tss_enhancer_mrs/data/S1.MRPS25_neg_5mC_enhancer_allDMRs.csv

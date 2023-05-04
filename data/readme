@@ -1,0 +1,6 @@
+Here, genome, chromSegment, final_demo_data folders are the same as 
+files in final_demo_data of dmr_analysis package : 
+https://github.com/dmr-analysis/dmr_analysis
+
+Thus , you only need to copy or link "final_demo_data folder" to here before running all the demos.
+

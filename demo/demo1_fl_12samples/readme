@@ -1,0 +1,3 @@
+list_region_files.txt contains genomic files location that will be used by
+dds_analysis map_block2genom to map mutation blocks to predefined genomic regions such
+as TSS, TES, gene, 5'distance and enhancers

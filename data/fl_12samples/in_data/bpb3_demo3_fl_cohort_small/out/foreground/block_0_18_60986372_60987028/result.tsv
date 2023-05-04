@@ -1,0 +1,11 @@
+direction	pwm_name	bonferroni_p	affected_cases	total_cases
+Negative	POU3F3_1_from_Pou3f3_bulyk_cell08-3235.2.mlp	2.597478956701781e-07	8	8
+Negative	IRX6_1_from_Irx6_bulyk_cell08-2623.2.mlp	0.0007994088944816389	7	8
+Negative	IRX5_1_from_Irx5_bulyk_cell08-2385.1.mlp	0.0008877824790546003	7	8
+Negative	ARID3A_1_from_ARID3A_jaspar_MA0151.1.mlp	0.0014576136293057353	8	8
+Negative	IRX3_1_from_Irx3_bulyk_cell08-0920.1.mlp	0.0016353455381908004	7	8
+Negative	IRX3_2_from_Irx3_bulyk_cell08-2226.1.mlp	0.001807181652803613	7	8
+Negative	FEV_1_from_FEV_jaspar_MA0156.1.mlp	0.0018288568013644082	7	8
+Negative	IRX2_1_from_Irx2_bulyk_cell08-0900.3.mlp	0.00212256891507053	7	8
+Negative	POU1F1_4_from_POU1F1_jolma_DBD_M205.mlp	0.012132014223659704	7	8
+Negative	PBX1_3_from_Pbx-1_transfac_M01017.mlp	0.033245684362867144	6	8
