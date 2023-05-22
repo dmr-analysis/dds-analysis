@@ -1,0 +1,16 @@
+direction	pwm_name	bonferroni_p	affected_cases	total_cases	gene_name
+Positive	TEAD2_1_from_ETF_transfac_M00695.mlp	0.00012738605770846935	8	9	ETF
+Negative	AHR::ARNT_3_from_Arnt::Ahr_jaspar_MA0006.1.mlp	1.6737342329412183e-39	9	9	ARNT::AHR
+Negative	FOXO1_3_from_FOXO1_jolma_DBD_M425.mlp	2.6316461406942503e-11	9	9	FOXO1 (1)
+Negative	FOXK1_4_from_Foxk1_jolma_DBD_M448.mlp	1.727922972512547e-07	9	9	FOXK1
+Negative	FOXG1_5_from_Foxg1_jolma_DBD_M442.mlp	2.9356254432840146e-07	8	9	FOXG1
+Negative	FOXO4_4_from_FOXO4_jolma_DBD_M432.mlp	4.399984620102494e-07	8	9	FOXO4
+Negative	FOXD2_2_from_FOXD2_jolma_DBD_M409.mlp	7.3633869459930005e-06	8	9	FOXD2 (1)
+Negative	FOXL1_4_from_FOXL1_jolma_full_M423.mlp	8.905188155395739e-06	8	9	FOXL1
+Negative	GATA_known7_from_GATA_1_from_GATA-X_transfac_M00203.mlp	9.108750099040392e-05	7	9	GATA
+Negative	FOXC2_1_from_FOXC2_jolma_DBD_M405.mlp	0.00019593616738732009	8	9	FOXC2
+Negative	FOXD2_1_from_FOXD2_jolma_DBD_M408.mlp	0.0034714546266995123	8	9	FOXD2 (2)
+Negative	MYC_known4_from_USF_2_from_USF_transfac_M00122.mlp	0.003998692440235856	8	9	USF
+Negative	FOXO1_1_from_FOXO1_transfac_M00473.mlp	0.015253161098902955	8	9	FOXO1 (2)
+Negative	ZEB1_known5_from_ZEB1_5_from_ZEB1_jaspar_MA0103.1.mlp	0.022452910731194348	8	9	ZEB1
+Negative	ZBTB14_3_from_Zfp161_bulyk_sc09-primary.mlp	0.022779482108721556	6	9	ZFP161

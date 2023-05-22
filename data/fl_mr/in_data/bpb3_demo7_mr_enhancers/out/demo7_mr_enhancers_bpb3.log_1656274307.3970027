@@ -1,0 +1,74 @@
+Sun, 26 Jun 2022 22:11:47 INFO     Assign P-value correction in significant mutation blocks test
+Sun, 26 Jun 2022 22:11:47 INFO     Assign p-value correction in affinity change test
+Sun, 26 Jun 2022 22:11:47 INFO      10 demo7_mr_enhancers patient expression datasets, 4 normal expression datasets
+Sun, 26 Jun 2022 22:11:47 INFO     
+Sun, 26 Jun 2022 22:11:47 INFO               ---------------------------------
+Sun, 26 Jun 2022 22:11:47 INFO              |                                 |
+Sun, 26 Jun 2022 22:11:47 INFO              |  BayesPI-BAR3 pipeline started  |
+Sun, 26 Jun 2022 22:11:47 INFO              |        |        |        |      |
+Sun, 26 Jun 2022 22:11:47 INFO              |        V        V        V      |
+Sun, 26 Jun 2022 22:11:47 INFO     
+Sun, 26 Jun 2022 22:11:47 INFO     If the pipeline is interrupted at any point, simply restart it to continue the computations
+Sun, 26 Jun 2022 22:11:47 INFO     Pipeline parameters:
+Sun, 26 Jun 2022 22:11:47 INFO     	Differential gene expression: value is log-transformed quantile normalized RPKM, P value for KS test: 0.05, minimum quantile normalized RPKM fold change: None
+Sun, 26 Jun 2022 22:11:47 INFO     	Regions of interest: [1000 bp upstream --> TSS --> 1000 bp downstream]
+Sun, 26 Jun 2022 22:11:47 INFO     	Patient data folder: /cluster/projects/nn4605k/junbaiw/rrpathology/local/FL_project2019/bayespi_bar_2_alireza/bayes_pi_bar_3.1/to_github/bpb3_git/final_demo_data/demo7_mr_enhancers/out/../patient_data
+Sun, 26 Jun 2022 22:11:47 INFO     	Control gene expression folder: /cluster/projects/nn4605k/junbaiw/rrpathology/local/FL_project2019/bayespi_bar_2_alireza/bayes_pi_bar_3.1/to_github/bpb3_git/final_demo_data/demo7_mr_enhancers/out/../normal_gcb_counts
+Sun, 26 Jun 2022 22:11:47 INFO     	MuSSD options: hot region has at least 3 mutations coming from at least 3 different patients within 30 bp. 25 bp added to both sides of each block.
+Sun, 26 Jun 2022 22:11:47 INFO     	BayesPI-BAR options: 10000 sequence shuffling iterations, 6 chemical potentials: none -10 -13 -15 -18 -20
+Sun, 26 Jun 2022 22:11:47 INFO     	Background options: 1000 sequence shuffling iterations, including PWMs ranked at most 10 in the foreground, taking 100 random regions 10 times (1000 total)
+Sun, 26 Jun 2022 22:11:47 INFO     	Output options: Bonferroni-corrected Wilcoxon rank-sum test P value < 0.05
+Sun, 26 Jun 2022 22:11:47 INFO     	Parallelization options are stored in the file /cluster/projects/nn4605k/junbaiw/rrpathology/local/FL_project2019/bayespi_bar_2_alireza/bayes_pi_bar_3.1/to_github/bpb3_git/final_demo/demo7_mr_enhancers/parallel_options.txt: --use_cores 10 --max_nodes 10
+Sun, 26 Jun 2022 22:11:47 INFO     Skip Step 0: make folder for clustered PWMs. BayesPI-BAR will use PWMs for the computation!
+Sun, 26 Jun 2022 22:11:47 INFO     
+Sun, 26 Jun 2022 22:11:47 INFO     Step 1: Computing differentially expressed genes
+Sun, 26 Jun 2022 22:11:58 INFO     Export at /cluster/projects/nn4605k/junbaiw/rrpathology/local/FL_project2019/bayespi_bar_2_alireza/bayes_pi_bar_3.1/to_github/bpb3_git/final_demo_data/demo7_mr_enhancers/out/differentially_expressed_genes.txt 
+Sun, 26 Jun 2022 22:11:58 INFO     
+Sun, 26 Jun 2022 22:11:58 INFO     Skip Step 2: generate region files  
+Sun, 26 Jun 2022 22:11:58 INFO     	but use selected region file from input: ../../final_demo_data/demo7_mr_enhancers/in/dmr_intersect_enhancer_regions_chr18noChr_5kb_flank.tsv
+Sun, 26 Jun 2022 22:11:58 INFO     
+Sun, 26 Jun 2022 22:11:58 INFO     Step 3: Calculating mutation blocks with MuSSD
+Sun, 26 Jun 2022 22:11:59 INFO     Export at /cluster/projects/nn4605k/junbaiw/rrpathology/local/FL_project2019/bayespi_bar_2_alireza/bayes_pi_bar_3.1/to_github/bpb3_git/final_demo_data/demo7_mr_enhancers/out/mussd_blocks 
+Sun, 26 Jun 2022 22:11:59 INFO     Information about patients is in the file /cluster/projects/nn4605k/junbaiw/rrpathology/local/FL_project2019/bayespi_bar_2_alireza/bayes_pi_bar_3.1/to_github/bpb3_git/final_demo_data/demo7_mr_enhancers/out/mussd_blocks/patients_summary.tsv
+Sun, 26 Jun 2022 22:11:59 INFO     Information about mutations is in the file /cluster/projects/nn4605k/junbaiw/rrpathology/local/FL_project2019/bayespi_bar_2_alireza/bayes_pi_bar_3.1/to_github/bpb3_git/final_demo_data/demo7_mr_enhancers/out/mussd_blocks/mutations_summary.tsv
+Sun, 26 Jun 2022 22:11:59 INFO     Information about found mutation blocks is in the file /cluster/projects/nn4605k/junbaiw/rrpathology/local/FL_project2019/bayespi_bar_2_alireza/bayes_pi_bar_3.1/to_github/bpb3_git/final_demo_data/demo7_mr_enhancers/out/mussd_blocks/blocks_summary.tsv
+Sun, 26 Jun 2022 22:11:59 INFO     There are 11 patients in the mutation dataset
+Sun, 26 Jun 2022 22:11:59 INFO     
+Sun, 26 Jun 2022 22:11:59 INFO     Step 4: Selecting blocks that are mutated more than average
+Sun, 26 Jun 2022 22:12:02 INFO     Export at /cluster/projects/nn4605k/junbaiw/rrpathology/local/FL_project2019/bayespi_bar_2_alireza/bayes_pi_bar_3.1/to_github/bpb3_git/final_demo_data/demo7_mr_enhancers/out/significant_blocks.txt 
+Sun, 26 Jun 2022 22:12:02 INFO     3 blocks have significantly more mutations than expected: block_2_18_60987833_60988552, block_1_18_60984827_60987028, block_0_18_60983893_60984144
+Sun, 26 Jun 2022 22:12:02 INFO     
+Sun, 26 Jun 2022 22:12:02 INFO     Step 5: Running BayesPI-BAR on patient-specific mutation blocks
+Sun, 26 Jun 2022 22:12:02 INFO     BayesPI-BAR will now compute the delta-dbA scores and rankings for block block_2_18_60987833_60988552 [1 of 3]
+Sun, 26 Jun 2022 22:56:08 INFO     Export at /cluster/projects/nn4605k/junbaiw/rrpathology/local/FL_project2019/bayespi_bar_2_alireza/bayes_pi_bar_3.1/to_github/bpb3_git/final_demo_data/demo7_mr_enhancers/out/foreground/block_2_18_60987833_60988552
+Sun, 26 Jun 2022 22:56:08 INFO     BayesPI-BAR will now compute the delta-dbA scores and rankings for block block_1_18_60984827_60987028 [2 of 3]
+Mon, 27 Jun 2022 01:15:43 INFO     Export at /cluster/projects/nn4605k/junbaiw/rrpathology/local/FL_project2019/bayespi_bar_2_alireza/bayes_pi_bar_3.1/to_github/bpb3_git/final_demo_data/demo7_mr_enhancers/out/foreground/block_1_18_60984827_60987028
+Mon, 27 Jun 2022 01:15:43 INFO     BayesPI-BAR will now compute the delta-dbA scores and rankings for block block_0_18_60983893_60984144 [3 of 3]
+Mon, 27 Jun 2022 01:27:03 INFO     Export at /cluster/projects/nn4605k/junbaiw/rrpathology/local/FL_project2019/bayespi_bar_2_alireza/bayes_pi_bar_3.1/to_github/bpb3_git/final_demo_data/demo7_mr_enhancers/out/foreground/block_0_18_60983893_60984144
+Mon, 27 Jun 2022 01:27:03 INFO     
+Mon, 27 Jun 2022 01:27:03 INFO     Step 6: Computing the background model
+Mon, 27 Jun 2022 01:27:03 INFO     Creating shell file with the command to compute the background: /cluster/projects/nn4605k/junbaiw/rrpathology/local/FL_project2019/bayespi_bar_2_alireza/bayes_pi_bar_3.1/to_github/bpb3_git/final_demo_data/demo7_mr_enhancers/out/make_background.sh
+Mon, 27 Jun 2022 01:27:10 INFO     Export at /cluster/projects/nn4605k/junbaiw/rrpathology/local/FL_project2019/bayespi_bar_2_alireza/bayes_pi_bar_3.1/to_github/bpb3_git/final_demo_data/demo7_mr_enhancers/out/make_background.sh 
+Mon, 27 Jun 2022 01:27:10 INFO     The background computation script will now compute the background delta-dbA score distributions /cluster/projects/nn4605k/junbaiw/rrpathology/local/FL_project2019/bayespi_bar_2_alireza/bayes_pi_bar_3.1/to_github/bpb3_git/final_demo_data/demo7_mr_enhancers/out/make_background.sh 
+Mon, 27 Jun 2022 02:59:06 INFO     Export at /cluster/projects/nn4605k/junbaiw/rrpathology/local/FL_project2019/bayespi_bar_2_alireza/bayes_pi_bar_3.1/to_github/bpb3_git/final_demo_data/demo7_mr_enhancers/out/background 
+Mon, 27 Jun 2022 02:59:06 INFO     
+Mon, 27 Jun 2022 02:59:06 INFO     Step 7: Significance tests will now be computed comparing background and foreground delta-dbA distributions for each PWM in each mutation block
+Mon, 27 Jun 2022 02:59:28 INFO     The table of significantly affected PWMs for block block_2_18_60987833_60988552 is stored in the file /cluster/projects/nn4605k/junbaiw/rrpathology/local/FL_project2019/bayespi_bar_2_alireza/bayes_pi_bar_3.1/to_github/bpb3_git/final_demo_data/demo7_mr_enhancers/out/foreground/block_2_18_60987833_60988552/result.tsv 
+Mon, 27 Jun 2022 02:59:30 INFO     The table of significantly affected PWMs for block block_1_18_60984827_60987028 is stored in the file /cluster/projects/nn4605k/junbaiw/rrpathology/local/FL_project2019/bayespi_bar_2_alireza/bayes_pi_bar_3.1/to_github/bpb3_git/final_demo_data/demo7_mr_enhancers/out/foreground/block_1_18_60984827_60987028/result.tsv 
+Mon, 27 Jun 2022 02:59:33 INFO     The table of significantly affected PWMs for block block_0_18_60983893_60984144 is stored in the file /cluster/projects/nn4605k/junbaiw/rrpathology/local/FL_project2019/bayespi_bar_2_alireza/bayes_pi_bar_3.1/to_github/bpb3_git/final_demo_data/demo7_mr_enhancers/out/foreground/block_0_18_60983893_60984144/result.tsv 
+Mon, 27 Jun 2022 02:59:33 INFO     
+Mon, 27 Jun 2022 02:59:33 INFO     Step 8: PWMs corresponding to the non-expressed TFs will now be removed from the results
+Mon, 27 Jun 2022 02:59:45 INFO     The table of significantly affected PWMs for block block_2_18_60987833_60988552, containing only those TFs which are expressed in patients, is stored in the file /cluster/projects/nn4605k/junbaiw/rrpathology/local/FL_project2019/bayespi_bar_2_alireza/bayes_pi_bar_3.1/to_github/bpb3_git/final_demo_data/demo7_mr_enhancers/out/foreground/block_2_18_60987833_60988552/result_filtered.tsv
+Mon, 27 Jun 2022 02:59:48 INFO     The table of significantly affected PWMs for block block_1_18_60984827_60987028, containing only those TFs which are expressed in patients, is stored in the file /cluster/projects/nn4605k/junbaiw/rrpathology/local/FL_project2019/bayespi_bar_2_alireza/bayes_pi_bar_3.1/to_github/bpb3_git/final_demo_data/demo7_mr_enhancers/out/foreground/block_1_18_60984827_60987028/result_filtered.tsv
+Mon, 27 Jun 2022 02:59:50 INFO     The table of significantly affected PWMs for block block_0_18_60983893_60984144, containing only those TFs which are expressed in patients, is stored in the file /cluster/projects/nn4605k/junbaiw/rrpathology/local/FL_project2019/bayespi_bar_2_alireza/bayes_pi_bar_3.1/to_github/bpb3_git/final_demo_data/demo7_mr_enhancers/out/foreground/block_0_18_60983893_60984144/result_filtered.tsv
+Mon, 27 Jun 2022 02:59:50 INFO     
+Mon, 27 Jun 2022 02:59:50 INFO     Step 9: Generate plots or heatmaps for the results
+Mon, 27 Jun 2022 03:00:06 INFO     Export at /cluster/projects/nn4605k/junbaiw/rrpathology/local/FL_project2019/bayespi_bar_2_alireza/bayes_pi_bar_3.1/to_github/bpb3_git/final_demo_data/demo7_mr_enhancers/out/foreground 
+Mon, 27 Jun 2022 03:00:06 INFO     
+Mon, 27 Jun 2022 03:00:06 INFO     Step 10: Remove temporary files in both background and foreground calculations. 
+Mon, 27 Jun 2022 03:01:33 INFO     
+Mon, 27 Jun 2022 03:01:33 INFO              |                                 |
+Mon, 27 Jun 2022 03:01:33 INFO              |        |        |        |      |
+Mon, 27 Jun 2022 03:01:33 INFO              |        V        V        V      |
+Mon, 27 Jun 2022 03:01:33 INFO              |  BayesPI-BAR3 pipeline finished |
+Mon, 27 Jun 2022 03:01:33 INFO               ---------------------------------

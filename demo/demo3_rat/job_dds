@@ -15,8 +15,7 @@
 #module purge
 #module --ignore-cache load Java/1.7.0_80
 
-#the last examples is for dds_analysis after preprocessing data in part2 , part3
-./run_rat_part2_test.sh
-./run_rat_part3_test.sh
-./run_rat_part4_test.sh
+#the last examples is for dds_analysis after preprocessing data 
+./run_rat_preprocess.sh
+./run_rat.sh
 

@@ -1,0 +1,5 @@
+test making dds_analysis package for dmr_deg_snp_analysis
+Here only bedtools2.27 works because there is a bug in bedtools2.30 which cut very long lines after bedtools inersect 
+#in future , a new version of dmr_analysis and dds_analysis shall be able to take care of this issue!! November 2021
+#
+# pip install -e dds_analysis

@@ -1,2 +1,0 @@
-[console_scripts]
-dds_analysis = dds_analysis.dds_analysis:main

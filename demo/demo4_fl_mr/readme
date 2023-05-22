@@ -1,2 +1,20 @@
 here we try to repeat the full analysis of bpb3, dmr_analysis, dds_analysis for 12 FL samples
+# 1. make genome region files based on genecode gtf annotation file
+	s1_run_annotation.sh
+
+#2. do dds_analysis for mutatoin blocks based on genCode genome regions
+	s2_do_dds_analysis_fl_14samples_mr_enhancers_gencode.sh
+
+#3. map DMR to predifined genomic regions that based on gencode annotation regions
+	s3_do_dmr_analysis_map2genome_gencode.sh
+
+#4. prepare files before doing dmr vs deg analysis 
+	s4_run_fl_preprocess.sh 
+
+#if shell background list creater is failed then use the python code
+#to create the background file list
+#make_background_files.py
+
+#5. do dds_analysis for predicting target genes of DMRs in either TSS or 5Distance regions
+	s5_run_dtarget.sh 
 

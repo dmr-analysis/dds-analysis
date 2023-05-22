@@ -27,7 +27,8 @@ class Main(object):
         dTarget_methy_vs_express	predict long distance target gene for a specific region (e.g., mutation block) based on coupling of methylation and gene expression across samples 
         plot_mr_vs_exp			Plot DMR/MR methylation level and Gene expression for a pair of DMR and its target gene
         plot_tss_enhancer_mrs		Plot the average methylation level of predicted DMRs at TSS and enhancer regions by the target genes predicted from dTarget_methy_vs_express 
-	filterDEG4bpb3		Filter Differential Expressed Genes (DEG) by rratio based on exported file from bpb3 differential_expression then export it with group mean and rratio	
+	filterDEG4bpb3		Filter Differential Expressed Genes (DEG) by rratio based on exported file from bpb3 differential_expression then export it with group mean and rratio
+	preprocess          This module first find DEG in TSS, 5dist regions then preprocess data for dds_analysis.	
   ''')
      parser.add_argument('task', help= 'Pipeline task to run ')
      args= parser.parse_args(sys.argv[1:2])
@@ -144,6 +145,12 @@ class Main(object):
      from .script.filterDEG4bpb3 import my_parser, run
      parser = my_parser(argparse.ArgumentParser(prog='dds_analysis filterDEG4bpb3',
 		description= 'Filter Differential Expressed Genes (DEG) by rratio based on exported file from bpb3 differential_expression, then export it with group mean and rratio.' ))
+     run(parser.parse_args(sys.argv[2:]))
+
+  def preprocess(self):
+     from .script.preprocess import my_parser, run
+     parser = my_parser(argparse.ArgumentParser(prog='dds_analysis preprocess',
+		description= 'This module first find DEG in TSS, 5dist regions then preprocess data for dds_analysis.' ))
      run(parser.parse_args(sys.argv[2:]))
 
  

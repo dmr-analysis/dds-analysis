@@ -1,0 +1,4 @@
+block_id	chrom	start_pos	end_pos	number_of_mutations	number_of_patients	mutation_distribution	patient_id	region_names
+block_2_18_60987833_60988552	18	60987808	60988576	118	9	35,21,13,8,11,9,8,5,8	patient_0,patient_2,patient_3,patient_4,patient_5,patient_7,patient_8,patient_9,patient_10	chr18:mr22253:hypo:D
+block_1_18_60984827_60987028	18	60984802	60987052	160	9	24,32,10,22,5,22,24,6,15	patient_0,patient_2,patient_3,patient_4,patient_5,patient_7,patient_8,patient_9,patient_10	chr18:mr22251:hyper:D,chr18:mr22252:hypo:D,chr18:mr22253:hypo:D
+block_0_18_60983893_60984144	18	60983868	60984168	22	4	8,4,9,1	patient_0,patient_3,patient_4,patient_7	chr18:mr22250:hyper:D,chr18:mr22251:hyper:D,chr18:mr22252:hypo:D,chr18:mr22253:hypo:D

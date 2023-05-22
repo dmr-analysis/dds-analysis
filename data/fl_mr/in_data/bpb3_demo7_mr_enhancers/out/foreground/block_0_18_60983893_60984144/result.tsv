@@ -1,0 +1,5 @@
+direction	pwm_name	bonferroni_p	affected_cases	total_cases
+Negative	UNCX_4_from_Uncx_jolma_DBD_M645.mlp	3.4920004447275514e-06	4	4
+Negative	DRGX_1_from_DRGX_jolma_DBD_M482.mlp	6.400531763523457e-06	4	4
+Negative	ETS_known5_from_ETS2_1_from_c-Ets-2_transfac_M00340.mlp	3.595378495975152e-05	4	4
+Negative	AP1_known5_from_AP1_6_from_AP-1_transfac_M00199.mlp	0.0012976710251901336	4	4

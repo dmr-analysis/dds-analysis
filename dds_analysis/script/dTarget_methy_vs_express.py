@@ -2,6 +2,7 @@
 #https://pubmed.ncbi.nlm.nih.gov/25994056/
 #for example, to extract methylation levels for MRs
 import os
+import re
 import pandas as pd
 import glob
 import multiprocessing as mp
@@ -92,9 +93,21 @@ def combine_mr_and_expression_data(tmp_mr_file, tmp_out_folder , in_geneexp_data
          #   tmp_expression_data=np.zeros((1,tmp_expression_data.shape[1]))
          tmp_expression_data=in_geneexp_data
 
-         #change columns for both methylation and expression data 
-         tmp_mr_cols=[ i.replace('meth_','') for i in tmp_methylation_data.columns[1:].to_list()]
-         tmp_exp_cols=[i.replace('meth_','') for i in tmp_exp_sample_cols]
+         #change columns for both methylation and expression data
+         #jbw may
+         #simple replace
+         #tmp_mr_cols=[ i.replace('meth_','') for i in tmp_methylation_data.columns[1:].to_list()]
+         #tmp_exp_cols=[i.replace('meth_','') for i in tmp_exp_sample_cols]
+ 
+         #replace with wildcard
+         #tmp_mr_cols=[ re.sub(r'meth(.?)_','',i) for i in tmp_methylation_data.columns[1:].to_list()]
+         #tmp_exp_cols=[re.sub(r'meth(.?)_','',i) for i in tmp_exp_sample_cols]
+       
+         #jbw may
+         #no replace and assumen Gene Expression label will use the same label as the methylation samples!
+         tmp_mr_cols=[ i for i in tmp_methylation_data.columns[1:].to_list()]
+         tmp_exp_cols=[ i for i in tmp_exp_sample_cols]
+
          #print(tmp_exp_cols)
          #print(tmp_mr_cols)
          #bug here if find a gene with two record in expression profiles??

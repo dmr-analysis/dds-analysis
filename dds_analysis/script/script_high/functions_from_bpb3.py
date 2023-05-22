@@ -3,8 +3,8 @@ import os
 
 def check_folder(out_folder):
  if not os.path.exists(out_folder):
-    print("Creater , ", out_folder)
-    os.mkdir(out_folder)
+    print("Create , ", out_folder)
+    os.makedirs(out_folder)
  else:
     print("Exists , ", out_folder)
 

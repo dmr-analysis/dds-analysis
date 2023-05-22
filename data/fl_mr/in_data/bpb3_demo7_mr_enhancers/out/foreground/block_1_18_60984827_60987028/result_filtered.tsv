@@ -1,0 +1,10 @@
+direction	pwm_name	bonferroni_p	affected_cases	total_cases
+Positive	E2F_known15_from_E2F1_13_from_E2F_transfac_M00803.mlp	3.436754213685003e-13	7	9
+Positive	TCF12_known1_from_TCF12_1_from_HEB_transfac_M00698.mlp	2.9422611943011775e-11	9	9
+Negative	NKX3-1_2_from_NKX3-1_jaspar_MA0124.1.mlp	1.889033846016969e-07	7	9
+Negative	MEF2B_1_from_MEF2B_jolma_full_M157.mlp	1.0780165579780466e-05	8	9
+Negative	NR3C1_known13_from_AR_6_from_Ar_jaspar_MA0007.1.mlp	0.00020509383401461618	7	9
+Negative	ARID3A_1_from_ARID3A_jaspar_MA0151.1.mlp	0.0009433965246697023	7	9
+Negative	XBP1_2_from_HTF_transfac_M00538.mlp	0.008977396720501065	6	9
+Negative	VDR_5_from_VDR_jolma_full_M731.mlp	0.010994196334111082	6	9
+Negative	HOXA4_1_from_HOXA4_transfac_M00640.mlp	0.016774711131994316	7	9

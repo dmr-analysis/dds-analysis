@@ -86,11 +86,11 @@ def find_target_genes(in_enhancer_file_folder, in_dds_file, select_gene, out_fol
   out_df2.chrs='chr'+out_df2.chrs
 
  if not os.path.exists(out_folder):
-   os.mkdir(out_folder)
+   os.makedirs(out_folder)
    print('Create folder: ', out_folder)
  out_folder2=os.path.join(out_folder,select_gene)
  if not os.path.exists(out_folder2):
-   os.mkdir(out_folder2)
+   os.makedirs(out_folder2)
    print('Create folder: ', out_folder2)
 
  out_file=os.path.join(out_folder2,select_gene+'_blocks.bed')
