@@ -63,7 +63,7 @@ def str_list_toArray(str):
     """
     str = str.replace('[', '').replace(']', '').replace(',', ' ')
     str_split = str.split()
-    return np.array(str_split).astype(np.float)
+    return np.array(str_split).astype(float)
 
 def interpolater(df, start, end, step_size):
     """adds two columns to df: interpolated and x_bin. x_bins is positions in (start,end)

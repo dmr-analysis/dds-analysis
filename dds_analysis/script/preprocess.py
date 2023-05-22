@@ -33,6 +33,13 @@ def my_parser(parser):
 
   return parser
 
+def uq_of_column(in_df,col_name,sep_str='~'):
+    '''Return a new df with a column with unique names/strings separsted by sep_str
+    '''
+    out_df=in_df.copy()
+    out_df[col_name]=in_df[col_name].apply(lambda x: sep_str.join(list(set(x.split(sep_str)))))
+    return out_df.copy()
+
 def preprocess(full_mr_file, out_result_folder, in_genome_file, in_data_str, tss_file):
     ###preprocess file#######
 
@@ -118,7 +125,12 @@ def preprocess(full_mr_file, out_result_folder, in_genome_file, in_data_str, tss
     out_df2 = in_df2.groupby([6, 'gene_type'])['mr_site'].apply('~'.join).reset_index().copy()
     out_df2.columns = out_columns
     out_file5 = in_file2.replace('dmr_', 'uqGeneDmr_')
-    out_df2.to_csv(out_file5, sep='\t', index=False)
+
+    #jbw may 
+    #remove duplicated mr in the same row
+    new_out_df2 =uq_of_column(out_df2,'new_mr_sites',sep_str='~')
+    new_out_df2.to_csv(out_file5, sep='\t', index=False)
+
     # here new_mr_sites was changed manually to block_id for doing chromSegment_test4blocks
     print('Convert file format to unique gene linked DMRs ..')
     print(out_file5, '\n')

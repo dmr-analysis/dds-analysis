@@ -24,9 +24,9 @@ dds_analysis preprocess \
       -in_dist_file '../../data/fl_mr/out_data/out_map2genome/2_chroms_all_mr_data_range_dmrRanking_noGenes_5dist_Up1000000_Up10000_overlap1e-09.bed' \
       -in_deg_file '../../data/fl_mr/in_data/in_DEG/differentially_expressed_genes_nonfolder.txt' \
       -out_folder '../../data/fl_mr/out_data/' \
-      -tss_file '../../data/fl_mr/out_data/in_genome_regions/data/TSS_Up10000_Down10000.bed' \
+      -tss_file '../../data/fl_mr/in_data/in_genome_regions/data/TSS_Up10000_Down10000.bed' \
       -full_mr_file '../../data/fl_mr/in_data/DMR_CpG_context/2_chroms_all_mr_data_range_dmrRanking.bed' \
-      -in_genome_file '../../data/fl_mr/out_data/in_genome_regions/data/hg19_all_enhancers_merged_4dmr.bed' \
+      -in_genome_file '../../data/fl_mr/in_data/in_genome_regions/data/hg19_all_enhancers_merged_4dmr.bed' \
       -gene_col_name '#gene'
 
 

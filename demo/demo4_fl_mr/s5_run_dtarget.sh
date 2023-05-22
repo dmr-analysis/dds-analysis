@@ -28,7 +28,7 @@ FILE_FOLD=${OUT_PATH}/out4mr_not_in_tss_enhancer
 BACK_FILE=${OUT_PATH}/background_samples_list.tsv
 
 #whether to skip below two steps in the pipeline
-is_run_dmr_export=0 # 1 for exporting, 0 or other values for skipping this step 
+is_run_dmr_export=1 # 1 for exporting, 0 or other values for skipping this step 
 is_run_dtarget=1    # 1 for run dTarget prediction , 0 or other values for skipping this step
 
 if [ $is_run_dmr_export == 1 ];

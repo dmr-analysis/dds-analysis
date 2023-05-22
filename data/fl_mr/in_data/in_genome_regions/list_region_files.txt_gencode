@@ -1,0 +1,5 @@
+../../data/fl_mr/in_data/in_genome_regions/data/TSS_Up10000_Down10000.bed
+../../data/fl_mr/in_data/in_genome_regions/data/gene_Up10000_Down10000removedShort.bed
+../../data/fl_mr/in_data/in_genome_regions/data/TES_Up10000_Down10000.bed
+../../data/fl_mr/in_data/in_genome_regions/data/5dist_Up1000000_Up10000.bed
+../../data/fl_mr/in_data/in_genome_regions/data/hg19_all_enhancers_merged_4dmr.bed
