@@ -123,7 +123,7 @@ in_mr_data_folder=${OUT_PATH}/out4dmr_in_deg_tss_5dist
 # a file for a list of background MR samples
 in_background_mr_file=$BACK_FILE
 #number of random sampling for the test
-number_of_samples=20
+number_of_samples=10
 
 if [ $is_run_dtarget == 1 ];
 then
@@ -175,7 +175,7 @@ dds_analysis plot_tss_enhancer_mrs \
 	-enc_file ${OUT_PATH}'/distance_region_'${number_of_samples}'sampling.csv' \
 	-is_negative 2 -genes 'BCL2,KIAA1468,AKAP17A' -mr_folder ${OUT_PATH}/out4dmr_in_deg_tss_5dist/ \
 	-folder_name '' --dmr_file_not_compressed \
-	-gX 2000 -gY 1000 \
+	-gX 2000 -gY 1000 -wtStr 'gcb_' \
 	-out_folder ${OUT_PATH}/plot_tss_enhancer_mrs
 echo "Done with plot_tss_enhancer_mrs"
 

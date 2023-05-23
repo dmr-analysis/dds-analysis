@@ -87,7 +87,10 @@ def preprocess(full_mr_file, out_result_folder, in_genome_file, in_data_str, tss
     out_df2 = in_df.groupby([6, 'gene_type'])['mr_site'].apply('~'.join).reset_index().copy()
     out_df2.columns = ['gene_name', 'gene_type', 'new_mr_sites']
     out_file2 = in_file.replace('dmr_', 'uqGeneDmr_')
-    out_df2.to_csv(out_file2, sep='\t', index=False)
+
+    #jbw may
+    new_out_df2 =uq_of_column(out_df2,'new_mr_sites',sep_str='~')
+    new_out_df2.to_csv(out_file2, sep='\t', index=False)
     print('Export unique genes in DMRs: ')
 
     # 8. to find tss overlapping with DMRs

@@ -69,8 +69,23 @@ def my_parser(parser):
                         help='If dmr file is not compressed file then use this option, default=False, dmr_file is compressed !')
   optional.add_argument('-flip_rr','--not_flip_sign_of_rratio', action='store_false',
                         help='If not flip sign of rratio then use this option, default=False, sign of rratio is flipped!')
+  optional.add_argument('-wtStr','--wildType_fileString', default='gcb_',type=str, metavar='',
+                        help='First few character string or strings that labeled in file name as Wide Type condition, for example, if file name start with gcb_meht1_* as wild type control sample'
+                              ', then --wildType_fileString is gcb, which is the default setting in the program ')
 
   return parser
+
+
+def unique_list(in_list):
+  ''' remove duplicates in a list and keep 
+      all elements in the same order as the original list
+  '''
+  new_list=[]
+  for i in in_list:
+      if i not in new_list:
+          new_list.append(i)
+
+  return new_list
 
 
 def check_folder(out_folder):
@@ -162,7 +177,7 @@ def extract_data4selected_genes(out_folder, tss_file, enhancer_file,selected_gen
   record_enhancer_df.to_csv(out_enc_file,sep='\t',index=False)
   return record_tss_df.copy(), record_enhancer_df.copy()
 
-def generate_hmtseq_data(tmp_gene, flank, feature, enc_file,isNegative, mr_folder, folder_name,out_folder ):
+def generate_hmtseq_data(wtype_str, tmp_gene, flank, feature, enc_file,isNegative, mr_folder, folder_name,out_folder ):
   ''' Genreate hmst-seq-analyzer format DMRs files for making plots in tss and enhancer
       tmp_gene: gene_name/symbol to extract methylation data 
       flank: flank region to add on the two-side of promoter or enhancer regions
@@ -228,7 +243,21 @@ def generate_hmtseq_data(tmp_gene, flank, feature, enc_file,isNegative, mr_folde
   #flank=100
   if tmp_df.shape[0] !=0:
     for i in range(0,len(tmp_columns)):
-      out_file=''.join(tmp_columns[i].split('_')[2:4]) +'.'+tmp_gene+ '_'+out_string+'_5mC_'+feature+'_allDMRs.csv'
+      #jbw may, find wtype str index
+      #if wtype_str in tmp_columns[i]:
+      #   print(tmp_columns[i].split(wtype_str))
+      #   tmp_file_str=[wtype_str + tmp_columns[i].split(wtype_str)[1]]
+      #else:
+      wtype_str_index=np.where(np.array(tmp_columns[i].split('_'))==wtype_str)
+      if len(wtype_str_index[0])>0:
+           start_idx=wtype_str_index[0][0]
+      else:
+           start_idx=1
+      end_idx=start_idx+3
+      tmp_file_str=unique_list(tmp_columns[i].split('_')[start_idx:end_idx])
+      #jbw
+      #print(tmp_file_str)
+      out_file='_'.join(tmp_file_str) +'.'+tmp_gene+ '_'+out_string+'_5mC_'+feature+'_allDMRs.csv'
       out_file=os.path.join(out_folder,out_file)
       enhancers_mc.append(out_file)
       out_dmr_df=pd.DataFrame(columns=['region_start','region_end','meth_points_all','powers','tissue'])
@@ -260,7 +289,7 @@ def generate_hmtseq_data(tmp_gene, flank, feature, enc_file,isNegative, mr_folde
   print(out_file)
   return out_file_df.copy()
 
-def plot_tss_enhancer_mr(tmp_gene, response, tss_mc, gbody_mc,tes_mc, gX,gY,G, w, window, sigma, MRs_txt,folder_out, is_plot2regions =True):
+def plot_tss_enhancer_mr(wtype_str, tmp_gene, response, tss_mc, gbody_mc,tes_mc, gX,gY,G, w, window, sigma, MRs_txt,folder_out, is_plot2regions =True):
   '''
     tmp_gene: selected gene for ploting
     response: positive or negative respnose between gene and predicted regulatory regions śuch tss and enhancers
@@ -284,7 +313,7 @@ def plot_tss_enhancer_mr(tmp_gene, response, tss_mc, gbody_mc,tes_mc, gX,gY,G, w
   folder_out2=os.path.join(folder_out,'plotData')
   check_folder(folder_out2)
   #plot2regions=True
-  plt_tgt_main(tss_mc, tes_mc, gbody_mc, gX, gY, G, w, window, sigma, MRs_txt, folder_out,is_plot2regions)
+  plt_tgt_main(wtype_str, tss_mc, tes_mc, gbody_mc, gX, gY, G, w, window, sigma, MRs_txt, folder_out,is_plot2regions)
 
 
 def run(args):
@@ -306,7 +335,7 @@ def run(args):
   dmr_file=args.differential_methylation_file
   tss_file=args.tss_target_file
   enc_file=args.enhancer_target_file
-  
+  wtype_str=args.wildType_fileString  
 
   #1. find DEG and DMR information for predicted target genes
   #read data
@@ -358,8 +387,8 @@ def run(args):
   print('\nStart to plot figures ... ')
   for tmp_gene in selected_genes:
     #jbw
-    generate_hmtseq_data(tmp_gene, flank, 'tss', tss_file3, isNegative, mr_folder, folder_name,data_folder_out )
-    generate_hmtseq_data(tmp_gene, flank, 'enhancer', enc_file3, isNegative, mr_folder, folder_name,data_folder_out )
+    generate_hmtseq_data(wtype_str,tmp_gene, flank, 'tss', tss_file3, isNegative, mr_folder, folder_name,data_folder_out )
+    generate_hmtseq_data(wtype_str,tmp_gene, flank, 'enhancer', enc_file3, isNegative, mr_folder, folder_name,data_folder_out )
 
     print('\n Plot -> ',tmp_gene)
     #4. plot methylation level at TSS and Enhancer at selected gene 
@@ -378,7 +407,7 @@ def run(args):
       gbody_mc=file_df[0].to_list()
 
     tes_mc=[]
-    plot_tss_enhancer_mr(tmp_gene, response, tss_mc, gbody_mc,tes_mc, gX,gY,G, w, window, sigma, MRs_txt,plot_folder_out, is_plot2regions =True)
+    plot_tss_enhancer_mr(wtype_str, tmp_gene, response, tss_mc, gbody_mc,tes_mc, gX,gY,G, w, window, sigma, MRs_txt,plot_folder_out, is_plot2regions =True)
     print('\n')
   return
 

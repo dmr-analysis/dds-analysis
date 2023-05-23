@@ -126,7 +126,7 @@ def find_average(df, s, e):
     end['orig_avg'] = (end['avg']/end['count'])
     return end['orig_avg']
 
-def plot_combined(TSS_df, gene_df, TES_df, methylation_type, sigma, x, y, gene_len, step_size, window, MRs_txt, folder_out):
+def plot_combined(TSS_df, gene_df, TES_df, methylation_type, sigma, x, y, gene_len, step_size, window, MRs_txt, folder_out,wtype_str):
     """Plots the combined TSS-gene_body-TES figure."""
     combo_df = pd.DataFrame()
     plt.figure(figsize=(14,8))
@@ -140,7 +140,13 @@ def plot_combined(TSS_df, gene_df, TES_df, methylation_type, sigma, x, y, gene_l
         combo_df[sample] = smooth
 
         len_x = len(smooth)
-        plt.plot(result.index, smooth, label=sample)
+        #jbw
+        if wtype_str in sample:
+            color_str='green'
+        else:
+            color_str='red'
+
+        plt.plot(result.index, smooth, label=sample, color=color_str)
 
     combo_df.to_csv(folder_out+'/plotData/plotData_TSSgeneTES_smoothed_'+methylation_type+'_'+MRs_txt+'.csv')
 
@@ -162,7 +168,7 @@ def plot_combined(TSS_df, gene_df, TES_df, methylation_type, sigma, x, y, gene_l
                 str(datetime.datetime.now())[:10]+'.jpg',dpi=400)
 
 #added jbw
-def plot_combined2regions(TSS_df, gene_df, methylation_type, sigma, x, y, gene_len, step_size, window, MRs_txt, folder_out):
+def plot_combined2regions(TSS_df, gene_df, methylation_type, sigma, x, y, gene_len, step_size, window, MRs_txt, folder_out, wtype_str):
     """Plots the combined two regions such as promoter + 5Distance/Enhancer figure."""
     combo_df = pd.DataFrame()
     plt.figure(figsize=(14,8))
@@ -176,7 +182,13 @@ def plot_combined2regions(TSS_df, gene_df, methylation_type, sigma, x, y, gene_l
         combo_df[sample] = smooth
 
         len_x = len(smooth)
-        plt.plot(result.index, smooth, label=sample)
+        #jbw
+        if wtype_str in sample:
+            color_str='green'
+        else:
+            color_str='red'
+
+        plt.plot(result.index, smooth, label=sample,color=color_str)
 
     combo_df.to_csv(folder_out+'/plotData/plotData_TSS5dist_smoothed_'+methylation_type+'_'+MRs_txt+'.csv')
 
@@ -207,7 +219,7 @@ def plot_combined2regions(TSS_df, gene_df, methylation_type, sigma, x, y, gene_l
     print(out_fig_file)
 
 
-def plot_alone(df, region, methylation_type, sigma, x, y, gene_len, step_size, window, MRs_txt, folder_out):
+def plot_alone(df, region, methylation_type, sigma, x, y, gene_len, step_size, window, MRs_txt, folder_out, wtype_str):
     """Plots TSS, gene body or TES samples by itself. If there for example exist no
     MRs in TSS, but there are MRs in TES and gene body, then the two will be plotted
     in their own figures."""
@@ -227,7 +239,13 @@ def plot_alone(df, region, methylation_type, sigma, x, y, gene_len, step_size, w
         combo_df[sample] = smooth
 
         len_x = len(smooth)
-        plt.plot(df.index, smooth, label=sample)
+        #jbw
+        if wtype_str in sample:
+           color_str='green'
+        else:
+           color_str='red'
+
+        plt.plot(df.index, smooth, label=sample,color=color_str)
 
     combo_df.to_csv(folder_out+'/plotData/plotData_'+region+'_smoothed_'+methylation_type+'_'+MRs_txt+'.csv')
 
@@ -262,7 +280,7 @@ def plot_alone(df, region, methylation_type, sigma, x, y, gene_len, step_size, w
     plt.savefig(out_fig_file,dpi=400)
     print(out_fig_file)
 
-def main(tss, tes, geneBody, x, y, gene_len, step_size, window, sigma, MRs_txt, folder_out,plot2regions=False):
+def main(wtype_str, tss, tes, geneBody, x, y, gene_len, step_size, window, sigma, MRs_txt, folder_out,plot2regions=False):
     """Plots distribution of 5mc/5hmC levels in TSS, TES, and gene body. If want to plot only 2 joined regions then set plot2regions True (added jbw)"""
     regions = {}
     if tss is not None and len(tss)>0:
@@ -300,7 +318,11 @@ def main(tss, tes, geneBody, x, y, gene_len, step_size, window, sigma, MRs_txt, 
     for region in regions:
         for file in regions[region]:
             print(file)
-            sample = (file.split('/')[-1]).split('_')[0]
+            #jbw
+            sample = (file.split('/')[-1]).split('.')[0]
+            #if wtype_str in file:
+            #    sample= wtype_str+sample
+
             tmp_df = pd.read_csv(file, index_col=False, header=0, converters=conv)
             if region == 'TSS':
                 tmp_df = interpolater(tmp_df, -x, y, step_size)
@@ -323,14 +345,15 @@ def main(tss, tes, geneBody, x, y, gene_len, step_size, window, sigma, MRs_txt, 
         #print(regions)
         if not same_length_regions(regions) or len(regions)<2:
            #print('plot_alone')
-           plot_alone(TSS_df, 'TSS', methylation_type, sigma, x, y, gene_len, step_size, window, MRs_txt, folder_out)
+           plot_alone(TSS_df, 'TSS', methylation_type, sigma, x, y, gene_len, step_size, window, MRs_txt, folder_out,wtype_str)
            #plot_alone(TES_df, 'TES', methylation_type, sigma, x, y, gene_len, step_size, window, MRs_txt, folder_out)
-           plot_alone(gene_df, 'Enhancer', methylation_type, sigma, x, y, gene_len, step_size, window, MRs_txt, folder_out)
+           plot_alone(gene_df, 'Enhancer', methylation_type, sigma, x, y, gene_len, step_size, window, MRs_txt, folder_out, wtype_str)
         else:
-           plot_combined2regions(TSS_df, gene_df, methylation_type, sigma, x, y, gene_len, step_size, window, MRs_txt, folder_out)
+           plot_combined2regions(TSS_df, gene_df, methylation_type, sigma, x, y, gene_len, step_size, window, MRs_txt, folder_out, wtype_str)
     elif not same_length_regions(regions):
-        plot_alone(TSS_df, 'TSS', methylation_type, sigma, x, y, gene_len, step_size, window, MRs_txt, folder_out)
-        plot_alone(TES_df, 'TES', methylation_type, sigma, x, y, gene_len, step_size, window, MRs_txt, folder_out)
-        plot_alone(gene_df, 'Gene Body', methylation_type, sigma, x, y, gene_len, step_size, window, MRs_txt, folder_out)
+        plot_alone(TSS_df, 'TSS', methylation_type, sigma, x, y, gene_len, step_size, window, MRs_txt, folder_out,wtype_str)
+        plot_alone(TES_df, 'TES', methylation_type, sigma, x, y, gene_len, step_size, window, MRs_txt, folder_out,wtype_str)
+        plot_alone(gene_df, 'Gene Body', methylation_type, sigma, x, y, gene_len, step_size, window, MRs_txt, folder_out,wtype_str)
     else:
-        plot_combined(TSS_df, gene_df, TES_df, methylation_type, sigma, x, y, gene_len, step_size, window, MRs_txt, folder_out)
+        plot_combined(TSS_df, gene_df, TES_df, methylation_type, sigma, x, y, gene_len, step_size, window, MRs_txt, folder_out,wtype_str)
+

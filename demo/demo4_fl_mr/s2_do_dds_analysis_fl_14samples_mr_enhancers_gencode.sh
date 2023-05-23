@@ -56,7 +56,7 @@ IN_DMR=${IN_FOLDER}'/DMR_CpG_context/2_chroms_all_mr_data_range_dmrRanking.bed'
 IN_EXPRESS=${IN_FOLDER}'/in_DEG/differentially_expressed_genes_nonfolder.txt'
 
 #add N bp flank region on the two sides of mutation blocks before intersecting them to DMRs
-FLANK_BP=500
+FLANK_BP=0
 
 #OUTPUT PATH
 #path for exporting mutation blocks mapped to predefined genomic regions
