@@ -4,6 +4,7 @@ import os
 import glob
 import numpy as np
 from dds_analysis.script.dTarget_methy_vs_express import read_geneexp_data, combine_mr_and_expression_data, do_utest_and_regression4dmr
+from dds_analysis.script.plot_tss_enhancer_mrs import check_folder
 import argparse
 # exec(open('plot_mr_vs_exp.py').read())
 
@@ -117,6 +118,9 @@ def run(args):
   in_gene_name=args.in_gene_name
   in_mr_name=args.in_mr_id
   in_gene_mr_file=args.in_gene_mr_file
+
+  #jbw may 
+  check_folder(args.output_file_path)
 
   #read gene expression data
   in_geneexp_df=pd.read_csv(in_gene_exp_file,sep='\t')

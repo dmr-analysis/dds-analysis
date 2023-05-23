@@ -179,7 +179,7 @@ def do_utest_and_regression4dmr(mean_methy_data, len_of_mr_idx, exp_data,tmp_exp
           tmp_x=X[:,1]
           #add color for gcb or normal samples
           plt.plot(tmp_x[gene_exp_cols>=0],Y[gene_exp_cols>=0], 'o',color='green')
-          plt.legend(['Tumor','Normal'])
+          plt.legend(['Other condition','Wild type'])
  
       plt.plot(X[:,1],reg_const_x1[0]+ reg_const_x1[1]*X[:,1],'b-')
       plt.xlabel(xlabels, fontweight='bold', fontsize=10)
