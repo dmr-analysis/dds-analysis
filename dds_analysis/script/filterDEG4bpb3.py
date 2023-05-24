@@ -26,6 +26,8 @@ def my_parser(parser):
                 type=str, metavar="NAME", default='differential_expression_T_test_p_value'  )
   optional.add_argument('--is_median', help='Use mean or median of group values to calculate folder changes between groups, default=False use mean value of the group',
                          action="store_true")
+  optional.add_argument('--no_zscore',help='Whether convert RPKM values to Zscore before exporting the data, default = True expor zscore converted values',
+                         action='store_true')
   return parser
 
 def change_column_label(in_df,idx2column,new_label):
@@ -83,13 +85,18 @@ def filter_df_by_rratio(merged_df, rr_cutoff,min_median_RPKM, group1_str, group2
  return filtered_merged_df.copy()
 
 
-def zscore_of_logRPKM(filtered_merged_df, group1_idx, group2_idx,start_col_idx4sample=2 ):
+def zscore_of_logRPKM(is_no_zscore, filtered_merged_df, group1_idx, group2_idx,start_col_idx4sample=2 ):
   #Zscore of log transformed RPKM values for samples in datafram
   #return datafram the first column is ID and the rest of columns are data
   num_of_samples= group1_idx.shape[0]+group2_idx.shape[0]
   out4cluster_df=filtered_merged_df.iloc[:,[0]+ [i for i in range(start_col_idx4sample,1+num_of_samples+1,1)]].copy()
-  norm_data=stats.zscore(np.log(out4cluster_df.iloc[:,1:].values +1.0),axis=0)
-  out4cluster_df.iloc[:,1:]=norm_data
+  #jbw may
+  if not is_no_zscore:
+    print('Convert to Zscore for clustering')
+    norm_data=stats.zscore(np.log(out4cluster_df.iloc[:,1:].values +1.0),axis=0)
+    out4cluster_df.iloc[:,1:]=norm_data
+  else:
+    print('no zsore transformation')
   return out4cluster_df.copy()
 
 def run(args):
@@ -142,12 +149,17 @@ def run(args):
   out_file4cluster=out_file4cluster.replace('.txt','')
   out_file=in_file+'_rratio_filtered.csv'
   out_file=out_file.replace('.txt','')
-  #jbw
-  print('Export zscore converted data for clustering at: ',out_file4cluster)
+  #jbw may
+  if not args.no_zscore:
+     out_file4cluster=out_file4cluster.replace('_filtered4cluster.csv','_filteredZscore4cluster.csv')
+     print('Export zscore converted data for clustering at: ',out_file4cluster)
+  else:
+     print('Export original data for clustering at:', out_file4cluster)
+
   print('Export group mean added original input data at: ', out_file)
 
   #Zscore of log transformed RPKM values
-  out4cluster_df=zscore_of_logRPKM(filtered_merged_df, group1_idx, group2_idx,start_col_idx4sample=2 )
+  out4cluster_df=zscore_of_logRPKM(args.no_zscore, filtered_merged_df, group1_idx, group2_idx,start_col_idx4sample=2 )
 
   #export filtered data for cluster
   tmp_columns=out4cluster_df.columns.to_list()
@@ -157,7 +169,12 @@ def run(args):
       if ti=='gene':
           ti2='gene_name'
       else:
-          ti2=os.path.basename(ti.replace('_count','_count_zscoreLog_of'))
+          #jbw may
+          if not args.no_zscore:
+             ti2=os.path.basename(ti.replace('_count','_count_zscoreLog_of'))
+          else:
+             ti2=os.path.basename(ti.replace('_count','_count_of'))
+
       tmp_columns2.append(ti2)
 
   out4cluster_df.columns=tmp_columns2

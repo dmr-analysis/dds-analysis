@@ -176,6 +176,7 @@ def do_utest_and_regression4dmr(mean_methy_data, len_of_mr_idx, exp_data,tmp_exp
       # p_values.loc['x1','P>|t|']<0.05 :
       plt.plot(X[:,1],Y,'o',color='red')
       if len(gene_exp_cols)>0:
+          #normal control samples
           tmp_x=X[:,1]
           #add color for gcb or normal samples
           plt.plot(tmp_x[gene_exp_cols>=0],Y[gene_exp_cols>=0], 'o',color='green')

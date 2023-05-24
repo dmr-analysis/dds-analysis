@@ -157,7 +157,11 @@ def plot_combined(TSS_df, gene_df, TES_df, methylation_type, sigma, x, y, gene_l
     plt.axvline(x=TES_line, color='0', linewidth=1)
     #plt.ylim(0, 3)
     plt.xlim(result.index[0], result.index[-1])
-    plt.title(methylation_type+', '+MRs_txt)
+    #plt.title(methylation_type+', '+MRs_txt)
+    #jbw may
+    #assume the out folder name is the gene name
+    gene_name=os.path.basename(folder_out).split('_')[0]
+    plt.title('-'.join([gene_name, methylation_type, MRs_txt]))
     TSS_TES_ticks = [TSS_line, TES_line]
     Y_ticks = [y, y+gene_len]
     plt.xticks(list(np.linspace(-x, result.index[-1], 3))+TSS_TES_ticks+Y_ticks, [str(-x)+'bp', '50%', str(x)+'bp', 'TSS', 'TES', str(y)+'bp', str(-y)+'bp'])
@@ -201,8 +205,12 @@ def plot_combined2regions(TSS_df, gene_df, methylation_type, sigma, x, y, gene_l
     #set xlim location based on result position
     #print(result)
     plt.xlim(result.index[0], result.index[-1])
-    plt.title(methylation_type+', '+MRs_txt)
-    
+    #plt.title(methylation_type+', '+MRs_txt)
+    #jbw may
+    #assume the out folder name is the gene name
+    gene_name=os.path.basename(folder_out).split('_')[0]
+    plt.title('-'.join([gene_name, methylation_type, MRs_txt]))
+
     TSS_ticks = [TSS_line]
     #set promoter tick position
     Y_ticks = [0]
@@ -271,7 +279,12 @@ def plot_alone(df, region, methylation_type, sigma, x, y, gene_len, step_size, w
 
     plt.xticks([df.index[0], mid_point, df.index[-1]], [left_str, middle_str, right_str])
     plt.xlim(df.index[0], df.index[-1])
-    plt.title(region+', '+methylation_type+', '+MRs_txt)
+    #plt.title(region+', '+methylation_type+', '+MRs_txt)
+    #jbw may
+    #assume the out folder name is the gene name
+    gene_name=os.path.basename(folder_out).split('_')[0]
+    plt.title('-'.join([gene_name,region, methylation_type, MRs_txt]))
+
     plt.ylabel('Average Methylation Level')
     plt.legend()
     out_fig_file=folder_out+'/'+methylation_type+'_'+region+'_X'+str(x)+'_Y'+str(y)+'_G'+\

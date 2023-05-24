@@ -94,11 +94,12 @@ def plot_mr_vs_expression_figure(in_gene_name, in_mr_name, in_geneexp_df,
   #replace gene express sample name by using inputted sampeName_replacement
   tmp_geneexp_cols2=replace_sample_name(exp2mr_normal_id, tmp_geneexp_cols1)
   #print(tmp_geneexp_cols2)
+  #jbw may 
   if len(tmp_geneexp_cols2)>0:
     tmp_geneexp_cols_label=np.char.find(tmp_geneexp_cols2,args.wildType_fileString)
     tmp_utest, fii, p_value= do_utest_and_regression4dmr(mean_methy_data, len_of_mr_idx, exp_data,tmp_exp_idx
         ,True, os.path.join(args.output_file_path, in_gene_name+'_'+in_mr_name.replace(':','_') + '.jpg'), 
-         in_mr_name,in_gene_name,tmp_geneexp_cols_label,args.figure_resolution_dpi)
+         in_mr_name+' (Methylation)',in_gene_name+' (Expression)',tmp_geneexp_cols_label,args.figure_resolution_dpi)
   else:
     tmp_utest=[]
     fii=[]
