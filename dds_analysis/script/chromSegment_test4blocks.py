@@ -231,8 +231,8 @@ def plot_figures(gene_df, out_df2, out_random_df2,cutoff,fig_dpi, samples):
   axes=fig.add_subplot(121)
   #plot fraction of blocks belong to R/T/...
   out_df2.boxplot(column=['R','T','E','TSS','WE','CTCF','PF'],ax=axes,showmeans=True,showfliers=True)
-  axes.set_ylabel('Fraction')
-  axes.set_xlabel('Chromatin Segmentation')
+  axes.set_ylabel('Fraction', fontweight='bold')
+  axes.set_xlabel('Chromatin Segmentation', fontweight='bold')
   axes.axhline(y = 0.1, color = 'r', linestyle = '-')
   axes.text(-0.6,1.05, 'A)', size=12, weight='bold')
 
@@ -249,8 +249,8 @@ def plot_figures(gene_df, out_df2, out_random_df2,cutoff,fig_dpi, samples):
      axes2.boxplot(filtered_data[i],positions=[i+1],showmeans=True,showfliers=True)
 
   axes2.set_xticklabels(cols)
-  axes2.set_ylabel('abs(log10(Expected P-value))')
-  axes2.set_xlabel('Chromatin Segmentation')
+  axes2.set_ylabel('abs(log10(Expected P-value))',fontweight='bold')
+  axes2.set_xlabel('Chromatin Segmentation',fontweight='bold')
   axes2.grid(visible=True)
   axes2.axhline(y = cutoff, color = 'r', linestyle = '-')
   axes2.text(-0.6,5.2, 'B)', size=12, weight='bold')
