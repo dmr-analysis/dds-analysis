@@ -4,6 +4,8 @@
 
 .. image:: helse-sor-ost.jpg
 
+.. image:: ahhus.png
+
 =================
 DDS-Analysis Tool
 =================
