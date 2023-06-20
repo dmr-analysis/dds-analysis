@@ -34,5 +34,5 @@ Tasks available for using:
 - **preprocess**: This module first finds DEG in TSS, 5dist regions then preprocesses data for dds_analysis.
 
 
-https://dds-analysis.readthedocs.io/en/latest/index.html
+A detailed documentation of the tool can be found here: https://dds-analysis.readthedocs.io/en/latest/index.html
 
