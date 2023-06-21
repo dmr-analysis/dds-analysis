@@ -286,33 +286,4 @@ Following is the output for gene "BCL2" with its enhancer region which is predic
     chr18	60986372	60987028	block_0_18_60986372_60987028	chr18:mr621	TSS	8	enhancer
 
 
-This step involves plotting the associations between selected target genes and DMRs based on gene expression profiles. Here is the code:
 
-.. code-block:: bash
-
-    echo ${gene_exp_file}
-    echo  ${OUT_PATH}/out4dmr_in_deg_tss_5dist
-    dds_analysis plot_mr_vs_exp -inGeneEXPfile ${gene_exp_file}  \
-            -dpi 300 -inMRfolder ${OUT_PATH}/out4dmr_in_deg_tss_5dist \
-        -expTAB -inGene 'TRIM32' -inMR 'chr9:mr104' -wtStr 'HAP1_P' -output_path ${OUT_PATH}
-    echo "Done with plot_mr_vs_exp "
-
-
-Step 7: Plotting average methylation pattern
-____________________________________________
-
-The final step involves plotting the average methylation in TSS and enhancer regions for selected target gene. Here is the code:
-
-.. code-block:: bash
-
-    dds_analysis plot_tss_enhancer_mrs \
-	-exp_file $IN_DEG_FILE \
-	-dmr_file ${IN_MR_PATH}/3_chroms_all_mr_data_range_dmrRanking.bed  \
-	-tss_file ${OUT_PATH}/tss_region_10sampling.csv  \
-	-enc_file ${OUT_PATH}/distance_region_10sampling.csv \
-	-is_negative 1 -genes 'MRPS25,PLCL2,TRIM32' -mr_folder ${OUT_PATH}/out4dmr_in_deg_tss_5dist/ \
-	-folder_name '' --dmr_file_not_compressed \
-	-gX 2000 -gY 1000 -wtStr 'HAP1_P_' \
-	-out_folder ${OUT_PATH}/plot_tss_enhancer_mrs
-
-    echo "Done with plot_tss_enhancer_mrs"

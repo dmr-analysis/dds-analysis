@@ -265,6 +265,8 @@ This step involves plotting the associations between selected target genes and D
         -expTAB -inGene 'TRIM32' -inMR 'chr9:mr104' -wtStr 'HAP1_P' -output_path ${OUT_PATH}
     echo "Done with plot_mr_vs_exp "
 
+.. image:: Trim32_5mC_TSS5dist_X2000_Y1000_G2000_binsize100_sigma50_neg_DMRs_2023-05-24.jpg
+
 
 Step 7: Plotting average methylation pattern
 ____________________________________________
