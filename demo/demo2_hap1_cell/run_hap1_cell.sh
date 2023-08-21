@@ -82,7 +82,7 @@ gene_mr_file=${OUT_PATH}/uqGeneDmr_regions_in_deg_tss${in_data_str}.bed
 dds_analysis filterDEG4bpb3 --in_group1_str 'HAP1_P1' --in_group2_str 'HAP1_KO1' \
         --in_folder ${IN_DEG_PATH} \
         --in_file ${IN_DEG_FILE} \
-        --min_median_RPKM 0 --rr_cutoff 0.0
+        --no_zscore --min_median_RPKM 0 --rr_cutoff 0.0
 
 #we can skip this manual input step if know the input gene expression file name 
 if [ 1 == 2 ];
