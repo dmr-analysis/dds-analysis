@@ -139,7 +139,7 @@ def run(args):
   else:
     in_geneexp_df, tmp_exp_cols, tmp_exp_sample_cols=read_geneexp_data(in_gene_exp_file, gene_exp_start_col,pathDepth4sampleName)
     tmp_gene_col_name=in_geneexp_df.columns[0]
-    print('Input file of bpb3 exported differentially expressed genes: ', in_gene_expression)
+    print('Input file of bpb3 exported differentially expressed genes: ', in_gene_exp_file)
 
   ##find sample name replacement file
   in_sampleName=args.in_sampleName_for_replace
