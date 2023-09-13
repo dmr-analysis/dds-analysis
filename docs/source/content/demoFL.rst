@@ -285,5 +285,35 @@ Following is the output for gene "BCL2" with its enhancer region which is predic
 
     chr18	60986372	60987028	block_0_18_60986372_60987028	chr18:mr621	TSS	8	enhancer
 
+Step 12: Plot Expression Vs Methylation
+---------------------------------------
+Using scatter plot, we can see the realtion between differetially gene expression and methylation.
+
+.. code-block:: bash
+
+    dds_analysis plot_mr_vs_exp -inGeneEXPfile $IN_EXPRESS  \
+        -dpi 300 -inMRfolder '../../data/fl_12samples/out_data/out_exportData' \
+	 -inGene 'BCL2' -inMR 'chr18:mr621' -wtStr 'counts' -output_path $OUT_FOLDER -pathDepth 16
+
+Please add a replacement file if the column names of inGeneEXPfile and Methylation Region file do not match. The default name of file is set to be sample_name4replace.tsv (Provided with the demo) and looks like this:
+
+.. code:: bash
+
+	DO52689	meth_4121361_demo
+	DO27859	meth_4188900_demo
+	DO52656	meth_4105105_demo
+	DO52680	meth_4175837_demo
+	DO52677	meth_4158726_demo
+	DO52694	meth_4134005_demo
+	DO52669	meth_4159170_demo
+	DO52653	meth_4189200_demo
+	SRR834983.sorted.only_counts.tsv_log_of_quantile_normalized_RPKM	gcb_4160735_demo
+	SRR834986.sorted.only_counts.tsv_log_of_quantile_normalized_RPKM	gcb_4118819_demo
+	SRR834984.sorted.only_counts.tsv_log_of_quantile_normalized_RPKM	gcb_4122131_demo
+	SRR834985.sorted.only_counts.tsv_log_of_quantile_normalized_RPKM	gcb_4174884_demo
+	
+Here as in demo we made a scatter plot for BCL2 gene and methylation region 'chr18:mr621'
 
 
+.. image:: BCL2_chr18_mr621.jpg
+    :alt: BCL2 vs Chr18:mr621
