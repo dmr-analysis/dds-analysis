@@ -54,7 +54,8 @@ def replace_sample_name(exp2mr_normal_id, tmp_geneexp_cols2):
            else:
              new_exp_cols.append(tmi)
    else:
-      new_exp_cols=tmp_exp_cols
+      #jbw oct 2023
+      new_exp_cols=tmp_geneexp_cols2
    return new_exp_cols
 
 def plot_mr_vs_expression_figure(in_gene_name, in_mr_name, in_geneexp_df,
