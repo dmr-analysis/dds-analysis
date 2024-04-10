@@ -36,3 +36,9 @@ Tasks available for using:
 
 A detailed documentation of the tool can be found here: https://dds-analysis.readthedocs.io/en/latest/index.html
 
+# Please send email to Dr. Junbai Wang (junbai.wang@medisin.uio.no) for requesting a free download of DDS-analysis pacakge.
+#
+##  Please include your name, Institution/company name, Email of your institute or company (do not use gmail or yahoo email etc), and a brief description of the purpose for using DDS-analysis package.
+##  Please use the subject title "bpb3/dds request "  for your email.
+#
+
