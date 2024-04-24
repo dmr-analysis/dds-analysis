@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>demoHAP1 &mdash; dds_analysis 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="demoRAT" href="demoRAT.html" />
+    <link rel="prev" title="demoFL" href="demoFL.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            dds_analysis
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bpb3summary2bed_format.html">bpb3summary2bed_format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="map_block2genome.html">map_block2genome</a></li>
+<li class="toctree-l1"><a class="reference internal" href="map_block2chromSegment.html">map_block2chromSegment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="map_block2dmr.html">map_block2dmr</a></li>
+<li class="toctree-l1"><a class="reference internal" href="find_geneExp4block.html">find_geneExp4block</a></li>
+<li class="toctree-l1"><a class="reference internal" href="find_block_patientID.html">find_block_patientID</a></li>
+<li class="toctree-l1"><a class="reference internal" href="combine_dmr_deg2block.html">combine_dmr_deg2block</a></li>
+<li class="toctree-l1"><a class="reference internal" href="filter_blocks.html">filter_blocks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="collect_gene_names4blocks.html">collect_gene_names4blocks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="check_block_gene_inTAD.html">check_block_gene_inTAD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dds_geneRanking.html">dds_geneRanking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="go_pathway_analysis4out_blocks_gene.html">go_pathway_analysis4out_blocks_gene</a></li>
+<li class="toctree-l1"><a class="reference internal" href="find_enhancer_target_genes.html">find_enhancer_target_genes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chromSegment_test4blocks.html">chromSegment_test4blocks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dTarget_methy_vs_express.html">dTarget_methy_vs_express</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plot_mr_vs_exp.html">plot_mr_vs_exp</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plot_tss_enhancer_mrs.html">plot_tss_enhancer_mrs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="filterDEG4bpb3.html">filterDEG4bpb3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="preprocess.html">preprocess</a></li>
+<li class="toctree-l1"><a class="reference internal" href="demoFL.html">demoFL</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">demoHAP1</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#step-1-dds-analysis-preprocess">Step 1: dds_analysis preprocess</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#set-paths">Set paths:</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#step-2-dmr-data-export">Step 2: DMR data export</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-3-background-file-list-creation">Step 3: Background file list creation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-4-deg-file-preparation">Step 4: DEG File preparation:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-5-dtarget-prediction-based-in-expression-profiles">Step 5: dTarget Prediction based in expression profiles:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-6-plotting-selected-target-gene-and-dmr-associations">Step 6: Plotting selected target gene and DMR associations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-7-plotting-average-methylation-pattern">Step 7: Plotting average methylation pattern</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="demoRAT.html">demoRAT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="demoFLMR.html">demoFLMR</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">dds_analysis</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">demoHAP1</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/content/demoHAP1.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="demohap1">
+<h1>demoHAP1<a class="headerlink" href="#demohap1" title="Permalink to this heading"></a></h1>
+<p>Demo for hap1 cells is provided with the package. There are two bash scripts provided inside the demo/demo2_hap1_cell/. First one is <cite>run_hap1_preprocess.sh</cite> and second is <cite>run_hap1_cell</cite> where run_hap1_preprocess.sh should be run first. Both are explained as  under.</p>
+<section id="step-1-dds-analysis-preprocess">
+<h2>Step 1: dds_analysis preprocess<a class="headerlink" href="#step-1-dds-analysis-preprocess" title="Permalink to this heading"></a></h2>
+<p>The <cite>dds_analysis preprocess</cite> step prepares the input files for further analysis using the <cite>dds_analysis</cite> module. It requires specifying various parameters and input file paths. Here is the code:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Before running following steps, it assumes that DMRs are already predicted by dmr_analysis</span>
+
+dds_analysis<span class="w"> </span>preprocess<span class="w"> </span><span class="se">\</span>
+<span class="w">      </span>-in_folder<span class="w"> </span>../../data/hap1_cell/in_data/final_demo_data/hap1_cell/out_data/DMR_CpG_context/out_map2genome/<span class="w"> </span><span class="se">\</span>
+<span class="w">      </span>-in_string<span class="w"> </span><span class="s1">&#39;_hap1&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">      </span>-in_tss_file_mr<span class="w"> </span>../../data/hap1_cell/in_data/final_demo_data/hap1_cell/out_data/DMR_CpG_context/out_map2genome/3_chroms_all_mr_data_range_dmrRanking_TSS_Up5000_Down1000_removedShort_overlap1e-09.bed<span class="w"> </span><span class="se">\</span>
+<span class="w">      </span>-in_dist_file<span class="w"> </span>../../data/hap1_cell/in_data/final_demo_data/hap1_cell/out_data/DMR_CpG_context/out_map2genome/3_chroms_all_mr_data_range_dmrRanking_noGenes_5dist_Up1000000_Up5000removedShort_overlap1e-09.bed<span class="w"> </span><span class="se">\</span>
+<span class="w">      </span>-in_deg_file<span class="w"> </span>../../data/hap1_cell/in_data/final_demo_data/hap1_cell/in_data/DEG/HAP1_P1_vs_HAP1_KO1_differentially_expressed_genes_min1.1Fd_min1RPKM.txt<span class="w"> </span><span class="se">\</span>
+<span class="w">      </span>-out_folder<span class="w"> </span>../../data/hap1_cell/out_data/<span class="w"> </span><span class="se">\</span>
+<span class="w">      </span>-tss_file<span class="w">  </span>../../data/hap1_cell/in_data/final_demo_data/hap1_cell/out_data/DMR_CpG_context/data/TSS_Up5000_Down1000_removedShort.bed<span class="w"> </span><span class="se">\</span>
+<span class="w">      </span>-full_mr_file<span class="w"> </span>../../data/hap1_cell/in_data/final_demo_data/hap1_cell/out_data/DMR_CpG_context/3_chroms_all_mr_data_range_dmrRanking.bed<span class="w"> </span><span class="se">\</span>
+<span class="w">      </span>-in_genome_file<span class="w"> </span>../../data/hap1_cell/in_data//final_demo_data/genome/hg38/hg38_all_enhancers_merged_hglft_genome_327b3_4dmr.bed<span class="w"> </span><span class="se">\</span>
+<span class="w">      </span>-gene_col_name<span class="w"> </span><span class="s1">&#39;#gene&#39;</span>
+
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;To find DMR regions that are overlapping with TSS or 5distance regions of DEG - and preprocess Done&quot;</span>
+</pre></div>
+</div>
+<p>Here head of MR file with TSS region used as input is displayed:
+3_chroms_all_mr_data_range_dmrRanking_TSS_Up5000_Down1000_removedShort_overlap1e-09.bed</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>chr3<span class="w">    </span><span class="m">8500658</span><span class="w"> </span><span class="m">8506658</span><span class="w"> </span>chr3:8500658:8506658:NR_033378<span class="o">||</span>TSS:5000:1000<span class="o">||</span>LMCD1-AS1:-:8221146:8501658<span class="w">      </span>chr3<span class="w">    </span><span class="m">8462210</span><span class="w"> </span><span class="m">8501263</span><span class="w"> </span>chr3:mr61:hypo:U<span class="w">        </span><span class="m">0</span>.009313857563925538
+chr3<span class="w">    </span><span class="m">8500658</span><span class="w"> </span><span class="m">8506658</span><span class="w"> </span>chr3:8500658:8506658:NR_033378<span class="o">||</span>TSS:5000:1000<span class="o">||</span>LMCD1-AS1:-:8221146:8501658<span class="w">      </span>chr3<span class="w">    </span><span class="m">8502690</span><span class="w"> </span><span class="m">8519521</span><span class="w"> </span>chr3:mr62:hypo:D<span class="w">        </span><span class="m">0</span>.9473746593032959
+chr3<span class="w">    </span><span class="m">8496806</span><span class="w"> </span><span class="m">8502806</span><span class="w"> </span>chr3:8496806:8502806:NM_001278234<span class="o">||</span>TSS:5000:1000<span class="o">||</span>LMCD1:+:8501806:8568125<span class="w">       </span>chr3<span class="w">    </span><span class="m">8462210</span><span class="w"> </span><span class="m">8501263</span><span class="w"> </span>chr3:mr61:hypo:U<span class="w">        </span><span class="m">0</span>.009313857563925538
+chr3<span class="w">    </span><span class="m">8496806</span><span class="w"> </span><span class="m">8502806</span><span class="w"> </span>chr3:8496806:8502806:NM_001278234<span class="o">||</span>TSS:5000:1000<span class="o">||</span>LMCD1:+:8501806:8568125<span class="w">       </span>chr3<span class="w">    </span><span class="m">8502690</span><span class="w"> </span><span class="m">8519521</span><span class="w"> </span>chr3:mr62:hypo:D<span class="w">        </span><span class="m">0</span>.9473746593032959
+chr3<span class="w">    </span><span class="m">8496822</span><span class="w"> </span><span class="m">8502822</span><span class="w"> </span>chr3:8496822:8502822:NM_001278233<span class="p">&amp;</span>NM_001278235<span class="o">||</span>TSS:5000:1000<span class="o">||</span>LMCD1:+:8501822:8574668<span class="p">&amp;</span><span class="m">8551274</span><span class="w">  </span>chr3<span class="w">    </span><span class="m">8462210</span><span class="w"> </span><span class="m">8501263</span><span class="w"> </span>chr3:mr61:hypo:U<span class="w">        </span><span class="m">0</span>.009313857563925538
+chr3<span class="w">    </span><span class="m">8496822</span><span class="w"> </span><span class="m">8502822</span><span class="w"> </span>chr3:8496822:8502822:NM_001278233<span class="p">&amp;</span>NM_001278235<span class="o">||</span>TSS:5000:1000<span class="o">||</span>LMCD1:+:8501822:8574668<span class="p">&amp;</span><span class="m">8551274</span><span class="w">  </span>chr3<span class="w">    </span><span class="m">8502690</span><span class="w"> </span><span class="m">8519521</span><span class="w"> </span>chr3:mr62:hypo:D<span class="w">        </span><span class="m">0</span>.9473746593032959
+</pre></div>
+</div>
+<p>While head of methylation regions file overlapped with 5 dist region is following:
+3_chroms_all_mr_data_range_dmrRanking_noGenes_5dist_Up1000000_Up5000removedShort_overlap1e-09.bed</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>chr3<span class="w">    </span><span class="m">7540284</span><span class="w"> </span><span class="m">8535284</span><span class="w"> </span>chr3:7540284:8535284:NR_046606<span class="o">||</span>5dist:5000:1000000<span class="o">||</span>GRM7-AS1:-:7519740:7535284<span class="w">  </span>chr3<span class="w">    </span><span class="m">8101574</span><span class="w"> </span><span class="m">8101679</span><span class="w"> </span>chr3:mr0:mix:U<span class="w">  </span><span class="m">0</span>.0020392338824331358
+chr3<span class="w">    </span><span class="m">7540284</span><span class="w"> </span><span class="m">8535284</span><span class="w"> </span>chr3:7540284:8535284:NR_046606<span class="o">||</span>5dist:5000:1000000<span class="o">||</span>GRM7-AS1:-:7519740:7535284<span class="w">  </span>chr3<span class="w">    </span><span class="m">8102773</span><span class="w"> </span><span class="m">8107735</span><span class="w"> </span>chr3:mr1:mix:D<span class="w">  </span><span class="m">0</span>.9863575510990631
+chr3<span class="w">    </span><span class="m">7540284</span><span class="w"> </span><span class="m">8535284</span><span class="w"> </span>chr3:7540284:8535284:NR_046606<span class="o">||</span>5dist:5000:1000000<span class="o">||</span>GRM7-AS1:-:7519740:7535284<span class="w">  </span>chr3<span class="w">    </span><span class="m">8119920</span><span class="w"> </span><span class="m">8125713</span><span class="w"> </span>chr3:mr3:mix:D<span class="w">  </span><span class="m">0</span>.9800274651202444
+chr3<span class="w">    </span><span class="m">7540284</span><span class="w"> </span><span class="m">8535284</span><span class="w"> </span>chr3:7540284:8535284:NR_046606<span class="o">||</span>5dist:5000:1000000<span class="o">||</span>GRM7-AS1:-:7519740:7535284<span class="w">  </span>chr3<span class="w">    </span><span class="m">8136677</span><span class="w"> </span><span class="m">8139855</span><span class="w"> </span>chr3:mr4:mix:D<span class="w">  </span><span class="m">0</span>.9795108977746336
+</pre></div>
+</div>
+<p>Input file that consist of methylation regions is following:
+3_chroms_all_mr_data_range_dmrRanking.bed</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>chr3<span class="w">    </span><span class="m">8101574</span><span class="w"> </span><span class="m">8101679</span><span class="w"> </span>chr3:mr0:mix:U<span class="w">  </span><span class="m">0</span>.0020392338824331358
+chr3<span class="w">    </span><span class="m">8102773</span><span class="w"> </span><span class="m">8107735</span><span class="w"> </span>chr3:mr1:mix:D<span class="w">  </span><span class="m">0</span>.9863575510990631
+chr3<span class="w">    </span><span class="m">8108750</span><span class="w"> </span><span class="m">8115603</span><span class="w"> </span>chr3:mr2:mix:D<span class="w">  </span><span class="m">0</span>.9763066966833287
+chr3<span class="w">    </span><span class="m">8119920</span><span class="w"> </span><span class="m">8125713</span><span class="w"> </span>chr3:mr3:mix:D<span class="w">  </span><span class="m">0</span>.9800274651202444
+chr3<span class="w">    </span><span class="m">8136677</span><span class="w"> </span><span class="m">8139855</span><span class="w"> </span>chr3:mr4:mix:D<span class="w">  </span><span class="m">0</span>.9795108977746336
+</pre></div>
+</div>
+<p>Differentially expression file is below:
+HAP1_P1_vs_HAP1_KO1_differentially_expressed_genes_min1.1Fd_min1RPKM.txt</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>AADAT<span class="w">   </span><span class="m">0</span>.006070520526336222<span class="w">    </span><span class="m">16</span>.90556267502578<span class="w">       </span><span class="m">15</span>.3097562941675<span class="w">        </span><span class="m">16</span>.90556267502578<span class="w">       </span><span class="m">13</span>.389386678473848<span class="w">      </span><span class="m">12</span>.573766472283713<span class="w">      </span><span class="m">11</span>.850516581141726
+AARS<span class="w">    </span><span class="m">0</span>.0006937443220722942<span class="w">   </span><span class="m">58</span>.2440643381434<span class="w">        </span><span class="m">58</span>.810394758261374<span class="w">      </span><span class="m">59</span>.96440144545457<span class="w">       </span><span class="m">33</span>.27901746502996<span class="w">       </span><span class="m">32</span>.504309785698375<span class="w">      </span><span class="m">29</span>.03704380096956
+AATK<span class="w">    </span><span class="m">0</span>.02271698518484375<span class="w">     </span><span class="m">2</span>.5554957565029683<span class="w">      </span><span class="m">2</span>.643258236240186<span class="w">       </span><span class="m">2</span>.0719454919445686<span class="w">      </span><span class="m">3</span>.1558313097737094<span class="w">      </span><span class="m">3</span>.4185648937579978<span class="w">      </span><span class="m">3</span>.93619336697585
+ABAT<span class="w">    </span><span class="m">1</span>.9842909957276316e-05<span class="w">  </span><span class="m">0</span>.36312747169342474<span class="w">     </span><span class="m">0</span>.4141701884134888<span class="w">      </span><span class="m">0</span>.4404845359100948<span class="w">      </span><span class="m">1</span>.1351009276855188<span class="w">      </span><span class="m">1</span>.1024911071781391<span class="w">      </span><span class="m">1</span>.1728150315920693
+ABCA1<span class="w">   </span><span class="m">0</span>.013656558666489764<span class="w">    </span><span class="m">3</span>.074263544209392<span class="w">       </span><span class="m">2</span>.5879886642784986<span class="w">      </span><span class="m">2</span>.4299433764226444<span class="w">      </span><span class="m">1</span>.6758838422325957<span class="w">      </span><span class="m">1</span>.4414555073263386<span class="w">      </span><span class="m">1</span>.3930064239495081
+</pre></div>
+</div>
+<section id="set-paths">
+<h3>Set paths:<a class="headerlink" href="#set-paths" title="Permalink to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1">#main path of input data</span>
+<span class="nv">IN_DATA_PATH</span><span class="o">=</span><span class="s1">&#39;../../data/hap1_cell/in_data/final_demo_data/hap1_cell/&#39;</span>
+
+<span class="c1">#path of DMR results from dmr_analysis</span>
+<span class="nv">IN_MR_PATH</span><span class="o">=</span><span class="si">${</span><span class="nv">IN_DATA_PATH</span><span class="si">}</span><span class="s1">&#39;/out_data/DMR_CpG_context/&#39;</span>
+
+<span class="c1">#path of DEG results from bpb3</span>
+<span class="nv">IN_DEG_PATH</span><span class="o">=</span><span class="si">${</span><span class="nv">IN_DATA_PATH</span><span class="si">}</span><span class="s1">&#39;/in_data/DEG/&#39;</span>
+
+<span class="c1">#DEG file name from bpb3 differential_analysis, the original DEF file from bpb3 that was used to convert Zscores in dds_analysis preprocess</span>
+<span class="nv">IN_DEG_FILE</span><span class="o">=</span><span class="s1">&#39;HAP1_P1_vs_HAP1_KO1_differentially_expressed_genes_min0Fd_min0RPKM.txt &#39;</span>
+<span class="nv">in_data_str</span><span class="o">=</span><span class="s1">&#39;_hap1&#39;</span>
+
+<span class="c1">#path to output data</span>
+<span class="nv">OUT_PATH</span><span class="o">=</span><span class="s1">&#39;../../data/hap1_cell/out_data/&#39;</span>
+
+<span class="c1">#path to exported MRs that are not located in TSS or enhancer regions</span>
+<span class="nv">FILE_FOLD</span><span class="o">=</span><span class="si">${</span><span class="nv">OUT_PATH</span><span class="si">}</span>/out4mr_not_in_tss_enhancer
+<span class="c1">#file name for background sample list that contain all MRs not located in TSS or enhancers</span>
+<span class="nv">BACK_FILE</span><span class="o">=</span><span class="si">${</span><span class="nv">OUT_PATH</span><span class="si">}</span>/background_samples_list.tsv
+
+<span class="c1">#whether to skip below two steps in the pipeline</span>
+<span class="nv">is_run_dmr_export</span><span class="o">=</span><span class="m">1</span><span class="w"> </span><span class="c1"># 1 for exporting, other values for skipping this step</span>
+<span class="nv">is_run_dtarget</span><span class="o">=</span><span class="m">1</span><span class="w">    </span><span class="c1"># 1 for run dTarget prediction , other values for skipping this step</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="step-2-dmr-data-export">
+<h2>Step 2: DMR data export<a class="headerlink" href="#step-2-dmr-data-export" title="Permalink to this heading"></a></h2>
+<p>The DMR data export step involves exporting DMR data that is either located in TSS or 5’distance regions. It uses the <cite>dmr_exportData</cite> command from the <cite>dmr_analysis</cite> module. Here is the code:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Before running this step, ensure DMRs are already predicted by dmr_analysis</span>
+
+dmr_analysis<span class="w"> </span>dmr_exportData<span class="w"> </span><span class="se">\</span>
+<span class="w">      </span>--input_mr_data_folder<span class="w"> </span><span class="si">${</span><span class="nv">IN_MR_PATH</span><span class="si">}</span><span class="w"> </span><span class="se">\</span>
+<span class="w">      </span>--output_file_folder<span class="w"> </span><span class="si">${</span><span class="nv">OUT_PATH</span><span class="si">}</span>/out4dmr_in_deg_tss_5dist<span class="w"> </span><span class="se">\</span>
+<span class="w">      </span>--input_file_format<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="se">\</span>
+<span class="w">      </span>--number_of_processes<span class="w"> </span><span class="m">10</span><span class="w"> </span>--input_file<span class="w"> </span><span class="si">${</span><span class="nv">OUT_PATH</span><span class="si">}</span>/uqdmr_regions_in_deg_tss_5dist<span class="si">${</span><span class="nv">in_data_str</span><span class="si">}</span>.bed<span class="w"> </span>-wtStr<span class="w"> </span><span class="s1">&#39;HAP1_P_&#39;</span>
+
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Export data of DMRs overlapping to TSS or 5distance - Done&quot;</span>
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w"> </span>chr13<span class="w">       </span><span class="m">95217448</span><span class="w">        </span><span class="m">95424140</span><span class="w">        </span>chr13:mr8:hypo:D<span class="w">        </span>chr13:95300446:95306446:NM_005845<span class="o">||</span>TSS:5000:1000<span class="o">||</span>ABCC4:-:95019828:95301446<span class="p">;</span>chr13:95300451:95306451:NM_001301829<span class="p">&amp;</span>NM_001105515<span class="o">||</span>TSS:5000:1000<span class="o">||</span>ABCC4:-:95019834<span class="p">&amp;</span><span class="m">95095770</span>:95301451
+<span class="w"> </span>chr3<span class="w">        </span><span class="m">9055959</span><span class="w"> </span><span class="m">9261176</span><span class="w"> </span>chr3:mr88:mix:D<span class="w"> </span>chr3:9248646:9254646:NM_014850<span class="o">||</span>TSS:5000:1000<span class="o">||</span>SRGAP3:-:8980590:9249646
+
+
+<span class="c1"># Export data of MRs not in TSS or enhancers</span>
+dmr_analysis<span class="w"> </span>dmr_exportData<span class="w">  </span><span class="se">\</span>
+<span class="w">      </span>--input_mr_data_folder<span class="w"> </span><span class="si">${</span><span class="nv">IN_MR_PATH</span><span class="si">}</span><span class="w"> </span><span class="se">\</span>
+<span class="w">      </span>--output_file_folder<span class="w"> </span><span class="si">${</span><span class="nv">OUT_PATH</span><span class="si">}</span>/out4background<span class="w"> </span><span class="se">\</span>
+<span class="w">      </span>--input_file_format<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="se">\</span>
+<span class="w">      </span>--number_of_processes<span class="w"> </span><span class="m">10</span><span class="w"> </span>--input_file<span class="w"> </span><span class="si">${</span><span class="nv">OUT_PATH</span><span class="si">}</span>/uqdmr_regions_not_in_deg_tss_5dist<span class="si">${</span><span class="nv">in_data_str</span><span class="si">}</span>.bed<span class="w"> </span>-wtStr<span class="w"> </span><span class="s1">&#39;HAP1_P_&#39;</span>
+
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Export data of MRs not in TSS or enhancers - Done&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="step-3-background-file-list-creation">
+<h2>Step 3: Background file list creation<a class="headerlink" href="#step-3-background-file-list-creation" title="Permalink to this heading"></a></h2>
+<p>The background file list creation step involves creating a background file list if it doesn’t already exist. The background file list contains all MRs that are not located in TSS or enhancer regions. Here is the code:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">background_filelist</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">OUT_PATH</span><span class="si">}</span><span class="s2">/backgroundFileList.txt&quot;</span>
+
+<span class="k">if</span><span class="w"> </span><span class="o">[[</span><span class="w"> </span>!<span class="w"> </span>-f<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$background_filelist</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">]]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">    </span><span class="nb">cd</span><span class="w"> </span><span class="si">${</span><span class="nv">OUT_PATH</span><span class="si">}</span>/out4background
+<span class="w">    </span>ls<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s2">&quot;.bed&quot;</span><span class="w"> </span>&gt;<span class="w"> </span><span class="nv">$background_filelist</span>
+<span class="w">    </span><span class="nb">cd</span><span class="w"> </span>-
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Creating a list of background files - Done&quot;</span>
+<span class="k">else</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Background file list already exists.&quot;</span>
+<span class="k">fi</span>
+
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Background file list creation - Done&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="step-4-deg-file-preparation">
+<h2>Step 4: DEG File preparation:<a class="headerlink" href="#step-4-deg-file-preparation" title="Permalink to this heading"></a></h2>
+<p>Prepare a tab delimited gene expression file in which the group mean values and rratio are added.
+This file will be used to plot average methylation levels of selected gene in TSS and Enhancer regions
+After inputting a DEG file  exported by bpb3 differential_expression, it exports a tab delimited file by adding three columns values of the group mean and rratio.
+This filtered DEG file will only be used in plot_tss_enhancer_mrs for exporting data
+This function only consider input data as RPKM values</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">gene_mr_file</span><span class="o">=</span><span class="si">${</span><span class="nv">OUT_PATH</span><span class="si">}</span>/uqGeneDmr_regions_in_deg_tss<span class="si">${</span><span class="nv">in_data_str</span><span class="si">}</span>.bed
+
+
+
+dds_analysis<span class="w"> </span>filterDEG4bpb3<span class="w"> </span>--in_group1_str<span class="w"> </span><span class="s1">&#39;HAP1_P1&#39;</span><span class="w"> </span>--in_group2_str<span class="w"> </span><span class="s1">&#39;HAP1_KO1&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">        </span>--in_folder<span class="w"> </span><span class="si">${</span><span class="nv">IN_DEG_PATH</span><span class="si">}</span><span class="w"> </span><span class="se">\</span>
+<span class="w">        </span>--in_file<span class="w"> </span><span class="si">${</span><span class="nv">IN_DEG_FILE</span><span class="si">}</span><span class="w"> </span><span class="se">\</span>
+<span class="w">        </span>--min_median_RPKM<span class="w"> </span><span class="m">0</span><span class="w"> </span>--rr_cutoff<span class="w"> </span><span class="m">0</span>.0
+
+<span class="c1">#we can skip this manual input step if know the input gene expression file name</span>
+<span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="nv">1</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="o">]</span><span class="p">;</span>
+<span class="k">then</span>
+<span class="nb">read</span><span class="w"> </span>-p<span class="w"> </span><span class="s2">&quot;To continue please copy the exported zscore cluster file name and path from bpb3 filterDEG4bpb3 then click return: &quot;</span><span class="w"> </span>gene_exp_file
+
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;gene_exp_file is :  </span><span class="nv">$gene_exp_file</span><span class="s2"> &quot;</span>
+<span class="nb">read</span><span class="w"> </span>-p<span class="w"> </span><span class="s2">&quot;To continue please copy the exported group mean file name and path from bpb3 filterDEG4bpb3 then click return: &quot;</span><span class="w"> </span>IN_DEG_FILE
+
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;IN_DEG_FILE is :  </span><span class="nv">$IN_DEG_FILE</span><span class="s2"> &quot;</span>
+
+<span class="k">fi</span>
+<span class="c1">#end test</span>
+</pre></div>
+</div>
+<p>We assume know the input gene exp file name gene_exp_file0=${IN_DEG_PATH}/${IN_DEG_FILE}
+Here we assume file name end with .txt</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">finds</span><span class="o">=</span><span class="s1">&#39;.txt&#39;</span>
+<span class="nv">replace1</span><span class="o">=</span><span class="s1">&#39;_rratio_filtered4cluster.csv&#39;</span>
+<span class="nv">replace2</span><span class="o">=</span><span class="s1">&#39;_rratio_filtered.csv&#39;</span>
+<span class="nv">gene_exp_file</span><span class="o">=</span><span class="si">${</span><span class="nv">gene_exp_file0</span><span class="p">//</span><span class="nv">$finds</span><span class="p">/</span><span class="nv">$replace1</span><span class="si">}</span>
+<span class="nv">IN_DEG_FILE</span><span class="o">=</span><span class="si">${</span><span class="nv">gene_exp_file0</span><span class="p">//</span><span class="nv">$finds</span><span class="p">/</span><span class="nv">$replace2</span><span class="si">}</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;&quot;</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;gene_exp_file is :  </span><span class="nv">$gene_exp_file</span><span class="s2"> &quot;</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;&quot;</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;IN_DEG_FILE is :  </span><span class="nv">$IN_DEG_FILE</span><span class="s2"> &quot;</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;&quot;</span>
+
+<span class="c1"># path of DMRs associated with DEG, TSS and 5distance, prepared by run dds_analysis preprocess</span>
+<span class="nv">in_mr_data_folder</span><span class="o">=</span><span class="si">${</span><span class="nv">OUT_PATH</span><span class="si">}</span>/out4dmr_in_deg_tss_5dist
+<span class="c1"># a file for a list of background samples</span>
+<span class="nv">in_background_mr_file</span><span class="o">=</span><span class="nv">$BACK_FILE</span>
+<span class="c1">#number of random sampling for the test</span>
+<span class="nv">number_of_samples</span><span class="o">=</span><span class="m">10</span>
+</pre></div>
+</div>
+<p>HAP1_P1_vs_HAP1_KO1_differentially_expressed_genes_min1.1Fd_min1RPKM_rratio_filtered4cluster.txt head is following:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>FAM166AP3<span class="w">   </span>-0.4982081983511595<span class="w">     </span>-0.9394358401186298<span class="w">     </span>-0.6707136220439952<span class="w">     </span>-1.7706649617423529<span class="w">     </span>-1.7471009146010719<span class="w">     </span>-1.759213053860002
+RP11-561I11.3<span class="w">       </span>-0.7538360859791011<span class="w">     </span>-0.8163195171038196<span class="w">     </span>-1.0486517498078607<span class="w">     </span>-1.7688207617054021<span class="w">     </span>-1.745213065641895<span class="w">      </span>-1.7573721462587126
+AC009299.4<span class="w">  </span>-1.240842456343193<span class="w">      </span>-0.9978063637216715<span class="w">     </span>-0.8863905055414616<span class="w">     </span>-1.7671318296845058<span class="w">     </span>-1.743530972980885<span class="w">      </span>-1.7556519670664428
+FAM41C<span class="w">      </span>-1.1073411320948858<span class="w">     </span>-1.332098180960522<span class="w">      </span>-1.106948209449783<span class="w">      </span>-1.7284061127409744<span class="w">     </span>-1.7596852452138803<span class="w">     </span>-1.7717564601163207
+ARSE<span class="w">        </span>-0.8784524519818689<span class="w">     </span>-1.0690546795243978<span class="w">     </span>-0.8785276236434105<span class="w">     </span>-1.7487097864101793<span class="w">     </span>-1.7626589252195035<span class="w">     </span>-1.639011789153589
+RP11-442H21.2<span class="w">       </span><span class="m">0</span>.05741831209072534<span class="w">     </span>-0.13825346076745668<span class="w">    </span>-0.22036980044826926<span class="w">    </span>-1.3796771543980877<span class="w">     </span>-1.529168641624075<span class="w">      </span>-1.7594854289267512
+RP11-422P24.12<span class="w">      </span>-1.096537825707665<span class="w">      </span>-1.0424048390869258<span class="w">     </span>-1.282182441903589<span class="w">      </span>-1.7668478469733657<span class="w">     </span>-1.7432581180749236<span class="w">     </span>-1.6746361853756075
+RP4-590F24.2<span class="w">        </span>-1.1047323074565782<span class="w">     </span>-1.228979590661412<span class="w">      </span>-1.1307512157539712<span class="w">     </span>-1.676088854525317<span class="w">      </span>-1.760365854510401<span class="w">      </span>-1.755233404634837
+MIR4419A<span class="w">    </span>-0.16271440608073698<span class="w">    </span>-0.16705481613532722<span class="w">    </span>-0.49940830855525836<span class="w">    </span>-1.582622407034913<span class="w">      </span>-1.545955456168695<span class="w">      </span>-1.5599446568981838
+INHBE<span class="w">       </span><span class="m">0</span>.4194153086557727<span class="w">      </span><span class="m">0</span>.37903743335847656<span class="w">     </span><span class="m">0</span>.4158868327542566<span class="w">      </span>-1.3577006540490815<span class="w">     </span>-1.153783055168014<span class="w">      </span>-1.4861394387459987
+CHAC1<span class="w">       </span><span class="m">2</span>.3416693314259813<span class="w">      </span><span class="m">2</span>.3286405094448774<span class="w">      </span><span class="m">2</span>.3462661518248256<span class="w">      </span><span class="m">0</span>.2075086031948541<span class="w">      </span><span class="m">0</span>.21713102593121023<span class="w">     </span><span class="m">0</span>.05283409591964295
+</pre></div>
+</div>
+</section>
+<section id="step-5-dtarget-prediction-based-in-expression-profiles">
+<h2>Step 5: dTarget Prediction based in expression profiles:<a class="headerlink" href="#step-5-dtarget-prediction-based-in-expression-profiles" title="Permalink to this heading"></a></h2>
+<p>The dTarget prediction step predicts putative target genes for DMRs based on gene expression profiles. It performs the prediction separately for DMRs associated with TSS regions and 5’distance regions. Here is the code:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Predict target genes for DMRs overlapping with TSS regions</span>
+dds_analysis<span class="w"> </span>dTarget_methy_vs_express<span class="w"> </span>-inGeneMRfile<span class="w"> </span><span class="nv">$gene_mr_file</span><span class="w">  </span>-mrTAB<span class="w">  </span><span class="se">\</span>
+<span class="w">     </span>-inGeneEXPfile<span class="w"> </span><span class="nv">$gene_exp_file</span><span class="w"> </span>-expTAB<span class="w"> </span><span class="se">\</span>
+<span class="w">     </span>-inMRfolder<span class="w"> </span><span class="nv">$in_mr_data_folder</span><span class="w"> </span>-outName<span class="w"> </span><span class="s1">&#39;tss_region_&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">     </span>-output_path<span class="w"> </span><span class="nv">$OUT_PATH</span><span class="w"> </span>-sampleName<span class="w"> </span>sample_name4replace.tsv<span class="w"> </span><span class="se">\</span>
+<span class="w">     </span>-pathDepth<span class="w"> </span><span class="m">1</span><span class="w"> </span>-inBackgroundList<span class="w"> </span><span class="nv">$in_background_mr_file</span><span class="w"> </span>-reg_cutoff<span class="w"> </span><span class="m">0</span>.5<span class="w"> </span>-cutoff<span class="w"> </span><span class="m">1</span>.0<span class="w"> </span>-totalSamples<span class="w"> </span><span class="nv">$number_of_samples</span><span class="w"> </span>-numOfprocesses<span class="w"> </span><span class="m">10</span>
+
+<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Done with TSS target gene prediction&quot;</span>
+
+<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Target gene prediction for DMRs overlapping with TSS regions - Done&quot;</span>
+
+<span class="c1"># Predict target genes for DMRs associated with 5&#39;distance regions</span>
+
+<span class="w"> </span>dds_analysis<span class="w"> </span>dTarget_methy_vs_express<span class="w"> </span>-inGeneMRfile<span class="w"> </span><span class="nv">$gene_mr_file</span><span class="w"> </span>-mrTAB<span class="w">  </span><span class="se">\</span>
+<span class="w">     </span>-inGeneEXPfile<span class="w"> </span><span class="nv">$gene_exp_file</span><span class="w"> </span>-expTAB<span class="w"> </span><span class="se">\</span>
+<span class="w">     </span>-inMRfolder<span class="w"> </span><span class="nv">$in_mr_data_folder</span><span class="w"> </span>-outName<span class="w"> </span><span class="s1">&#39;distance_region_&#39;</span><span class="w">  </span><span class="se">\</span>
+<span class="w">      </span>-output_path<span class="w"> </span><span class="nv">$OUT_PATH</span><span class="w"> </span>-sampleName<span class="w"> </span>sample_name4replace.tsv<span class="w"> </span><span class="se">\</span>
+<span class="w">     </span>-pathDepth<span class="w"> </span><span class="m">1</span><span class="w"> </span>-inBackgroundList<span class="w"> </span><span class="nv">$in_background_mr_file</span><span class="w"> </span>-reg_cutoff<span class="w"> </span><span class="m">0</span>.5<span class="w"> </span>-cutoff<span class="w"> </span><span class="m">1</span>.0<span class="w"> </span>-totalSamples<span class="w"> </span><span class="nv">$number_of_samples</span><span class="w"> </span>-numOfprocesses<span class="w"> </span><span class="m">10</span>
+</pre></div>
+</div>
+<p>echo “Done with 5distance region target gene prediction”</p>
+<blockquote>
+<div><p>echo “Target gene prediction for DMRs associated with 5’distance regions - Done”</p>
+</div></blockquote>
+</section>
+<section id="step-6-plotting-selected-target-gene-and-dmr-associations">
+<h2>Step 6: Plotting selected target gene and DMR associations<a class="headerlink" href="#step-6-plotting-selected-target-gene-and-dmr-associations" title="Permalink to this heading"></a></h2>
+<p>This step involves plotting the associations between selected target genes and DMRs based on gene expression profiles. Here is the code:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span><span class="w"> </span><span class="si">${</span><span class="nv">gene_exp_file</span><span class="si">}</span>
+<span class="nb">echo</span><span class="w">  </span><span class="si">${</span><span class="nv">OUT_PATH</span><span class="si">}</span>/out4dmr_in_deg_tss_5dist
+dds_analysis<span class="w"> </span>plot_mr_vs_exp<span class="w"> </span>-inGeneEXPfile<span class="w"> </span><span class="si">${</span><span class="nv">gene_exp_file</span><span class="si">}</span><span class="w">  </span><span class="se">\</span>
+<span class="w">        </span>-dpi<span class="w"> </span><span class="m">300</span><span class="w"> </span>-inMRfolder<span class="w"> </span><span class="si">${</span><span class="nv">OUT_PATH</span><span class="si">}</span>/out4dmr_in_deg_tss_5dist<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-expTAB<span class="w"> </span>-inGene<span class="w"> </span><span class="s1">&#39;TRIM32&#39;</span><span class="w"> </span>-inMR<span class="w"> </span><span class="s1">&#39;chr9:mr104&#39;</span><span class="w"> </span>-wtStr<span class="w"> </span><span class="s1">&#39;HAP1_P&#39;</span><span class="w"> </span>-output_path<span class="w"> </span><span class="si">${</span><span class="nv">OUT_PATH</span><span class="si">}</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Done with plot_mr_vs_exp &quot;</span>
+</pre></div>
+</div>
+<img alt="../_images/Trim32_5mC_TSS5dist_X2000_Y1000_G2000_binsize100_sigma50_neg_DMRs_2023-05-24.jpg" src="../_images/Trim32_5mC_TSS5dist_X2000_Y1000_G2000_binsize100_sigma50_neg_DMRs_2023-05-24.jpg" />
+</section>
+<section id="step-7-plotting-average-methylation-pattern">
+<h2>Step 7: Plotting average methylation pattern<a class="headerlink" href="#step-7-plotting-average-methylation-pattern" title="Permalink to this heading"></a></h2>
+<p>The final step involves plotting the average methylation in TSS and enhancer regions for selected target gene. Here is the code:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>dds_analysis<span class="w"> </span>plot_tss_enhancer_mrs<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-exp_file<span class="w"> </span><span class="nv">$IN_DEG_FILE</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-dmr_file<span class="w"> </span><span class="si">${</span><span class="nv">IN_MR_PATH</span><span class="si">}</span>/3_chroms_all_mr_data_range_dmrRanking.bed<span class="w">  </span><span class="se">\</span>
+<span class="w">    </span>-tss_file<span class="w"> </span><span class="si">${</span><span class="nv">OUT_PATH</span><span class="si">}</span>/tss_region_10sampling.csv<span class="w">  </span><span class="se">\</span>
+<span class="w">    </span>-enc_file<span class="w"> </span><span class="si">${</span><span class="nv">OUT_PATH</span><span class="si">}</span>/distance_region_10sampling.csv<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-is_negative<span class="w"> </span><span class="m">1</span><span class="w"> </span>-genes<span class="w"> </span><span class="s1">&#39;MRPS25,PLCL2,TRIM32&#39;</span><span class="w"> </span>-mr_folder<span class="w"> </span><span class="si">${</span><span class="nv">OUT_PATH</span><span class="si">}</span>/out4dmr_in_deg_tss_5dist/<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-folder_name<span class="w"> </span><span class="s1">&#39;&#39;</span><span class="w"> </span>--dmr_file_not_compressed<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-gX<span class="w"> </span><span class="m">2000</span><span class="w"> </span>-gY<span class="w"> </span><span class="m">1000</span><span class="w"> </span>-wtStr<span class="w"> </span><span class="s1">&#39;HAP1_P_&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-out_folder<span class="w"> </span><span class="si">${</span><span class="nv">OUT_PATH</span><span class="si">}</span>/plot_tss_enhancer_mrs
+
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Done with plot_tss_enhancer_mrs&quot;</span>
+</pre></div>
+</div>
+<img alt="Enhancer vs Methylation level" src="../_images/5mC_Enhancer_X2000_Y1000_G2000_binsize100_sigma50_neg_DMRs_2023-05-24.jpg" />
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="demoFL.html" class="btn btn-neutral float-left" title="demoFL" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="demoRAT.html" class="btn btn-neutral float-right" title="demoRAT" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Junbai and Omer.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>dTarget_methy_vs_express &mdash; dds_analysis 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="plot_mr_vs_exp" href="plot_mr_vs_exp.html" />
+    <link rel="prev" title="chromSegment_test4blocks" href="chromSegment_test4blocks.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            dds_analysis
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bpb3summary2bed_format.html">bpb3summary2bed_format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="map_block2genome.html">map_block2genome</a></li>
+<li class="toctree-l1"><a class="reference internal" href="map_block2chromSegment.html">map_block2chromSegment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="map_block2dmr.html">map_block2dmr</a></li>
+<li class="toctree-l1"><a class="reference internal" href="find_geneExp4block.html">find_geneExp4block</a></li>
+<li class="toctree-l1"><a class="reference internal" href="find_block_patientID.html">find_block_patientID</a></li>
+<li class="toctree-l1"><a class="reference internal" href="combine_dmr_deg2block.html">combine_dmr_deg2block</a></li>
+<li class="toctree-l1"><a class="reference internal" href="filter_blocks.html">filter_blocks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="collect_gene_names4blocks.html">collect_gene_names4blocks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="check_block_gene_inTAD.html">check_block_gene_inTAD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dds_geneRanking.html">dds_geneRanking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="go_pathway_analysis4out_blocks_gene.html">go_pathway_analysis4out_blocks_gene</a></li>
+<li class="toctree-l1"><a class="reference internal" href="find_enhancer_target_genes.html">find_enhancer_target_genes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chromSegment_test4blocks.html">chromSegment_test4blocks</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">dTarget_methy_vs_express</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plot_mr_vs_exp.html">plot_mr_vs_exp</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plot_tss_enhancer_mrs.html">plot_tss_enhancer_mrs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="filterDEG4bpb3.html">filterDEG4bpb3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="preprocess.html">preprocess</a></li>
+<li class="toctree-l1"><a class="reference internal" href="demoFL.html">demoFL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="demoHAP1.html">demoHAP1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="demoRAT.html">demoRAT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="demoFLMR.html">demoFLMR</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">dds_analysis</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">dTarget_methy_vs_express</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/content/dTarget_methy_vs_express.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="dtarget-methy-vs-express">
+<h1>dTarget_methy_vs_express<a class="headerlink" href="#dtarget-methy-vs-express" title="Permalink to this heading"></a></h1>
+<p>Predict long distance target genes for a specific region (e.g., mutation block) based on the coupling of methylation and gene expression across samples.</p>
+<p>Optional Arguments:</p>
+<ul class="simple">
+<li><p><cite>-h, –help</cite>: Show the help message and exit.</p></li>
+</ul>
+<p>Required Arguments:</p>
+<ul class="simple">
+<li><p><cite>-inGeneMRfile IN_GENE_MR_FILE_FROM_DDS, –in_gene_mr_file_from_dds IN_GENE_MR_FILE_FROM_DDS</cite>: Input file name for gene-MR relationships exported by dds_analysis check_block_gene_inTAD. The file format should be: gene_name; gene_type; block_id; new_mr_sites; patients; isTAD; enhancers; patient_id.</p></li>
+<li><p><cite>-inGeneEXPfile IN_GENE_EXPRESSION_FILE_FROM_BPB3, –in_gene_expression_file_from_bpb3</cite>: Input file name for gene expression profiles exported by bpb3 differential_expression. The file format should be: gene_name; P-values, sample1, sample2, …</p></li>
+<li><p><cite>-inMRfolder IN_METHYLATION_FOLDER_FROM_DMR, –in_methylation_folder_from_dmr</cite>: Input file folder path for methylation data, extracted by dmr_analysis dmr_exportData based on predefined blocks or regions.</p></li>
+<li><p><cite>-inBackgroundList IN_MR_BACKGROUND_FILE_LIST, –in_mr_background_file_list</cite>: A list of files to be used in background sampling, where each file name is listed on a separate line.</p></li>
+</ul>
+<p>Optional Arguments with Default Values:</p>
+<ul class="simple">
+<li><p><cite>-cutoff, –expected_pval_cutoff</cite>: P-value cutoff for the expected P-value after sampling. Default: 0.05. Set the desired cutoff value for the expected P-value.</p></li>
+<li><p><cite>-reg_cutoff, –regression_pval_cutoff</cite>: P-value cutoff for the regression model when fitting expression data against methylation data. Default: 0.05. Set the desired cutoff value for the regression model P-value.</p></li>
+<li><p><cite>-totalSamples, –total_samples_in_random_selection</cite>: Total number of samples to draw from random background samples. Default: 1000. Specify the desired number of samples to draw.</p></li>
+<li><p><cite>-numOfprocesses, –number_of_parallel_processes</cite>: Number of parallel processes to be used in the calculation. Default: 10. Specify the number of parallel processes to be used.</p></li>
+<li><p><cite>-expStartCol, –gene_expression_start_column</cite>: Start column number (e.g., 0, 1, 2, …) for samples in the gene expression profile file. Default: 2 for bpb3 exported file. Specify the start column number for samples in the gene expression profile file.</p></li>
+<li><p><cite>-sampleName IN_SAMPLENAME_FOR_REPLACE, –in_sampleName_for_replace IN_SAMPLENAME_FOR_REPLACE</cite>: Input file name for renaming the old sample names in the gene expression data. The first column is the old sample name, and the second column is the new name used for replacement. The default file name is sample_name4replace.tsv, which can be an empty file if no replacement is needed for sample names.</p></li>
+<li><p><cite>-pathDepth IN_DIFFEXP_PATHDEPTH4SAMPLENAME, –in_diffExp_pathDepth4sampleName</cite>: File path depth for the column sample name. For example, if the column name is /path/folder/sample_name/…, then the depth of the sample name is 3, which is the number of “/” before the sample name. Default: 12. Specify the file path depth for the column sample name.</p></li>
+<li><p><cite>-expTAB, –is_tab_delimated_file4diffExp</cite>: Whether the input differential expression gene file is in bpb3 differential_expression exported file format or a common tab-delimited file format (e.g., the first column is the gene name, and the rest of the columns are gene expression data in samples). Default: False. If this option is</p></li>
+</ul>
+<blockquote>
+<div><p>used, the input gene expression file will be treated as a common tab-delimited file.</p>
+</div></blockquote>
+<ul class="simple">
+<li><p><cite>-mrTAB, –is_tab_delimated_file4MR</cite>: Whether the input MR regions files are in dds_analysis check_block_gene_inTAD exported format or a common tab-delimited file format (e.g., the first column is the gene_name, followed by the gene_type and new_mr_sites). Default: False. If this option is used, the input MR region file will be treated as a common tab-delimited file.</p></li>
+<li><p><cite>-no_dmr_format, –not_dmr_analysis_format</cite>: The input MR data folder is in dmr_analysis export data format. Default: False. If this option is used, the data folder format is not in the dmr_analysis export format.</p></li>
+<li><p><cite>-outName OUTPUT_FILE_NAME, –output_file_name OUTPUT_FILE_NAME</cite>: Prefix file name for the output data exported by this program. Default: output_result_of_*. Specify the prefix file name for the output data.</p></li>
+<li><p><cite>-mrColName MR_ID_COLUMN_NAME, –mr_id_column_name MR_ID_COLUMN_NAME</cite>: Column name of MR IDs that contain strings of joined MR IDs (e.g., chr1:mr1~chr1:mr11). Default: new_mr_sites. If the MR IDs are in another column, please provide the new column name.</p></li>
+<li><p><cite>-output_path OUTPUT_FILES_PATH, –output_files_path OUTPUT_FILES_PATH</cite>: Output files path for data exported by the program. Default: ./, which exports files in the local directory. Specify the output files path for the exported data.</p></li>
+</ul>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="chromSegment_test4blocks.html" class="btn btn-neutral float-left" title="chromSegment_test4blocks" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="plot_mr_vs_exp.html" class="btn btn-neutral float-right" title="plot_mr_vs_exp" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Junbai and Omer.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

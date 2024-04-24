@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>demoFL &mdash; dds_analysis 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="demoHAP1" href="demoHAP1.html" />
+    <link rel="prev" title="preprocess" href="preprocess.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            dds_analysis
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bpb3summary2bed_format.html">bpb3summary2bed_format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="map_block2genome.html">map_block2genome</a></li>
+<li class="toctree-l1"><a class="reference internal" href="map_block2chromSegment.html">map_block2chromSegment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="map_block2dmr.html">map_block2dmr</a></li>
+<li class="toctree-l1"><a class="reference internal" href="find_geneExp4block.html">find_geneExp4block</a></li>
+<li class="toctree-l1"><a class="reference internal" href="find_block_patientID.html">find_block_patientID</a></li>
+<li class="toctree-l1"><a class="reference internal" href="combine_dmr_deg2block.html">combine_dmr_deg2block</a></li>
+<li class="toctree-l1"><a class="reference internal" href="filter_blocks.html">filter_blocks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="collect_gene_names4blocks.html">collect_gene_names4blocks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="check_block_gene_inTAD.html">check_block_gene_inTAD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dds_geneRanking.html">dds_geneRanking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="go_pathway_analysis4out_blocks_gene.html">go_pathway_analysis4out_blocks_gene</a></li>
+<li class="toctree-l1"><a class="reference internal" href="find_enhancer_target_genes.html">find_enhancer_target_genes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chromSegment_test4blocks.html">chromSegment_test4blocks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dTarget_methy_vs_express.html">dTarget_methy_vs_express</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plot_mr_vs_exp.html">plot_mr_vs_exp</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plot_tss_enhancer_mrs.html">plot_tss_enhancer_mrs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="filterDEG4bpb3.html">filterDEG4bpb3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="preprocess.html">preprocess</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">demoFL</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#set-variable-paths">Set variable paths:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-1-map-mutation-blocks-to-genomic-regions">Step 1: Map mutation blocks to genomic regions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-2-map-mutation-blocks-to-chromatin-segments">Step 2: Map mutation blocks to chromatin segments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-3-map-mutation-blocks-to-differentially-methylated-regions-dmrs">Step 3: Map mutation blocks to differentially methylated regions (DMRs)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-4-combine-genomic-regions-with-mutation-block-information-and-find-differentially-expressed-genes">Step 4: Combine genomic regions with mutation block information and find differentially expressed genes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-5-find-patient-ids-for-each-mutation-block">Step 5: Find patient IDs for each mutation block</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-6-combine-dmrs-differentially-expressed-genes-degs-and-mutation-block-information">Step 6: Combine DMRs, differentially expressed genes (DEGs), and mutation block information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-7-filter-blocks-based-on-dmr-or-deg-information">Step 7: Filter blocks based on DMR or DEG information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-8-collect-unique-gene-names-from-predicted-blocks-after-filtering">Step 8: Collect unique gene names from predicted blocks after filtering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-9-filter-mutation-block-and-genes">Step 9: Filter Mutation block and genes:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-10-rank-gene-list">Step 10: Rank gene list:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-11-find-enhancer-target-genes">Step 11: Find enhancer target genes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="demoHAP1.html">demoHAP1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="demoRAT.html">demoRAT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="demoFLMR.html">demoFLMR</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">dds_analysis</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">demoFL</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/content/demoFL.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="demofl">
+<h1>demoFL<a class="headerlink" href="#demofl" title="Permalink to this heading"></a></h1>
+<p>This document outlines the step-by-step workflow for the analysis of follicular lymphoma using the <cite>dds_analysis</cite> package. Each step is described along with the corresponding bash code.</p>
+<section id="set-variable-paths">
+<h2>Set variable paths:<a class="headerlink" href="#set-variable-paths" title="Permalink to this heading"></a></h2>
+<p>The following code sets variable paths. User can adjust this code according to their files and folders.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1">#path of main input data folder</span>
+<span class="nv">IN_FOLDER</span><span class="o">=</span><span class="s1">&#39;../../data/fl_12samples/in_data/&#39;</span>
+
+<span class="c1">#a) Path of mutation blocks and block summary files exported by bpb3 package</span>
+<span class="nv">IN_BLOCKS</span><span class="o">=</span><span class="si">${</span><span class="nv">IN_FOLDER</span><span class="si">}</span><span class="s1">&#39;/bpb3_demo3_fl_cohort_small/out/mussd_blocks/&#39;</span>
+<span class="nv">IN_BLOCK_SUMMARY</span><span class="o">=</span><span class="s1">&#39;blocks_summary.tsv&#39;</span>
+<span class="c1">#Path of mutation blocks with patient ID will be exported later by  dds_analysis find_block_patientID</span>
+
+<span class="c1">#convert bpb3 predicted mutation block summary file to bed format file with positions. This is done by bpb3summary_format</span>
+dds_analysis<span class="w"> </span>bpb3summary2bed_format<span class="w"> </span>--in_block_summary_file<span class="w"> </span><span class="si">${</span><span class="nv">IN_BLOCKS</span><span class="si">}</span>/<span class="nv">$IN_BLOCK_SUMMARY</span>
+<span class="nb">echo</span><span class="w">  </span><span class="si">${</span><span class="nv">IN_BLOCKS</span><span class="si">}</span><span class="s1">&#39;/&#39;</span><span class="si">${</span><span class="nv">IN_BLOCK_SUMMARY</span><span class="si">}</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;preprocess_data - Done&quot;</span>
+
+<span class="c1">#make file name of the bed format of block summary file that will be used in the rest of analysis</span>
+<span class="nv">replace</span><span class="o">=</span><span class="s1">&#39;_block_position.bed&#39;</span>
+<span class="nv">finds</span><span class="o">=</span><span class="s1">&#39;.tsv&#39;</span>
+<span class="nv">IN_BLOCK_FILE</span><span class="o">=</span><span class="si">${</span><span class="nv">IN_BLOCK_SUMMARY</span><span class="p">//</span><span class="nv">$finds</span><span class="p">/</span><span class="nv">$replace</span><span class="si">}</span>
+
+<span class="c1">#b) Path of predicted DMRs/MRs from &quot;dmr_analysis&quot;</span>
+<span class="nv">IN_GENOME_REGIONS</span><span class="o">=</span><span class="si">${</span><span class="nv">IN_FOLDER</span><span class="si">}</span><span class="s1">&#39;/final_demo_data/fl_12samples/out_data/DMR_CpG_context/&#39;</span>
+<span class="c1">#a list of predefined genomic regions that will be used to map mutation blocks.</span>
+<span class="c1">#This file is generated by dmr_analysis dmr_gene_annotation but user has to double check the location of files in this list if you need to add enhancer or other genomic region files</span>
+<span class="nv">IN_LIST_REGIONS</span><span class="o">=</span><span class="s1">&#39;list_region_files.txt&#39;</span>
+<span class="c1">#c) Path to refFlat gene annotation file that generated by hmst-seq-analyzer</span>
+<span class="nv">IN_GENOME_refFlat</span><span class="o">=</span><span class="si">${</span><span class="nv">IN_GENOME_REGIONS</span><span class="si">}</span><span class="s1">&#39;/data/hg19.refFlat_clean_sorted.bed&#39;</span>
+
+<span class="c1">#d) Path of other genomic information files such as TAD,  chromatin segment, and genome files et al</span>
+<span class="nv">IN_GENOME_LIB</span><span class="o">=</span><span class="s1">&#39;../../data/&#39;</span>
+<span class="c1">#path of chromatin segment files that will be used to intersect with mutation blocks</span>
+<span class="nv">IN_CHROMSEG</span><span class="o">=</span><span class="si">${</span><span class="nv">IN_GENOME_LIB</span><span class="si">}</span><span class="s1">&#39;/chromSegment/hg19/&#39;</span>
+
+<span class="c1">#e) Path of TAD information that will be used to map mutation blocks</span>
+<span class="nv">IN_TAD</span><span class="o">=</span><span class="si">${</span><span class="nv">IN_GENOME_LIB</span><span class="si">}</span><span class="s1">&#39;/in_tad/&#39;</span>
+
+<span class="c1">#f) Path to gene position file in sorted bed format which is generated by dmr_analysis dmr_gene_annotation</span>
+<span class="nv">IN_GENE_POSITION</span><span class="o">=</span><span class="si">${</span><span class="nv">IN_TAD</span><span class="si">}</span><span class="s1">&#39;/out/data/gene_Up1_Down1removedShort.bed&#39;</span>
+
+<span class="c1">#g) Path to common TAD positions across 5 human cell lines</span>
+<span class="nv">IN_TAD_INFO</span><span class="o">=</span><span class="si">${</span><span class="nv">IN_TAD</span><span class="si">}</span><span class="s1">&#39;/Table4_TAD_annotations_sorted_chr.bed&#39;</span>
+<span class="c1">#path to common TAD boundary position among 5 human cell lines</span>
+<span class="nv">IN_TAD_BOUNDARY</span><span class="o">=</span><span class="si">${</span><span class="nv">IN_TAD</span><span class="si">}</span><span class="s1">&#39;/Table1_common_boundaries_merged_sorted_chr.bed&#39;</span>
+
+<span class="c1">#Path of differentially methylated regions, differentially expressed genes, and output folder of mutation blocks mapped to predefined genomic regions.</span>
+<span class="c1">#h) Path to DMRs predicted and ranked by dmr_analysis</span>
+<span class="nv">IN_DMR</span><span class="o">=</span><span class="si">${</span><span class="nv">IN_GENOME_REGIONS</span><span class="si">}</span><span class="s1">&#39;/2_chroms_all_mr_data_range_dmrRanking.bed&#39;</span>
+
+<span class="c1">#i) path to DEG genes exported from bpb3 package</span>
+<span class="nv">IN_EXPRESS</span><span class="o">=</span><span class="si">${</span><span class="nv">IN_FOLDER</span><span class="si">}</span><span class="s1">&#39;/bpb3_demo3_fl_cohort_small/out/differentially_expressed_genes.txt&#39;</span>
+
+<span class="c1">#Try to add N bp flank region on the two sides of mutation blocks before intersecting them with DMRs</span>
+<span class="nv">FLANK_BP</span><span class="o">=</span><span class="m">0</span>
+
+<span class="c1">###---OUTPUT PATH</span>
+<span class="c1"># path of main output data folder</span>
+<span class="nv">OUT_FOLDER</span><span class="o">=</span><span class="s1">&#39;../../data/fl_12samples/out_data/&#39;</span>
+
+<span class="c1">#path for exporting mutation blocks mapped to predefined genomic regions</span>
+<span class="nv">OUT_GENOME</span><span class="o">=</span><span class="si">${</span><span class="nv">OUT_FOLDER</span><span class="si">}</span><span class="s1">&#39;/out_genome/&#39;</span>
+<span class="c1">#path for exporting mutation blocks mapped to chromatin segmentations</span>
+<span class="nv">OUT_CHROMSEG</span><span class="o">=</span><span class="si">${</span><span class="nv">OUT_FOLDER</span><span class="si">}</span><span class="s1">&#39;/out_chromSegment/&#39;</span>
+<span class="c1">#path for exported mutation blocks associated with DEGs</span>
+<span class="nv">OUT_EXPRESS</span><span class="o">=</span><span class="si">${</span><span class="nv">OUT_FOLDER</span><span class="si">}</span><span class="s1">&#39;/out_expression/&#39;</span>
+<span class="c1">#path for final results that mutation blocks associated with DMR, DEG and TAD</span>
+<span class="nv">OUT_FINAL</span><span class="o">=</span><span class="si">${</span><span class="nv">OUT_FOLDER</span><span class="si">}</span>/<span class="s1">&#39;out_DmrDeg2block&#39;</span>
+</pre></div>
+</div>
+<p>Here we will look at input files.</p>
+<p>bpb3 block summary looks like following:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>block_id<span class="w">    </span>chrom<span class="w">   </span>start_pos<span class="w">       </span>end_pos<span class="w"> </span>number_of_mutations<span class="w">     </span>number_of_patients<span class="w">      </span>mutation_distribution<span class="w">   </span>region_names
+block_1_18_60987833_60988302<span class="w">        </span><span class="m">18</span><span class="w">      </span><span class="m">60987808</span><span class="w">        </span><span class="m">60988326</span><span class="w">        </span><span class="m">102</span><span class="w">     </span><span class="m">9</span><span class="w">       </span><span class="m">6</span>,4,11,7,7,5,18,13,31<span class="w">   </span>BCL2<span class="p">;</span>-<span class="p">;</span>up1000<span class="p">;</span>down1000
+block_0_18_60986372_60987028<span class="w">        </span><span class="m">18</span><span class="w">      </span><span class="m">60986347</span><span class="w">        </span><span class="m">60987052</span><span class="w">        </span><span class="m">59</span><span class="w">      </span><span class="m">8</span><span class="w">       </span><span class="m">4</span>,3,10,9,6,9,5,13<span class="w">       </span>BCL2<span class="p">;</span>-<span class="p">;</span>up1000<span class="p">;</span>down1000
+</pre></div>
+</div>
+<p>IN_LIST_REGIONS file looks like the following:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>../../final_demo_data/fl_12samples/out_data/DMR_CpG_context/data/TSS_Up5000_Down1000_removedShort.bed
+../../final_demo_data/fl_12samples/out_data/DMR_CpG_context/data/gene_Up5000_Down1000removedShort.bed
+../../final_demo_data/fl_12samples/out_data/DMR_CpG_context/data/TES_Up5000_Down1000removedShort.bed
+../../final_demo_data/fl_12samples/out_data/DMR_CpG_context/data/5dist_Up1000000_Up5000removedShort.bed
+../../final_demo_data/fl_12samples/out_data/DMR_CpG_context/data/intergenic_uniqueSorted_betweenTSS_TES_genes_minLen10.bed
+../../final_demo_data/fl_12samples/out_data/DMR_CpG_context/data/5dist_Down1000000_Down5000removedShort.bed
+</pre></div>
+</div>
+<p>Head of the hg19.refFlat_clean_sorted.bed looks like the following</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>chr1<span class="w">        </span><span class="m">11868</span><span class="w">   </span><span class="m">14362</span><span class="w">   </span>LOC102725121:NR_148357<span class="w">  </span>.<span class="w">       </span>+
+chr1<span class="w">        </span><span class="m">11873</span><span class="w">   </span><span class="m">14409</span><span class="w">   </span>DDX11L1:NR_046018<span class="w">       </span>.<span class="w">       </span>+
+chr1<span class="w">        </span><span class="m">14361</span><span class="w">   </span><span class="m">29370</span><span class="w">   </span>WASH7P:NR_024540<span class="w">        </span>.<span class="w">       </span>-
+chr1<span class="w">        </span><span class="m">34610</span><span class="w">   </span><span class="m">36081</span><span class="w">   </span>FAM138A:NR_026818<span class="w">       </span>.<span class="w">       </span>-
+chr1<span class="w">        </span><span class="m">69090</span><span class="w">   </span><span class="m">70008</span><span class="w">   </span>OR4F5:NM_001005484<span class="w">      </span>.<span class="w">       </span>+
+chr1<span class="w">        </span><span class="m">134772</span><span class="w">  </span><span class="m">140566</span><span class="w">  </span>LOC729737:NR_039983<span class="w">     </span>.<span class="w">       </span>-
+chr1<span class="w">        </span><span class="m">323891</span><span class="w">  </span><span class="m">328581</span><span class="w">  </span>LOC100132287:NR_028322<span class="w">  </span>.<span class="w">       </span>+
+chr1<span class="w">        </span><span class="m">367658</span><span class="w">  </span><span class="m">368597</span><span class="w">  </span>OR4F29:NM_001005221<span class="w">     </span>.<span class="w">       </span>+
+</pre></div>
+</div>
+<p>Predicted DMRs by dmr_analysis file is also used as input to this demo which looks like the following:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mr_chrs<span class="w"> </span>mr_start_pos<span class="w">    </span>mr_end_pos<span class="w">      </span>mr_info<span class="w"> </span>mr_logReg_proba<span class="w"> </span>genome_info<span class="w">     </span>chromSegment_info
+chr18<span class="w">   </span><span class="m">57022124</span><span class="w">        </span><span class="m">57027729</span><span class="w">        </span>chr18:mr5:hypo:D<span class="w">        </span><span class="m">0</span>.999871<span class="w">        </span>chr18:57025497:57031497:NM_005570<span class="o">||</span>TSS:5000:1000<span class="o">||</span>LMAN1:-:56995055:57026497~chr18:56996055:57025497:NM_005570<span class="o">||</span>gene:5000:1000<span class="o">||</span>LMAN1:-:56995055:5702649~E~R~TSS~PF~T
+chr18<span class="w">   </span><span class="m">57028952</span><span class="w">        </span><span class="m">57030829</span><span class="w">        </span>chr18:mr6:hypo:D<span class="w">        </span><span class="m">0</span>.999902<span class="w">        </span>chr18:57025497:57031497:NM_005570<span class="o">||</span>TSS:5000:1000<span class="o">||</span>LMAN1:-:56995055:57026497~chr18:56343696:57338696:NM_006785<span class="o">||</span>5distD:5000:1000000<span class="o">||</span>MALT1:+:56338696:56221709~chr18:56486111:57481111:NR_146904<span class="o">||</span>5distD:5000:1000000<span class="o">||</span>LINC01926:+:56481111:56501596~chr18:56535155:57530155:NM_018181<span class="o">||</span>5distD:5000:1000000<span class="o">||</span>ZNF332:+:56530155:56653712~chr18:56535714:57530714:NM_001353526<span class="o">||</span>5distD:5000:1000000<span class="o">||</span>ZNF532:+:56530714:56653712~chr18:56536322:57531322:NM_001318728<span class="o">||</span>5distD:5000:1000000<span class="o">||</span>ZNF532:+:56531322:56653712~chr18:56536590:57531590:NM_001353531<span class="o">||</span>5distD:5000:1000000<span class="o">||</span>ZNF532:+:56531590:56653712~chr18:56537108:57532108:NM_001353527<span class="o">||</span>5distD:5000:1000000<span class="o">||</span>ZNF532:+:56532108:56653712~chr18:56707910:57702910:NR_024021<span class="o">||</span>5distD:5000:1000000<span class="o">||</span>OACYLP:+:56702910:56720446~chr18:56812115:57807115:NM_001307941<span class="o">||</span>5distD:5000:1000000<span class="o">||</span>SEC11C:+:56807115:56826063~chr18:56892389:57887389:NM_001012513<span class="o">||</span>5distD:5000:1000000<span class="o">||</span>GRP:+:56887389:56898002~chr18:56364655:57359655:NM_133459<span class="o">||</span>5distD:5000:1000000<span class="o">||</span>CCBE1:-:57098170:57364655~chr18:56301323:57296323:NM_052947<span class="o">||</span>5dist:5000:1000000<span class="o">||</span>ALPK2:-:56148481:56296323~chr18:56945686:57940686:NM_013435<span class="o">||</span>5dist:5000:1000000<span class="o">||</span>RAX:-:56934269:56940686~chr18:56990881:57985881:NM_181654<span class="o">||</span>5dist:5000:1000000<span class="o">||</span>CPLX4:-:56962633:56985881~chr18:56567227:57562227:NM_021127<span class="o">||</span>5dist:5000:1000000<span class="o">||</span>PMAIP1:+:57567227:57571537<span class="w">     </span>R~T
+</pre></div>
+</div>
+<p>Head of differentially_expressed_genes.txt is following:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>A1BG<span class="w">        </span><span class="m">0</span>.006841601076234209<span class="w">    </span><span class="m">1</span>.03562166970378<span class="w">        </span><span class="m">1</span>.0044718601447777<span class="w">      </span><span class="m">0</span>.7682775946401803<span class="w">      </span><span class="m">0</span>.9032574892066986<span class="w">      </span><span class="m">0</span>.9586228797372297<span class="w">      </span><span class="m">0</span>.8600161280044952<span class="w">      </span><span class="m">1</span>.1129622825040923<span class="w">      </span><span class="m">0</span>.727123126962006<span class="w">       </span><span class="m">0</span>.7943658809104911<span class="w">      </span><span class="m">0</span>.9030097652361022<span class="w">      </span><span class="m">0</span>.7743942653504368<span class="w">      </span><span class="m">0</span>.6272536039977595<span class="w">      </span><span class="m">0</span>.7647032561463141<span class="w">      </span><span class="m">0</span>.7540873544744898
+A2M<span class="w"> </span><span class="m">7</span>.466186411474e-08<span class="w">      </span><span class="m">1</span>.7068617121006318<span class="w">      </span><span class="m">1</span>.5722363221730744<span class="w">      </span><span class="m">1</span>.7241477215681602<span class="w">      </span><span class="m">2</span>.512746238429057<span class="w">       </span><span class="m">1</span>.192179193233052<span class="w">       </span><span class="m">1</span>.9616053111713239<span class="w">      </span><span class="m">2</span>.0831787155792267<span class="w">      </span><span class="m">1</span>.3698921594123463<span class="w">      </span><span class="m">1</span>.8944650163311454<span class="w">      </span><span class="m">2</span>.049522066949797<span class="w">       </span><span class="m">0</span>.026853332696881425<span class="w">    </span><span class="m">0</span>.11955544285228693<span class="w">     </span><span class="m">0</span>.1306156621631196<span class="w">      </span><span class="m">0</span>.02935698777439702
+A2ML1<span class="w">       </span><span class="m">0</span>.013243211051909093<span class="w">    </span><span class="m">0</span>.0038341538116092736<span class="w">   </span><span class="m">0</span>.005223240799061258<span class="w">    </span><span class="m">0</span>.0035200158291957538<span class="w">   </span><span class="m">0</span>.006688701271386327<span class="w">    </span><span class="m">0</span>.01231806318166027<span class="w">     </span><span class="m">0</span>.006651830866222021<span class="w">    </span><span class="m">0</span>.01240860696633966<span class="w">     </span><span class="m">0</span>.006867506126330923<span class="w">    </span><span class="m">0</span>.0028447826724574037<span class="w">   </span><span class="m">0</span>.004404865042883453<span class="w">    </span><span class="m">0</span>.09306972144679593<span class="w">     </span><span class="m">0</span>.09312915276803117<span class="w">     </span><span class="m">0</span>.07871043255363304<span class="w">     </span><span class="m">0</span>.03729749320155993
+A3GALT2<span class="w">     </span><span class="m">0</span>.023045652491540343<span class="w">    </span><span class="m">0</span>.017919176318647874<span class="w">    </span><span class="m">0</span>.009595308902594371<span class="w">    </span><span class="m">0</span>.019196980444105404<span class="w">    </span><span class="m">0</span>.030547395118981288<span class="w">    </span><span class="m">0</span>.012650172586582973<span class="w">    </span><span class="m">0</span>.023783244992637877<span class="w">    </span><span class="m">0</span>.01579925924075979<span class="w">     </span><span class="m">0</span>.015948641690104712<span class="w">    </span><span class="m">0</span>.005135873671568252<span class="w">    </span><span class="m">0</span>.009253322651483684<span class="w">    </span><span class="m">0</span>.060041819656531735<span class="w">    </span><span class="m">0</span>.12801386599049638<span class="w">     </span><span class="m">0</span>.06660916252501874<span class="w">     </span><span class="m">0</span>.07245621656048234
+</pre></div>
+</div>
+</section>
+<section id="step-1-map-mutation-blocks-to-genomic-regions">
+<h2>Step 1: Map mutation blocks to genomic regions<a class="headerlink" href="#step-1-map-mutation-blocks-to-genomic-regions" title="Permalink to this heading"></a></h2>
+<p>The <cite>map_block2genome</cite> module from the <cite>dds_analysis</cite> package is used to map mutation blocks to predefined genomic regions.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>dds_analysis<span class="w"> </span>map_block2genome<span class="w"> </span>--in_sortedBlock_file<span class="w"> </span><span class="nv">$IN_BLOCK_FILE</span><span class="w"> </span>--in_genomicRegion_file<span class="w"> </span><span class="nv">$GENOMIC_REGION_FILE</span><span class="w"> </span>--in_reference_genome<span class="w"> </span><span class="nv">$REFERENCE_GENOME_FILE</span><span class="w"> </span>--out_folder<span class="w"> </span><span class="nv">$OUTPUT_FOLDER</span>
+</pre></div>
+</div>
+</section>
+<section id="step-2-map-mutation-blocks-to-chromatin-segments">
+<h2>Step 2: Map mutation blocks to chromatin segments<a class="headerlink" href="#step-2-map-mutation-blocks-to-chromatin-segments" title="Permalink to this heading"></a></h2>
+<p>The <cite>map_block2chromSegment</cite> module from the <cite>dds_analysis</cite> package is used to map mutation blocks to chromatin segments.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>dds_analysis<span class="w"> </span>map_block2chromSegment<span class="w"> </span>--in_sortedBlock_file<span class="w"> </span><span class="nv">$IN_BLOCK_FILE</span><span class="w"> </span>--in_chromatinSegment_folder<span class="w"> </span><span class="nv">$CHROMATIN_SEGMENT_FOLDER</span><span class="w"> </span>--out_folder<span class="w"> </span><span class="nv">$OUTPUT_FOLDER</span>
+</pre></div>
+</div>
+</section>
+<section id="step-3-map-mutation-blocks-to-differentially-methylated-regions-dmrs">
+<h2>Step 3: Map mutation blocks to differentially methylated regions (DMRs)<a class="headerlink" href="#step-3-map-mutation-blocks-to-differentially-methylated-regions-dmrs" title="Permalink to this heading"></a></h2>
+<p>The <cite>map_block2dmr</cite> module from the <cite>dds_analysis</cite> package is used to map mutation blocks to DMRs after adding flank regions.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>dds_analysis<span class="w"> </span>map_block2dmr<span class="w"> </span>--in_sortedBlock_file<span class="w"> </span><span class="nv">$IN_BLOCK_FILE</span><span class="w"> </span>--in_dmr_file<span class="w"> </span><span class="nv">$DMR_FILE</span><span class="w"> </span>--flank_region_size<span class="w"> </span><span class="nv">$FLANK_REGION_SIZE</span><span class="w"> </span>--out_folder<span class="w"> </span><span class="nv">$OUTPUT_FOLDER</span>
+</pre></div>
+</div>
+</section>
+<section id="step-4-combine-genomic-regions-with-mutation-block-information-and-find-differentially-expressed-genes">
+<h2>Step 4: Combine genomic regions with mutation block information and find differentially expressed genes<a class="headerlink" href="#step-4-combine-genomic-regions-with-mutation-block-information-and-find-differentially-expressed-genes" title="Permalink to this heading"></a></h2>
+<p>The <cite>find_geneExp4block</cite> module from the <cite>dds_analysis</cite> package is used to combine genomic regions with mutation block information and identify differentially expressed genes.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>dds_analysis<span class="w"> </span>find_geneExp4block<span class="w"> </span>--in_blocks_genome_folder<span class="w"> </span><span class="nv">$BLOCKS_GENOME_FOLDER</span><span class="w"> </span>--in_sortedBlock_file<span class="w"> </span><span class="nv">$IN_BLOCK_FILE</span><span class="w"> </span>--in_de_genes_file<span class="w"> </span><span class="nv">$DE_GENES_FILE</span><span class="w"> </span>--in_feature_list<span class="w"> </span><span class="nv">$FEATURE_LIST</span><span class="w"> </span>--out_folder<span class="w"> </span><span class="nv">$OUTPUT_FOLDER</span>
+</pre></div>
+</div>
+</section>
+<section id="step-5-find-patient-ids-for-each-mutation-block">
+<h2>Step 5: Find patient IDs for each mutation block<a class="headerlink" href="#step-5-find-patient-ids-for-each-mutation-block" title="Permalink to this heading"></a></h2>
+<p>The <cite>find_block_patientID</cite> module from the <cite>dds_analysis</cite> package is used to find patient IDs associated with each mutation block.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>dds_analysis<span class="w"> </span>find_block_patientID<span class="w"> </span>--in_block_summary_file<span class="w"> </span><span class="nv">$BLOCK_SUMMARY_FILE</span><span class="w"> </span>--in_block_folder<span class="w"> </span><span class="nv">$BLOCK_FOLDER</span>
+</pre></div>
+</div>
+</section>
+<section id="step-6-combine-dmrs-differentially-expressed-genes-degs-and-mutation-block-information">
+<h2>Step 6: Combine DMRs, differentially expressed genes (DEGs), and mutation block information<a class="headerlink" href="#step-6-combine-dmrs-differentially-expressed-genes-degs-and-mutation-block-information" title="Permalink to this heading"></a></h2>
+<p>The <cite>combine_dmr_deg2block</cite> module from the <cite>dds_analysis</cite> package is used to combine DMRs, DEGs, and mutation block information.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>dds_analysis<span class="w"> </span>combine_dmr_deg2block<span class="w"> </span>--in_sortedBlock_patient_file<span class="w"> </span><span class="nv">$SORTED_BLOCK_PATIENT_FILE</span><span class="w"> </span>--in_dmr_file<span class="w"> </span><span class="nv">$DMR_FILE</span><span class="w"> </span>--in_deg_folder<span class="w"> </span><span class="nv">$DEG_FOLDER</span><span class="w"> </span>--deg_file_suffix<span class="w"> </span><span class="nv">$DEG_FILE_SUFFIX</span><span class="w"> </span>--out_folder<span class="w"> </span><span class="nv">$OUTPUT_FOLDER</span>
+</pre></div>
+</div>
+</section>
+<section id="step-7-filter-blocks-based-on-dmr-or-deg-information">
+<h2>Step 7: Filter blocks based on DMR or DEG information<a class="headerlink" href="#step-7-filter-blocks-based-on-dmr-or-deg-information" title="Permalink to this heading"></a></h2>
+<p>The <cite>filter_blocks</cite> module from the <cite>dds_analysis</cite> package is used to filter blocks based on DMR or DEG information.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>dds_analysis<span class="w"> </span>filter_blocks<span class="w"> </span>--in_combined_dmr_deg_block_file<span class="w"> </span><span class="nv">$COMBINED_DMR_DEG_BLOCK_FILE</span>
+</pre></div>
+</div>
+</section>
+<section id="step-8-collect-unique-gene-names-from-predicted-blocks-after-filtering">
+<h2>Step 8: Collect unique gene names from predicted blocks after filtering<a class="headerlink" href="#step-8-collect-unique-gene-names-from-predicted-blocks-after-filtering" title="Permalink to this heading"></a></h2>
+<p>The <cite>collect_gene_names4blocks</cite> module from the <cite>dds_analysis</cite> package is used to collect unique gene names from predicted blocks.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>dds_analysis<span class="w"> </span>collect_gene_names4blocks<span class="w"> </span>--in_filtered_block_file<span class="w"> </span><span class="nv">$FILTERED_BLOCK_FILE</span><span class="w"> </span>--out_gene_file<span class="w"> </span><span class="nv">$GENE_FILE</span>
+</pre></div>
+</div>
+</section>
+<section id="step-9-filter-mutation-block-and-genes">
+<h2>Step 9: Filter Mutation block and genes:<a class="headerlink" href="#step-9-filter-mutation-block-and-genes" title="Permalink to this heading"></a></h2>
+<p>The <cite>check_block_gene_inTAD</cite> module from the <cite>dds_analysis</cite> package is used to perform filter mutation block and genes that they are not in the same TAD or boundary</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>dds_analysis<span class="w"> </span>check_block_gene_inTAD<span class="w"> </span>--in_filtered_blockUqGene_file<span class="w"> </span><span class="nv">$OUT_FINAL</span>/<span class="si">${</span><span class="nv">IN_BLOCK_DMR_NAME</span><span class="si">}</span>_deg_info_filtered_DMR_and_DEG_uniqGene.tsv<span class="w"> </span><span class="se">\</span>
+<span class="w">     </span>--in_gene_position_file<span class="w"> </span><span class="si">${</span><span class="nv">IN_GENE_POSITION</span><span class="si">}</span><span class="w"> </span><span class="se">\</span>
+<span class="w">     </span>--in_TAD_position_file<span class="w"> </span><span class="si">${</span><span class="nv">IN_TAD_INFO</span><span class="si">}</span><span class="w">  </span><span class="se">\</span>
+<span class="w">     </span>--in_TAD_boundary_file<span class="w"> </span><span class="si">${</span><span class="nv">IN_TAD_BOUNDARY</span><span class="si">}</span>
+<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>9a.<span class="w"> </span>check_block_gene_inTAD<span class="w"> </span>-<span class="w"> </span>Done<span class="w"> </span><span class="k">for</span><span class="w"> </span>selecting<span class="w"> </span>blocks<span class="w"> </span>with<span class="w"> </span>both<span class="w"> </span>DMR<span class="w"> </span>and<span class="w"> </span>DEG
+
+
+
+<span class="w"> </span>dds_analysis<span class="w"> </span>check_block_gene_inTAD<span class="w"> </span>--in_filtered_blockUqGene_file<span class="w"> </span><span class="nv">$OUT_FINAL</span>/<span class="si">${</span><span class="nv">IN_BLOCK_DMR_NAME</span><span class="si">}</span>_deg_info_filtered_DMR_or_DEG_uniqGene.tsv<span class="w"> </span><span class="se">\</span>
+<span class="w">         </span>--in_gene_position_file<span class="w"> </span><span class="si">${</span><span class="nv">IN_GENE_POSITION</span><span class="si">}</span><span class="w"> </span><span class="se">\</span>
+<span class="w">         </span>--in_TAD_position_file<span class="w"> </span><span class="si">${</span><span class="nv">IN_TAD_INFO</span><span class="si">}</span><span class="w"> </span><span class="se">\</span>
+<span class="w">         </span>--in_TAD_boundary_file<span class="w"> </span><span class="si">${</span><span class="nv">IN_TAD_BOUNDARY</span><span class="si">}</span>
+<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>9b.<span class="w"> </span>check_block_gene_inTAD<span class="w"> </span>-<span class="w"> </span>Done<span class="w"> </span><span class="k">for</span><span class="w"> </span>selecting<span class="w"> </span>blocks<span class="w"> </span>with<span class="w"> </span>either<span class="w"> </span>DMR<span class="w"> </span>or<span class="w"> </span>DEG
+</pre></div>
+</div>
+<p>Here is list of genes that exist in TAD:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gene_name<span class="w">   </span>patients<span class="w">        </span>gene_type<span class="w">       </span>block_id<span class="w">        </span>new_mr_sites<span class="w">    </span>patient_id<span class="w">      </span>enhancers<span class="w">       </span>TAD2gene<span class="w">        </span>Boundary2gene<span class="w">   </span>TAD2block<span class="w">       </span>Boundary2block<span class="w">  </span>isTAD
+BCL2<span class="w">        </span><span class="m">9</span><span class="w">       </span>TSS<span class="w">     </span>block_1_18_60987833_60988302<span class="w">    </span>chr18:mr621<span class="w">     </span>patient_0,patient_1,patient_2,patient_4,patient_5,patient_6,patient_7,patient_8,patient_10<span class="w">      </span>nan<span class="w">     </span><span class="m">18</span>:60675000:61075000:Low-active<span class="w"> </span>na<span class="w">      </span><span class="m">18</span>:60675000:61075000:Low-active<span class="w"> </span>na<span class="w">      </span><span class="m">1</span>.0
+BCL2<span class="w">        </span><span class="m">8</span><span class="w">       </span>TSS<span class="w">     </span>block_0_18_60986372_60987028<span class="w">    </span>chr18:mr621<span class="w">     </span>patient_0,patient_1,patient_4,patient_5,patient_6,patient_7,patient_8,patient_10<span class="w">        </span>enhancer<span class="w">        </span><span class="m">18</span>:60675000:61075000:Low-active<span class="w"> </span>na<span class="w">      </span><span class="m">18</span>:60675000:61075000:Low-active<span class="w"> </span>na<span class="w">      </span><span class="m">1</span>.0
+SERPINB8<span class="w">    </span><span class="m">9</span><span class="w">       </span>5dist<span class="w">   </span>block_1_18_60987833_60988302<span class="w">    </span>chr18:mr621<span class="w">     </span>patient_0,patient_1,patient_2,patient_4,patient_5,patient_6,patient_7,patient_8,patient_10<span class="w">      </span>nan<span class="w">     </span><span class="m">18</span>:61650000:66375000:Low<span class="w">        </span><span class="m">18</span>:61575000:61650000:1<span class="w">  </span><span class="m">18</span>:60675000:61075000:Low-active<span class="w"> </span>na<span class="w">      </span><span class="m">0</span>.0
+SERPINB2<span class="w">    </span><span class="m">9</span><span class="w">       </span>5dist<span class="w">   </span>block_1_18_60987833_60988302<span class="w">    </span>chr18:mr621<span class="w">     </span>patient_0,patient_1,patient_2,patient_4,patient_5,patient_6,patient_7,patient_8,patient_10<span class="w">      </span>nan<span class="w">     </span><span class="m">18</span>:61150000:61575000:Low<span class="w">        </span>na<span class="w">      </span><span class="m">18</span>:60675000:61075000:Low-active<span class="w"> </span>na<span class="w">      </span><span class="m">0</span>.0
+SERPINB5<span class="w">    </span><span class="m">9</span><span class="w">       </span>5dist<span class="w">   </span>block_1_18_60987833_60988302<span class="w">    </span>chr18:mr621<span class="w">     </span>patient_0,patient_1,patient_2,patient_4,patient_5,patient_6,patient_7,patient_8,patient_10<span class="w">      </span>nan<span class="w">     </span><span class="m">18</span>:61150000:61575000:Low<span class="w">        </span><span class="m">18</span>:61075000:61150000:1<span class="w">  </span><span class="m">18</span>:60675000:61075000:Low-active<span class="w"> </span>na<span class="w">      </span><span class="m">0</span>.0
+SERPINB12<span class="w">   </span><span class="m">9</span><span class="w">       </span>5dist<span class="w">   </span>block_1_18_60987833_60988302<span class="w">    </span>chr18:mr621<span class="w">     </span>patient_0,patient_1,patient_2,patient_4,patient_5,patient_6,patient_7,patient_8,patient_10<span class="w">      </span>nan<span class="w">     </span><span class="m">18</span>:61150000:61575000:Low<span class="w">        </span>na<span class="w">      </span><span class="m">18</span>:60675000:61075000:Low-active<span class="w"> </span>na<span class="w">      </span><span class="m">0</span>.0
+</pre></div>
+</div>
+</section>
+<section id="step-10-rank-gene-list">
+<h2>Step 10: Rank gene list:<a class="headerlink" href="#step-10-rank-gene-list" title="Permalink to this heading"></a></h2>
+<p>The <cite>dds_geneRanking</cite> module from the <cite>dds_analysis</cite> package is used to rank gene list based on predefined weights such as default setting is
+tss=4, enhancer=3, tes=gene=2, 5dist=1</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>dds_analysis<span class="w"> </span>dds_geneRanking<span class="w"> </span>--in_unique_gene_file<span class="w"> </span><span class="nv">$OUT_FINAL</span>/<span class="si">${</span><span class="nv">IN_BLOCK_DMR_NAME</span><span class="si">}</span>_deg_info_filtered_DMR_or_DEG_uniqGene_commonTAD_Boundary_list2UqGene.tsv<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--in_DEG_file<span class="w"> </span><span class="si">${</span><span class="nv">IN_EXPRESS</span><span class="si">}</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--in_DMR_file<span class="w"> </span><span class="si">${</span><span class="nv">IN_DMR</span><span class="si">}</span><span class="w"> </span>-inCutoff<span class="w"> </span><span class="m">0</span>.5
+<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="m">10</span>.<span class="w"> </span>geneRanking<span class="w"> </span>-<span class="w"> </span>Done
+</pre></div>
+</div>
+<p>Here is the output of gene ranking of unique gene:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gene_name<span class="w">   </span>gene_type<span class="w">       </span>block_id<span class="w">        </span>new_mr_sites<span class="w">    </span>patients<span class="w">        </span>isTAD<span class="w">   </span>enhancers<span class="w">       </span>patient_id
+BCL2<span class="w">        </span>TSS~TSS<span class="w"> </span>block_1_18_60987833_60988302~block_0_18_60986372_60987028<span class="w">       </span>chr18:mr621~chr18:mr621<span class="w"> </span><span class="m">9</span>~8<span class="w">     </span><span class="m">1</span>.0~1.0<span class="w"> </span>nan~enhancer<span class="w">    </span>patient_0,patient_1,patient_2,patient_4,patient_5,patient_6,patient_7,patient_8,patient_10~patient_0,patient_1,patient_4,patient_5,patient_6,patient_7,patient_8,patient_10
+</pre></div>
+</div>
+</section>
+<section id="step-11-find-enhancer-target-genes">
+<h2>Step 11: Find enhancer target genes<a class="headerlink" href="#step-11-find-enhancer-target-genes" title="Permalink to this heading"></a></h2>
+<p>The <cite>find_enhancer_target_genes</cite> module from the <cite>dds_analysis</cite> package is used to find enhancer target genes by overlapping predicted enhancers with selected mutation blocks and a predicted target gene.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w"> </span><span class="nv">search_dir</span><span class="o">=</span><span class="s1">&#39;find ${OUT_FINAL} -name *_gt_* -type f &#39;</span>
+
+<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Find results file from below list: &quot;</span>
+<span class="w"> </span><span class="k">for</span><span class="w"> </span>entry<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="si">${</span><span class="nv">search_dir</span><span class="si">}</span>
+<span class="w"> </span><span class="k">do</span>
+<span class="w">   </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$entry</span><span class="s2">&quot;</span>
+<span class="w"> </span><span class="k">done</span>
+
+<span class="w"> </span><span class="nv">SEARCH_GENE</span><span class="o">=</span><span class="s1">&#39;BCL2&#39;</span>
+<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;and input one of file name and path to step 11&quot;</span>
+
+<span class="w"> </span><span class="nb">read</span><span class="w"> </span>-p<span class="w"> </span><span class="s2">&quot;To select a file from the above list before running step 12.</span>
+<span class="s2">      for finding enhancers that overlapping to selected mutation blocks with a predicted target gene </span><span class="nv">$SEARCH_GENE</span>
+<span class="s2">      : &quot;</span><span class="w">  </span>IN_FINAL_RESULT
+<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;IN_FINAL_RESULT: </span><span class="nv">$IN_FINAL_RESULT</span><span class="s2"> &quot;</span>
+
+dds_analysis<span class="w"> </span>find_enhancer_target_genes<span class="w"> </span>--in_enhancer_folder<span class="w"> </span><span class="nv">$ENHANCER_FOLDER</span><span class="w"> </span>--in_dds_file<span class="w"> </span><span class="nv">$DDS_FILE</span><span class="w"> </span>--in_gene_file<span class="w"> </span><span class="nv">$GENE_FILE</span><span class="w"> </span>--out_folder<span class="w"> </span><span class="nv">$OUTPUT_FOLDER</span>
+</pre></div>
+</div>
+<p>Following is the output for gene “BCL2” with its enhancer region which is predicted for follicular lymphoma.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>chr18<span class="w">       </span><span class="m">60986372</span><span class="w">        </span><span class="m">60987028</span><span class="w">        </span>block_0_18_60986372_60987028<span class="w">    </span>chr18:mr621<span class="w">     </span>TSS<span class="w">     </span><span class="m">8</span><span class="w">       </span>enhancer
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="preprocess.html" class="btn btn-neutral float-left" title="preprocess" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="demoHAP1.html" class="btn btn-neutral float-right" title="demoHAP1" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Junbai and Omer.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

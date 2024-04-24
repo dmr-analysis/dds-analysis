@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>plot_mr_vs_exp &mdash; dds_analysis 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="plot_tss_enhancer_mrs" href="plot_tss_enhancer_mrs.html" />
+    <link rel="prev" title="dTarget_methy_vs_express" href="dTarget_methy_vs_express.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            dds_analysis
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bpb3summary2bed_format.html">bpb3summary2bed_format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="map_block2genome.html">map_block2genome</a></li>
+<li class="toctree-l1"><a class="reference internal" href="map_block2chromSegment.html">map_block2chromSegment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="map_block2dmr.html">map_block2dmr</a></li>
+<li class="toctree-l1"><a class="reference internal" href="find_geneExp4block.html">find_geneExp4block</a></li>
+<li class="toctree-l1"><a class="reference internal" href="find_block_patientID.html">find_block_patientID</a></li>
+<li class="toctree-l1"><a class="reference internal" href="combine_dmr_deg2block.html">combine_dmr_deg2block</a></li>
+<li class="toctree-l1"><a class="reference internal" href="filter_blocks.html">filter_blocks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="collect_gene_names4blocks.html">collect_gene_names4blocks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="check_block_gene_inTAD.html">check_block_gene_inTAD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dds_geneRanking.html">dds_geneRanking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="go_pathway_analysis4out_blocks_gene.html">go_pathway_analysis4out_blocks_gene</a></li>
+<li class="toctree-l1"><a class="reference internal" href="find_enhancer_target_genes.html">find_enhancer_target_genes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chromSegment_test4blocks.html">chromSegment_test4blocks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dTarget_methy_vs_express.html">dTarget_methy_vs_express</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">plot_mr_vs_exp</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plot_tss_enhancer_mrs.html">plot_tss_enhancer_mrs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="filterDEG4bpb3.html">filterDEG4bpb3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="preprocess.html">preprocess</a></li>
+<li class="toctree-l1"><a class="reference internal" href="demoFL.html">demoFL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="demoHAP1.html">demoHAP1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="demoRAT.html">demoRAT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="demoFLMR.html">demoFLMR</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">dds_analysis</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">plot_mr_vs_exp</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/content/plot_mr_vs_exp.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="plot-mr-vs-exp">
+<h1>plot_mr_vs_exp<a class="headerlink" href="#plot-mr-vs-exp" title="Permalink to this heading"></a></h1>
+<p>This command is used to plot DMR/MR methylation levels and gene expression for a pair of DMR and its target gene.</p>
+<p>Optional arguments:</p>
+<ul class="simple">
+<li><p><cite>-h, –help</cite>: Show the help message and exit.</p></li>
+</ul>
+<p>Required arguments:</p>
+<ul class="simple">
+<li><p><cite>-inGeneEXPfile IN_GENE_EXPRESSION_FILE_FROM_BPB3, –in_gene_expression_file_from_bpb3</cite>: Input file name for gene expression profiles exported by bpb3 differential_expression. The file format should be: gene_name; P-values, sample1, sample2, …</p></li>
+<li><p><cite>-inMRfolder IN_METHYLATION_FOLDER_FROM_DMR, –in_methylation_folder_from_dmr</cite>: Input file folder path for methylation data. The data should be extracted by dmr_analysis dmr_exportData based on predefined blocks or regions.</p></li>
+</ul>
+<p>Optional arguments with default values:</p>
+<ul class="simple">
+<li><p><cite>-inGene, –in_gene_name</cite>: Target gene name for an MR/DMR region. Default value is None. Specify the target gene name for the MR/DMR region.</p></li>
+<li><p><cite>-inMR, –in_mr_id</cite>: MR/DMR ID of a target gene, such as chr1:mr1234. Default value is None. Specify the MR/DMR ID of the target gene.</p></li>
+<li><p><cite>-inFile, –in_gene_mr_file</cite>: Input file that contains both DMR/MR ID and the target gene name. It should be a tab-delimited text file, where the column labels are mr_id and gene, respectively. The file format should be the same as the export file from dTarget_methy_vs_express.py. Default value is None. Specify the input file that contains both DMR/MR ID and the target gene name.</p></li>
+<li><p><cite>-expTAB, –is_tab_delimated_file4diffExp</cite>: Specifies whether the input differential expression gene file is in the bpb3 differential_expression exported file format or a common tab-delimited file format. If set, the input gene expression file will be treated as a common tab-delimited file. Default value is False.</p></li>
+<li><p><cite>-expStartCol, –gene_expression_start_column</cite>: Start column number (e.g., 0, 1, 2, …) for samples in the gene expression profile file. Default value is 2 for bpb3 exported file. Specify the start column number for samples in the gene expression profile file.</p></li>
+<li><p><cite>-pathDepth IN_DIFFEXP_PATHDEPTH4SAMPLENAME, –in_diffExp_pathDepth4sampleName</cite>: File path depth for the column sample name. For example, if the column name is /path/folder/sample_name/.., then the depth of the sample name is the number of “/” before the sample name. Default value is 12. Specify the file path depth for the column sample name.</p></li>
+<li><p><cite>-sampleName IN_SAMPLENAME_FOR_REPLACE, –in_sampleName_for_replace IN_SAMPLENAME_FOR_REPLACE</cite>: Input file name for renaming the old sample names in the gene expression data. The first column (old_name) contains the old sample names, and the second column (new_name) contains the new names used for replacement. The default file name is sample_name4replace.tsv, which can be an empty file if no replacement is needed for sample names.</p></li>
+<li><p><cite>-dpi, –figure_resolution_dpi</cite>: Exported figure resolution in dpi. Default dpi is 60. Set the exported figure resolution in dpi.</p></li>
+<li><p><cite>-wtStr, –wildType_fileString</cite>: The first few character string that labels the file name as the Wild Type condition. For example, if the file name starts with gcb_meht1_* as the wild type control sample, then –wildType_fileString is gcb. This is the default setting in the program.</p></li>
+<li><p><cite>-output_path, –output_file_path</cite>:</p></li>
+</ul>
+<blockquote>
+<div><p>Output path for exported figures. Default value is “./” (current directory). Specify the output path for exported figures.</p>
+</div></blockquote>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="dTarget_methy_vs_express.html" class="btn btn-neutral float-left" title="dTarget_methy_vs_express" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="plot_tss_enhancer_mrs.html" class="btn btn-neutral float-right" title="plot_tss_enhancer_mrs" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Junbai and Omer.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DDS-Analysis Tool &mdash; dds_analysis 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Installation" href="content/installation.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="#" class="icon icon-home">
+            dds_analysis
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="content/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="content/bpb3summary2bed_format.html">bpb3summary2bed_format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="content/map_block2genome.html">map_block2genome</a></li>
+<li class="toctree-l1"><a class="reference internal" href="content/map_block2chromSegment.html">map_block2chromSegment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="content/map_block2dmr.html">map_block2dmr</a></li>
+<li class="toctree-l1"><a class="reference internal" href="content/find_geneExp4block.html">find_geneExp4block</a></li>
+<li class="toctree-l1"><a class="reference internal" href="content/find_block_patientID.html">find_block_patientID</a></li>
+<li class="toctree-l1"><a class="reference internal" href="content/combine_dmr_deg2block.html">combine_dmr_deg2block</a></li>
+<li class="toctree-l1"><a class="reference internal" href="content/filter_blocks.html">filter_blocks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="content/collect_gene_names4blocks.html">collect_gene_names4blocks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="content/check_block_gene_inTAD.html">check_block_gene_inTAD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="content/dds_geneRanking.html">dds_geneRanking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="content/go_pathway_analysis4out_blocks_gene.html">go_pathway_analysis4out_blocks_gene</a></li>
+<li class="toctree-l1"><a class="reference internal" href="content/find_enhancer_target_genes.html">find_enhancer_target_genes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="content/chromSegment_test4blocks.html">chromSegment_test4blocks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="content/dTarget_methy_vs_express.html">dTarget_methy_vs_express</a></li>
+<li class="toctree-l1"><a class="reference internal" href="content/plot_mr_vs_exp.html">plot_mr_vs_exp</a></li>
+<li class="toctree-l1"><a class="reference internal" href="content/plot_tss_enhancer_mrs.html">plot_tss_enhancer_mrs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="content/filterDEG4bpb3.html">filterDEG4bpb3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="content/preprocess.html">preprocess</a></li>
+<li class="toctree-l1"><a class="reference internal" href="content/demoFL.html">demoFL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="content/demoHAP1.html">demoHAP1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="content/demoRAT.html">demoRAT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="content/demoFLMR.html">demoFLMR</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">dds_analysis</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="#" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">DDS-Analysis Tool</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <img alt="_images/oslo-universitetssykehus-ous-logo.png" src="_images/oslo-universitetssykehus-ous-logo.png" />
+<img alt="_images/uio_segl_a.png" src="_images/uio_segl_a.png" />
+<img alt="_images/helse-sor-ost.jpg" src="_images/helse-sor-ost.jpg" />
+<img alt="_images/ahhus.png" src="_images/ahhus.png" />
+<section id="dds-analysis-tool">
+<h1>DDS-Analysis Tool<a class="headerlink" href="#dds-analysis-tool" title="Permalink to this heading"></a></h1>
+<p>An integrated data analysis pipeline by considering both Differential Methylation Region (DMR) and Differentially Expressed Genes (DEG) in SNP analysis. This package depends on some functions from the bpb3 package!</p>
+<p><strong>positional arguments</strong>:
+- <strong>task</strong>: Pipeline task to run</p>
+<p><strong>optional arguments</strong>:
+- <strong>-h, –help</strong>: Show this help message and exit
+Usage: dds_analysis &lt;task&gt; [&lt;args&gt;]</p>
+<section id="tasks-available-for-using">
+<h2>Tasks available for using:<a class="headerlink" href="#tasks-available-for-using" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>bpb3summary2bed_format</strong>: Convert bpb3 block summary file to a bed format file</p></li>
+<li><p><strong>map_block2genome</strong>: Map mutation block to genomic regions</p></li>
+<li><p><strong>map_block2chromSegment</strong>: Map mutation block to chromatin Segment regions</p></li>
+<li><p><strong>map_block2dmr</strong>: Map mutation block to differential methylated regions</p></li>
+<li><p><strong>find_geneExp4block</strong>: Find differential expressed genes for mutation blocks</p></li>
+<li><p><strong>find_block_patieintID</strong>: Find patient ID for mutation blocks</p></li>
+<li><p><strong>combine_dmr_deg2block</strong>: Combine DMR, DEG, and mutation block information together</p></li>
+<li><p><strong>filter_blocks</strong>: Filter mutation blocks by using DMR or/and DEG condition</p></li>
+<li><p><strong>collect_gene_names4blocks</strong>: Collect unique gene names for mutation blocks with DMR and/or DEG</p></li>
+<li><p><strong>check_block_gene_inTAD</strong>: Check whether block and gene are in the same TAD or TAD boundary</p></li>
+<li><p><strong>dds_geneRanking</strong>: Select top-ranked genes from final prediction</p></li>
+<li><p><strong>go_pathway_analysis4out_blocks_gene</strong>: GO pathway analysis of genes</p></li>
+<li><p><strong>find_enhancer_target_genes</strong>: Find enhancer and its target genes overlapping with mutation blocks that associated with selected gene</p></li>
+<li><p><strong>chromSegment_test4blocks</strong>: Enrichment test of mutation blocks or methylation regions that associated with genes in 7 chromatin segmentations of the human genome</p></li>
+<li><p><strong>dTarget_methy_vs_express</strong>: Predict long-distance target gene for a specific region (e.g., mutation block) based on coupling of methylation and gene expression across samples</p></li>
+<li><p><strong>plot_mr_vs_exp</strong>: Plot DMR/MR methylation level and Gene expression for a pair of DMR and its target gene</p></li>
+<li><p><strong>plot_tss_enhancer_mrs</strong>: Plot the average methylation level of predicted DMRs at TSS and enhancer regions by the target genes predicted from dTarget_methy_vs_express</p></li>
+<li><p><strong>filterDEG4bpb3</strong>: Filter Differential Expressed Genes (DEG) by rratio based on the exported file from bpb3 differential_expression then export it with group mean and rratio</p></li>
+<li><p><strong>preprocess</strong>: This module first finds DEG in TSS, 5dist regions then preprocesses data for dds_analysis.</p></li>
+</ul>
+</section>
+<section id="contents">
+<h2>Contents:<a class="headerlink" href="#contents" title="Permalink to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="content/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="content/bpb3summary2bed_format.html">bpb3summary2bed_format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="content/map_block2genome.html">map_block2genome</a></li>
+<li class="toctree-l1"><a class="reference internal" href="content/map_block2chromSegment.html">map_block2chromSegment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="content/map_block2dmr.html">map_block2dmr</a></li>
+<li class="toctree-l1"><a class="reference internal" href="content/find_geneExp4block.html">find_geneExp4block</a></li>
+<li class="toctree-l1"><a class="reference internal" href="content/find_block_patientID.html">find_block_patientID</a></li>
+<li class="toctree-l1"><a class="reference internal" href="content/combine_dmr_deg2block.html">combine_dmr_deg2block</a></li>
+<li class="toctree-l1"><a class="reference internal" href="content/filter_blocks.html">filter_blocks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="content/collect_gene_names4blocks.html">collect_gene_names4blocks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="content/check_block_gene_inTAD.html">check_block_gene_inTAD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="content/dds_geneRanking.html">dds_geneRanking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="content/go_pathway_analysis4out_blocks_gene.html">go_pathway_analysis4out_blocks_gene</a></li>
+<li class="toctree-l1"><a class="reference internal" href="content/find_enhancer_target_genes.html">find_enhancer_target_genes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="content/chromSegment_test4blocks.html">chromSegment_test4blocks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="content/dTarget_methy_vs_express.html">dTarget_methy_vs_express</a></li>
+<li class="toctree-l1"><a class="reference internal" href="content/plot_mr_vs_exp.html">plot_mr_vs_exp</a></li>
+<li class="toctree-l1"><a class="reference internal" href="content/plot_tss_enhancer_mrs.html">plot_tss_enhancer_mrs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="content/filterDEG4bpb3.html">filterDEG4bpb3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="content/preprocess.html">preprocess</a></li>
+<li class="toctree-l1"><a class="reference internal" href="content/demoFL.html">demoFL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="content/demoHAP1.html">demoHAP1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="content/demoRAT.html">demoRAT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="content/demoFLMR.html">demoFLMR</a></li>
+</ul>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="content/installation.html" class="btn btn-neutral float-right" title="Installation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Junbai and Omer.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

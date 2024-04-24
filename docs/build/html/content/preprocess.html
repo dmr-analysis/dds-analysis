@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>preprocess &mdash; dds_analysis 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="demoFL" href="demoFL.html" />
+    <link rel="prev" title="filterDEG4bpb3" href="filterDEG4bpb3.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            dds_analysis
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bpb3summary2bed_format.html">bpb3summary2bed_format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="map_block2genome.html">map_block2genome</a></li>
+<li class="toctree-l1"><a class="reference internal" href="map_block2chromSegment.html">map_block2chromSegment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="map_block2dmr.html">map_block2dmr</a></li>
+<li class="toctree-l1"><a class="reference internal" href="find_geneExp4block.html">find_geneExp4block</a></li>
+<li class="toctree-l1"><a class="reference internal" href="find_block_patientID.html">find_block_patientID</a></li>
+<li class="toctree-l1"><a class="reference internal" href="combine_dmr_deg2block.html">combine_dmr_deg2block</a></li>
+<li class="toctree-l1"><a class="reference internal" href="filter_blocks.html">filter_blocks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="collect_gene_names4blocks.html">collect_gene_names4blocks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="check_block_gene_inTAD.html">check_block_gene_inTAD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dds_geneRanking.html">dds_geneRanking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="go_pathway_analysis4out_blocks_gene.html">go_pathway_analysis4out_blocks_gene</a></li>
+<li class="toctree-l1"><a class="reference internal" href="find_enhancer_target_genes.html">find_enhancer_target_genes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chromSegment_test4blocks.html">chromSegment_test4blocks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dTarget_methy_vs_express.html">dTarget_methy_vs_express</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plot_mr_vs_exp.html">plot_mr_vs_exp</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plot_tss_enhancer_mrs.html">plot_tss_enhancer_mrs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="filterDEG4bpb3.html">filterDEG4bpb3</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">preprocess</a></li>
+<li class="toctree-l1"><a class="reference internal" href="demoFL.html">demoFL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="demoHAP1.html">demoHAP1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="demoRAT.html">demoRAT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="demoFLMR.html">demoFLMR</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">dds_analysis</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">preprocess</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/content/preprocess.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="preprocess">
+<h1>preprocess<a class="headerlink" href="#preprocess" title="Permalink to this heading"></a></h1>
+<p>This module finds DEG in TSS and 5dist regions and preprocesses the data for dds_analysis.</p>
+<p>Optional arguments:</p>
+<ul class="simple">
+<li><p><cite>-h, –help</cite>: Show the help message and exit.</p></li>
+</ul>
+<p>Required arguments:</p>
+<ul class="simple">
+<li><p><cite>-in_folder IN_FOLDER, –in_folder IN_FOLDER</cite>: Input file folder for MRs overlapping with TSS and 5Distance regions that was done in dmr_analysis.</p></li>
+<li><p><cite>-in_string IN_STRING, –in_string IN_STRING</cite>: String that will appear in the output file of DMR regions overlapped with TSS or 5dist.</p></li>
+<li><p><cite>-in_tss_file_mr IN_TSS_FILE_MR, –in_tss_file_mr IN_TSS_FILE_MR</cite>: Path of a file that has DMR overlapped with TSS.</p></li>
+<li><p><cite>-in_dist_file IN_DIST_FILE, –in_dist_file IN_DIST_FILE</cite>: Path of a file that has DMR overlapped with 5dist.</p></li>
+<li><p><cite>-in_deg_file IN_DEG_FILE, –in_deg_file IN_DEG_FILE</cite>: Path of a file that has DEG and is exported using bpb3.</p></li>
+<li><p><cite>-out_folder OUT_FOLDER, –out_folder OUT_FOLDER</cite>: Output folder path.</p></li>
+<li><p><cite>-gene_col_name GENE_COL_NAME, –gene_col_name GENE_COL_NAME</cite>: Name of the gene column. See your DEG file and its header to find the column name.</p></li>
+<li><p><cite>-tss_file TSS_FILE, –tss_file TSS_FILE</cite>: Path of a file that has TSS regions.</p></li>
+<li><p><cite>-full_mr_file FULL_MR_FILE, –full_mr_file FULL_MR_FILE</cite>: File path of all ranked DMRs in the result folder of dmr_analysis.</p></li>
+<li><p><cite>-in_genome_file IN_GENOME_FILE, –in_genome_file IN_GENOME_FILE</cite>: Genome file path which contains refFlat file and enhancer files.</p></li>
+</ul>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="filterDEG4bpb3.html" class="btn btn-neutral float-left" title="filterDEG4bpb3" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="demoFL.html" class="btn btn-neutral float-right" title="demoFL" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Junbai and Omer.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
