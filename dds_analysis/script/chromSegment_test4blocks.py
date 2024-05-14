@@ -1,0 +1,298 @@
+#here is script is used to selected mutation blocks or regions in  chromHMM classified states
+import pandas as pd
+import glob
+import os
+import numpy as np
+import matplotlib.pyplot as plt
+import multiprocessing as mp
+import time
+from .script_high.find_gene_position_hg38_parallel import divide_data2chunk
+import matplotlib as mlt
+import argparse
+mlt.use('Agg')
+
+#sevem states of chromSegment were obtained by chromHMM and Segway classification 
+#TSS     Bright Red      Predicted promoter region including TSS
+#PF      Light Red       Predicted promoter flanking region
+#E       Orange  Predicted enhancer
+#WE      Yellow  Predicted weak enhancer or open chromatin cis regulatory element
+#CTCF    Blue    CTCF enriched element
+#T       Dark Green      Predicted transcribed region
+#R       Gray    Predicted Repressed or Low Activity region
+
+def my_parser(parser):
+   required = parser.add_argument_group('Required')
+   required.add_argument('-inGeneFile','--in_gene_file', required=True, type=str, help='Input file name for gene block association file, which is \
+                          exported by dds_analysis dds_geneRanking , where columns are [gene_name, gene_type, block_id, new_mr_sites, patients, \
+                           isTAD, enhancers, patient_id, geneType_meanScore, num_of_patients, diffExp_pval, dmr_pval, median_scores, mean_scores] \
+                           But only gene_name, block_id are used !')
+   required.add_argument('-inChromFold','--in_chromSeg_folder', required=True, type=str, help='Input file folder name for contains 7 types chromatin \
+                         state classification for all blocks, which is in bed format and column are [chrom, start_pos, end_pos, chromatin_type, block_chrom, \
+                         block_start_pos, block_end_pos, block_id], chromatin type is one of [E, T, R, PF, TSS, WE, CTCF]')
+   optional= parser.add_argument_group('Optional, with default values ') 
+   optional.add_argument('-samples','--number_of_samples', type= int, default= 100, metavar='',help='Number of randomly drawed samples, default= 100')
+   optional.add_argument('-process','--number_of_processes', type=int, default=20, metavar='', help='Number of parallel proesses will be used in calculation, default=20')   
+   optional.add_argument('-cutoff','--cutoff_of_absolute_log10_pvalue', type=float, default=1.3, metavar='', help='Cutoff value for filtering, which is the absolute of log10(expected P-values),\
+                          default=1.3 which is equalvent to P-value=0.05')
+   optional.add_argument('-dpi', '--figure_resolution_dpi', type=int, default=60, metavar='', help='Exported figure resolution in dpi, default dpi=60')
+   return parser
+
+def count_chromSeg_in_df(tmp_gene,tmp_record):
+  '''count the number of chromSeg states is matched in a dataframe
+     tmp_gene is a row of dataframe, tmp_record is a dictionary that record all 7 chromSeg states for each block
+     return a dataframe for the count of chromSeg for a gene, a gene may have one or multiple blocks
+  '''
+  #print(tmp_gene)
+  #print(tmp_record)
+  tmp_df=pd.DataFrame(index=[tmp_gene.gene_name],columns=['R', 'E', 'T','TSS', 'PF', 'CTCF', 'WE'],data=np.zeros((1,7)))
+  for ki in tmp_record.keys():
+      for i in tmp_record[ki]:
+        if i in tmp_df.columns:
+           tmp_df[i] +=1
+  tmp_df['total_blocks']=len(tmp_record.keys())
+  return tmp_df.copy()
+
+#take one gene find its blocks associated to which chromSegments
+def find_gene_chromSeg_counts(tmp_gene, all_chromSeg_df):
+  ''' find bocks assocated to a gene that are overlapping to how many chromSeg states
+      here, assume the 3 column record the chromSeg state for  the last column block
+  '''
+  #tmp_gene=gene_df.iloc[0,:].copy()
+  tmp_blocks=list(set(tmp_gene.block_id.split('~')))
+  tmp_record={}
+  for ti in tmp_blocks:
+     tmp_record[ti]=[]
+     for tj in all_chromSeg_df:
+        #assume 7th column is the id
+        tmp= tj[tj.iloc[:,7]==ti].copy()
+        if tmp.shape[0]>0:
+           #print(tmp)
+           tmp_record[ti] += tmp.iloc[:,3].unique().tolist()
+  tmp_df= count_chromSeg_in_df(tmp_gene,tmp_record)
+  return tmp_df.copy(), tmp_blocks
+
+def count_in_df(args):
+   tmp_gene, tmp_blocks,all_chromSeg_df=args
+   tmp_record={}
+   for ti in tmp_blocks:
+      tmp_record[ti]=[]
+      for tj in all_chromSeg_df:
+         tmp= tj[tj.iloc[:,7]==ti].copy()
+         if tmp.shape[0]>0:
+            tmp_record[ti]+=tmp.iloc[:,3].unique().tolist()
+   tmp_df= count_chromSeg_in_df(tmp_gene,tmp_record)
+   return tmp_df.copy()
+
+def find_gene_chromSeg_counts_parallel(tmp_gene, all_chromSeg_df, num_of_processes):
+   ''' find bocks assocated to a gene that are overlapping to how many chromSeg states
+      here, assume the 3 column record the chromSeg state for  the last column block
+      using parallel process of num_of_processes
+      for each gene test its associated MRs or Blocks which split by ~ 
+  '''
+   #take unique of blocks
+   tmp_blocks=list(set(tmp_gene.block_id.split('~') ))
+   block_chunks, num_of_processes= divide_data2chunk(num_of_processes, tmp_blocks)
+   pool= mp.Pool(processes= num_of_processes)
+   rd_tmp_df =pool.map(count_in_df,
+                [(tmp_gene,block_chunks[loop], all_chromSeg_df) for loop in range(0, num_of_processes) ],1 )
+   pool.close()
+   tmp_df1=pd.concat(rd_tmp_df)
+   tmp_df=tmp_df1.groupby(tmp_df1.index).sum()
+   return tmp_df.copy(), tmp_blocks
+
+def do_gene_test(args):
+    '''count in each sampled gene, how many counts of chromSEg in the sampled blocks
+       record_genes is a list contain all dataframe of blocks in a gene, and the third
+        column of the dataframe is the type of chromSegment.
+       Here, we assume there are 7 types of chromSegments, 
+       return all count of sampled blocks in a dataframe
+    '''
+    record_genes, seeds=args
+    record_all_dfs=[]
+    loop=0
+    for tmp_gene_df in record_genes:
+       tmp_df=pd.DataFrame(index=['sample'+str(loop)],columns=['R', 'E', 'T','TSS', 'PF', 'CTCF', 'WE'],data=np.zeros((1,7)))
+       for t_idx,t_row in tmp_gene_df.iterrows():
+         if t_row[3] in tmp_df.columns:
+           tmp_df[t_row[3]] +=1
+       tmp_df['total_blocks']=tmp_gene_df.shape[0]
+       loop +=1
+       record_all_dfs.append(tmp_df.copy())
+    record_all_df=pd.concat(record_all_dfs).copy()
+    return record_all_df
+
+def do_random_sampling(args):
+   loop, samples, filtered_merged_chromSeg_df,tmp_num_blocks=args
+   LocalProcRandGen = np.random.RandomState()
+   record_all_dfs=[None]*samples
+   for loop in range(0,samples):
+     tmp_gene_df=filtered_merged_chromSeg_df.sample(n=tmp_num_blocks,random_state=LocalProcRandGen).copy()
+     record_all_dfs[loop]=tmp_gene_df.copy()
+   return record_all_dfs
+
+def do_parallel_test_in_genes(gene_df, all_chromSeg_df, merged_chromSeg_df,samples, num_processes):
+  #loop in all genes to find its assocaited mutation blocks are overlapping to chromSegemnet
+  all_genes_df_list=[]
+  all_random_df_list=[]
+  for index, row in gene_df.iterrows():
+     print(row.gene_name)
+     #find this count of chromSegment for blocks associated to this gene done in parallel
+     tmp_count_df,tmp_blocks=find_gene_chromSeg_counts_parallel(row,all_chromSeg_df,num_processes) 
+     #print('Complete for finding real counts ')
+
+     all_genes_df_list.append(tmp_count_df)
+     #random sampling the same number blocks from full data
+     tmp_num_blocks=tmp_count_df.total_blocks.to_numpy()[0]  
+     #samples=100
+     #num_processes=20
+     record_all_dfs=[] #[None]*samples
+
+     #remove blocks are selected by this gene
+     filtered_merged_chromSeg_df= merged_chromSeg_df[merged_chromSeg_df[7].apply(lambda x : x not in tmp_blocks)].copy()
+
+     #print('Start random sampling')
+     #for loop in range(0,samples):
+     #  tmp_gene_df=filtered_merged_chromSeg_df.sample(tmp_num_blocks).copy()
+     #  record_all_dfs[loop]=tmp_gene_df.copy()
+     #print('Complete for random sampling')
+
+     block_chunks, num_of_processes= divide_data2chunk(num_processes, range(0,samples))
+     record_samples=[]
+     for bi in block_chunks:
+        record_samples.append(len(bi)) 
+     pool=mp.Pool(processes=num_of_processes )
+     rd_ls_dfs=pool.map(do_random_sampling, [(loop,record_samples[loop],filtered_merged_chromSeg_df,tmp_num_blocks) for loop in range(0, num_of_processes)],1)
+     pool.close()
+     
+     #for ri in rd_ls_dfs:
+     #  record_all_dfs += ri
+
+     #block_chunks, num_of_processes=divide_data2chunk(num_processes, record_all_dfs) 
+     #do parallel calculation of blocks for all random samples
+     pool= mp.Pool(processes= num_of_processes)
+     rd_ls_df=pool.map(do_gene_test,
+                  [( rd_ls_dfs[loop] , loop) for loop in  range(0, num_of_processes)],1 )
+     pool.close()
+
+     #combine all results and compare true count vs sampled count
+     record_all_df=pd.concat(rd_ls_df)
+     random_pd=pd.DataFrame(index=[row.gene_name],columns=['R', 'E', 'T','TSS', 'PF', 'CTCF', 'WE'] )
+     for ci in record_all_df.columns:
+            tmp_pval=record_all_df[record_all_df[ci]>=tmp_count_df[ci].to_numpy()[0]].shape[0]/samples
+            random_pd[ci]=tmp_pval
+     all_random_df_list.append(random_pd.copy())
+     #print('complete for all counts calculation')
+     #input('Click')
+  return all_genes_df_list, all_random_df_list
+
+def export_and_filter_data(gene_df, all_genes_df_list, all_random_df_list,cutoff, samples):
+  #export count in gene
+  all_genes_df=pd.concat(all_genes_df_list)
+  out_df=all_genes_df.apply(lambda x: x/all_genes_df.total_blocks)
+  out_df2=out_df.iloc[:,0:-1].copy()
+  print(out_df2.mean())
+  out_count_file='sample'+str(samples)+'_count_'+str(gene_df.shape[0])+'_genes.tsv'
+  all_genes_df.to_csv(out_count_file,sep='\t')
+
+  #export expected pval in random sampling where replace 0 by 0.000001
+  all_random_df= pd.concat(all_random_df_list).copy()
+  out_random_df= all_random_df.apply(lambda x : np.abs(np.log10(x+1/(samples*10)))).copy()
+  out_pval_file='sample'+str(samples)+'_absLog10Pval_'+str(gene_df.shape[0])+'_genes.tsv'
+  out_random_df.to_csv(out_pval_file,sep='\t')
+
+  out_df2_mat=out_df.iloc[:,0:-1].to_numpy()
+  out_random_mat=out_random_df.iloc[:,0:-1].to_numpy()
+
+  zeros_mat=np.zeros(out_df2_mat.shape)
+  zeros_mat[out_df2_mat>0]=1
+  new_random_mat=zeros_mat*out_random_mat
+  out_random_df2=pd.DataFrame(data=new_random_mat, columns=out_random_df.columns[0:-1])
+
+  #filter genes based on predifened conditions
+  #gene_df=pd.read_csv(in_gene_file,sep='\t')
+  #pval_df=pd.read_csv(in_pval_file,sep='\t',index_col=0)
+  pval_df=out_random_df.copy()
+  pval_df.insert(0,'gene_name',pval_df.index.to_list())
+  combined_df=pval_df.merge(gene_df,how='inner',on='gene_name').copy()
+
+  #cutoff=1.3
+  filtered_df2=combined_df[(combined_df['E']>cutoff) |(combined_df['TSS']>cutoff)].copy()
+  if 'mean_scores' in filtered_df2.columns:
+    filtered_df2.sort_values(by='mean_scores',ascending=False).iloc[0:10,:]
+    filtered_df2.reset_index(inplace=True)
+    filtered_df2.pop('index')
+  out_file=out_pval_file.replace('_genes.tsv','_genesE_TSS'+str(cutoff)+'.tsv')
+  print('Export at: ', out_file )
+  filtered_df2.to_csv(out_file,sep='\t')
+  return all_genes_df.copy(), out_random_df.copy(), filtered_df2.copy(), out_df2.copy(), out_random_df2.copy()
+
+def plot_figures(gene_df, out_df2, out_random_df2,cutoff,fig_dpi, samples):
+  fig=plt.figure(figsize=(12,6)) 
+  axes=fig.add_subplot(121)
+  #plot fraction of blocks belong to R/T/...
+  out_df2.boxplot(column=['R','T','E','TSS','WE','CTCF','PF'],ax=axes,showmeans=True,showfliers=True)
+  axes.set_ylabel('Fraction', fontweight='bold')
+  axes.set_xlabel('Chromatin Segmentation', fontweight='bold')
+  axes.axhline(y = 0.1, color = 'r', linestyle = '-')
+  axes.text(-0.6,1.05, 'A)', size=12, weight='bold')
+
+
+  axes2=fig.add_subplot(122)
+  filtered_data=[]
+  cols= ['R','T','E','TSS','WE','CTCF','PF']
+  #remove zeros in chromSegment abs(log10(pvalues)) 
+  for ci in cols :
+     tmp_data=out_random_df2.loc[out_random_df2[ci]>0.0000,ci].to_numpy()
+     filtered_data.append(tmp_data)
+
+  for i in range(0,len(filtered_data)):
+     axes2.boxplot(filtered_data[i],positions=[i+1],showmeans=True,showfliers=True)
+
+  axes2.set_xticklabels(cols)
+  axes2.set_ylabel('abs(log10(Expected P-value))',fontweight='bold')
+  axes2.set_xlabel('Chromatin Segmentation',fontweight='bold')
+  axes2.grid(visible=True)
+  axes2.axhline(y = cutoff, color = 'r', linestyle = '-')
+  axes2.text(-0.6,5.2, 'B)', size=12, weight='bold')
+  out_fig='sample'+str(samples)+'_pval_chromSeg_'+str(gene_df.shape[0])+'genes.jpg'
+  plt.savefig(out_fig,dpi=fig_dpi)
+  return out_fig
+
+def run(args):
+  #dds_analysis dds_geneRanking exported file
+  #in_gene_file='out_dds/blocks_summary_block_position_0flank_0.7Proba_66868blocks_13143blocks2mr_4603blocks2dmr_deg_info_filtered_DMR_or_DEG_uniqGene_commonTAD_Boundary_list2UqGene_selectedGenes_gt_0.5.txt'
+  in_gene_file=args.in_gene_file
+  gene_df=pd.read_csv(in_gene_file,sep='\t')
+
+  #read all chromSegment states that are overlapping to 66868 mutation blocks detected in 14 FL, where 400 of them do not find overlapping to any chromSegments
+  #dmr_analysis dmr_map2chromSegment  exported files
+  #chromSeg_folder='out_chromSegment'
+  chromSeg_folder=args.in_chromSeg_folder
+  chromSeg_files=glob.glob(os.path.join(chromSeg_folder,'*.bed'))
+  all_genes_df_list=[]
+  #load all chromSeg data for 66468 mutation blocks
+  all_chromSeg_df=[]
+  for fi in chromSeg_files:
+     print(fi)
+     all_chromSeg_df.append(pd.read_csv(fi,sep='\t',header=None))
+
+  #data frame for all blocks overlapping to chromSegment 
+  merged_chromSeg_df=pd.concat(all_chromSeg_df).sort_values(by=[0, 1, 2]).copy()
+  samples=args.number_of_samples
+  num_processes=args.number_of_processes
+  #loop in all genes to find  its assocaited mutation blocks are overlapping to chromSegemnet
+  all_genes_df_list, all_random_df_list = do_parallel_test_in_genes(gene_df, all_chromSeg_df, merged_chromSeg_df,samples,num_processes)
+  cutoff=args.cutoff_of_absolute_log10_pvalue
+  all_genes_df, out_random_df, filtered_df2, out_df2, out_random_df2= export_and_filter_data(gene_df, all_genes_df_list, all_random_df_list,cutoff,samples)
+  fig_dpi=args.figure_resolution_dpi
+  out_fig=plot_figures(gene_df, out_df2, out_random_df2,cutoff, fig_dpi, samples)
+  print(out_fig)
+  return out_fig
+
+if __name__=='__main__':
+  args=my_parser(argparse.ArgumentParser('python chromSegment_test4blocks.py')).parse_args()
+  run(args)
+
+
+
+
