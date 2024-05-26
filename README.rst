@@ -34,7 +34,7 @@ Tasks available for using:
 - **preprocess**: This module first finds DEG in TSS, 5dist regions then preprocesses data for dds_analysis.
 
 
-A detailed documentation of the tool can be found here: https://dds-analysis.readthedocs.io/en/latest/index.html
+A detailed documentation of the tool can be found here: https://dds-analysis-tool.github.io/documentation/ 
 
 
 Please send email to Dr. Junbai Wang (junbai.wang@medisin.uio.no) for requesting a free download of DDS-analysis pacakge.
