@@ -64,7 +64,9 @@ def read_geneexp_data(in_gene_expression, gene_exp_start_col,pathDepth4sampleNam
   tmp_exp_cols=in_geneexp_df.columns[gene_exp_start_col:].to_list()
   #jbw 2024
   #tmp_exp_sample_cols=[ i.split('/')[pathDepth4sampleName].replace('.just_counts.tsv_log_of_quantile_normalized_RPKM','') for i in tmp_exp_cols]
-  tmp_exp_sample_cols=[ os.path.basename(i).replace('.just_counts.tsv_log_of_quantile_normalized_RPKM','') for i in tmp_exp_cols]
+  #tmp_exp_sample_cols=[ os.path.basename(i).replace('.just_counts.tsv_log_of_quantile_normalized_RPKM','') for i in tmp_exp_cols]
+  tmp_exp_sample_cols=[ os.path.basename(i) for i in tmp_exp_cols]
+
   return in_geneexp_df, tmp_exp_cols, tmp_exp_sample_cols
 
 def combine_mr_and_expression_data(tmp_mr_file, tmp_out_folder , in_geneexp_data, exp2mr_normal_id,tmp_exp_sample_cols,

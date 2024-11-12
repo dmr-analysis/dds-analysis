@@ -170,10 +170,12 @@ def run(args):
           ti2='gene_name'
       else:
           #jbw may
-          if not args.no_zscore:
-             ti2=os.path.basename(ti.replace('_count','_count_zscoreLog_of'))
-          else:
-             ti2=os.path.basename(ti.replace('_count','_count_of'))
+          #if not args.no_zscore:
+          #   ti2=os.path.basename(ti.replace('_count','_count_zscoreLog_of'))
+          #else:
+          #   ti2=os.path.basename(ti.replace('_count','_count_of'))
+          #jbw 2024
+          ti2=os.path.basename(ti)
 
       tmp_columns2.append(ti2)
 
