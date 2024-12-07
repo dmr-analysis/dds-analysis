@@ -95,7 +95,7 @@ def preprocess(full_mr_file, out_result_folder, in_genome_file, in_data_str, tss
 
     # 8. to find tss overlapping with DMRs
     out_file3 = out_file2.replace('_5dist_', '_')
-    cmd = 'grep TSS ' + out_file2 + '  > ' + out_file3
+    cmd = 'grep TSS: ' + out_file2 + '  > ' + out_file3
     os.system(cmd)
     print('Export TSS overlapping with DMRs: ')
     # print('\t',out_file3)
@@ -108,7 +108,7 @@ def preprocess(full_mr_file, out_result_folder, in_genome_file, in_data_str, tss
 
     # 10. to find 5dist regions overlapping with enhancers
     out_file3 = in_file.replace('_tss_', '_')
-    cmd = 'grep 5dist ' + in_file + '  > ' + out_file3
+    cmd = 'grep 5dist: ' + in_file + '  > ' + out_file3
     print('Export 5distance region overlapping with enhancers')
     os.system(cmd)
 
