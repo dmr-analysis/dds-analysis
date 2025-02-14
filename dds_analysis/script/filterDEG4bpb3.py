@@ -175,7 +175,10 @@ def run(args):
           #else:
           #   ti2=os.path.basename(ti.replace('_count','_count_of'))
           #jbw 2024
-          ti2=os.path.basename(ti)
+          tmp_ti2=os.path.basename(ti)
+          #jbw 2025
+          tmp_fold=ti.split('/')[-4]
+          ti2=tmp_fold+'.'+ tmp_ti2
 
       tmp_columns2.append(ti2)
 
