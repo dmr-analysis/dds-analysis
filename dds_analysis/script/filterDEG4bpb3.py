@@ -177,7 +177,13 @@ def run(args):
           #jbw 2024
           tmp_ti2=os.path.basename(ti)
           #jbw 2025
-          tmp_fold=ti.split('/')[-4]
+          #tmp_fold=ti.split('/')[-4]
+          tmp_folds=ti.split('/')
+          if len(tmp_folds)>4:
+              tmp_fold=tmp_folds[-4]
+          else:
+              tmp_fold=tmp_folds[-len(tmp_folds)]
+
           ti2=tmp_fold+'.'+ tmp_ti2
 
       tmp_columns2.append(ti2)
