@@ -434,6 +434,10 @@ def run(args):
   #mrs_not_in_enhancer_tss_file='mr4sampling_list.csv'
   mrs_not_in_enhancer_tss_file=args.in_mr_background_file_list
   print('Input file of background regions: ', mrs_not_in_enhancer_tss_file)
+  #check file empty . jbw 2025
+  if os.stat(mrs_not_in_enhancer_tss_file).st_size==0:
+      print(mrs_not_in_enhancer_tss_file, ' is Empty! I stop! ')
+      exit()
 
   in_mrs_not_in_enhancer_tss_df=pd.read_csv(mrs_not_in_enhancer_tss_file, sep='\t',header=None)
 
